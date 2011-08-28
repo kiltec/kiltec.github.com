@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title>Lars Tesmer's Blog</title>
+  <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2011-08-28T16:12:54+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name>Lars Tesmer</name>
+    
+  </author>
+
+  
+  <entry>
+    <title>Colored Diffs in Thunderbird</title>
+    <link href="http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
+    <updated>2010-10-01T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
+    <content type="html">&lt;p&gt;
+At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
+&lt;/p&gt;
+&lt;p&gt;
+&lt;a href=&quot;http://code.google.com/p/colorediffs/&quot;&gt;colorediffs by Vadim Atlygin&lt;/a&gt; 
+&lt;/p&gt;
+&lt;p&gt;
+It features various display modes, e.g. simple coloring of unified diffs:
+&lt;/p&gt;
+&lt;img src=&quot;http://www.lars-tesmer.com/images/unified.png&quot; /&gt;&lt;br /&gt;
+&lt;p&gt;
+Or side-by-side diffs:
+&lt;/p&gt;
+&lt;img src=&quot;http://www.lars-tesmer.com/images/side-by-side.png&quot; /&gt; &lt;br /&gt;
+&lt;p&gt;
+As you can see it will also display whitespace characters, if you want to.&lt;br /&gt;
+Moreover, you can set the tab width to your preferred value.&lt;br /&gt;
+You can find more screenshots &lt;a href=&quot;http://code.google.com/p/colorediffs/wiki/Screenshots&quot;&gt;in the wiki of colorediffs.&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Yet again, another useful Thunderbird-addon making my life a little bit easier.
+&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>No Time to Read That Blog - Read It Later!</title>
+    <link href="http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
+    <updated>2010-09-29T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later</id>
+    <content type="html">&lt;p&gt;
+In order to keep up-to-date with what's going on in the tech world, I read a lot of blogs, visit &lt;a href=&quot;http://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt; regularly etc. during my lunch break for example.
+&lt;/p&gt;
+&lt;p&gt;
+Frequently, I will stumble upon seemingly interesting articles but either they're too long to be read during the break or there's no time left to read them.&lt;br /&gt;
+What I used to do until a year ago was to move those articles into a bookmark folder called 'toread', in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.&lt;br /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+Then I discovered &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;
+It's a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you're currently viewing into a list for later access.&lt;br /&gt;
+When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt; will get you to the next page you've saved in chronological order.&lt;br /&gt;
+Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.&lt;br /&gt;
+Additionally, if you use several computers, you can optionally save the list remotely, so you can access the same list from different computers.&lt;br /&gt;
+And there are &lt;a href=&quot;http://readitlaterlist.com/firefox/&quot;&gt;many more features&lt;/a&gt;, for example an API you can use to code your own app.
+&lt;/p&gt;
+&lt;p&gt;
+The way I use it is that I'll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I'll go through those items and read them - or rather, not read them.&lt;br /&gt;
+That's the beauty about this, often it will turn out that the article or blog I'm getting to isn't that interesting after all and I can quickly move to the next article in the list.&lt;br /&gt;
+And that decision is really based on my thinking it isn't interesting and not by feeling under pressure due to lack of time.
+&lt;/p&gt;
+&lt;p&gt;
+This is absolutely one of those Firefox addons I don't want to live without anymore.
+&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Git - How to get better diffs for images</title>
+    <link href="http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
+    <updated>2010-09-20T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images</id>
+    <content type="html">Here's a really useful addition to my Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
+to create diffs of changes made to images:
+&lt;pre&gt;
+cd /path_to_project
+echo '*.png diff=exif' &gt;&gt; .gitattributes
+echo '*.jpg diff=exif' &gt;&gt; .gitattributes
+echo '*.gif diff=exif' &gt;&gt; .gitattributes
+git config diff.exif.textconv exiftool
+&lt;/pre&gt;
+From now on, diffs for images will look something like this:&lt;br /&gt;
+&lt;pre&gt;
+--- a/img.png
++++ b/img.png
+@@ -1,7 +1,7 @@
+ ExifTool Version Number         : 7.89
+-File Size                       : 8.9 kB
++File Size                       : 8.3 kB
+ File Modification Date/Time     : 2010:09:20 16:55:41+02:00
+ File Type                       : PNG
+ MIME Type                       : image/png
+-Image Width                     : 58
+-Image Height                    : 80
++Image Width                     : 60
++Image Height                    : 87
+&lt;/pre&gt;
+Nothing spectacular but much more useful than the default.&lt;br /&gt;
+Originally, I found this in some slides I read many moons ago.
+I tried to find those slides again, unsuccessfully.&lt;br /&gt;
+Luckily, I've found another source explaining how to do it:&lt;br /&gt;
+&lt;a href=&quot;http://progit.org/book/ch7-2.html&quot;&gt;Chapter 7 of &quot;Pro Git&quot;&lt;/a&gt;&lt;br /&gt;
+Thanks, Scott Chacon!&lt;br /&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <title>Welcome To My Blog</title>
+    <link href="http://www.lars-tesmer.com/blog/2010/05/11/welcome-to-my-blog/"/>
+    <updated>2010-05-11T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/05/11/welcome-to-my-blog</id>
+    <content type="html">title: Welcome to my blog!
+author: Lars Tesmer
+date: 2010/05/11
+
+So finally I got a blog up and running. I've decided to give &lt;a href=&quot;http://cloudhead.io/toto&quot;&gt;toto&lt;/a&gt; a try as my blogging engine.&lt;br /&gt;
+It's not using any database at all and it's &lt;a href=&quot;http://fadeyev.net/2010/05/10/getting-started-with-toto/&quot;&gt;pretty easy to get it up and running&lt;/a&gt;.&lt;br /&gt; &lt;br /&gt;
+So, what will this blog be about?&lt;br /&gt;&lt;br /&gt;
+Well, basically about anything programming-related, since that's what I do for a living. I will use this blog as the place to post stuff I've learned as well as anything else I feel like writing about. ;) &lt;br /&gt;&lt;br /&gt;
+Anyways, subscribe to the RSS feed so you won't miss my next posts!&lt;br /&gt;&lt;br /&gt;
+Cheers,&lt;br /&gt;
+Lars Tesmer
+</content>
+  </entry>
+  
+</feed>
