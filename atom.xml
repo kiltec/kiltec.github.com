@@ -4,7 +4,7 @@
   <title>Lars Tesmer's Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-08-28T16:12:54+02:00</updated>
+  <updated>2011-08-28T17:35:02+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -114,15 +114,11 @@ Thanks, Scott Chacon!&lt;br /&gt;
   </entry>
   
   <entry>
-    <title>Welcome To My Blog</title>
+    <title>Welcome to my blog!</title>
     <link href="http://www.lars-tesmer.com/blog/2010/05/11/welcome-to-my-blog/"/>
     <updated>2010-05-11T00:00:00+02:00</updated>
     <id>http://www.lars-tesmer.com/blog/2010/05/11/welcome-to-my-blog</id>
-    <content type="html">title: Welcome to my blog!
-author: Lars Tesmer
-date: 2010/05/11
-
-So finally I got a blog up and running. I've decided to give &lt;a href=&quot;http://cloudhead.io/toto&quot;&gt;toto&lt;/a&gt; a try as my blogging engine.&lt;br /&gt;
+    <content type="html">So finally I got a blog up and running. I've decided to give &lt;a href=&quot;http://cloudhead.io/toto&quot;&gt;toto&lt;/a&gt; a try as my blogging engine.&lt;br /&gt;
 It's not using any database at all and it's &lt;a href=&quot;http://fadeyev.net/2010/05/10/getting-started-with-toto/&quot;&gt;pretty easy to get it up and running&lt;/a&gt;.&lt;br /&gt; &lt;br /&gt;
 So, what will this blog be about?&lt;br /&gt;&lt;br /&gt;
 Well, basically about anything programming-related, since that's what I do for a living. I will use this blog as the place to post stuff I've learned as well as anything else I feel like writing about. ;) &lt;br /&gt;&lt;br /&gt;
