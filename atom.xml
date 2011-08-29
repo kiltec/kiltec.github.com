@@ -4,7 +4,7 @@
   <title>Lars Tesmer's Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-08-29T21:18:19+02:00</updated>
+  <updated>2011-08-29T21:24:53+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -42,6 +42,11 @@ which demonstrates how you can assert that a piece of code throws as exception i
 
 &lt;p&gt;Check out lines 5-7 - isn't this a really elegant and readable way of expecting an exception?
 Now let's contrast this with how it's done in PHPUnit:&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+
 
 &lt;div&gt;&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Current way of expecting exceptions in PHPUnit  &lt;/span&gt;&lt;/figcaption&gt;
  &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class='line'&gt;1&lt;/span&gt;
