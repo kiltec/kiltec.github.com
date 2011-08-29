@@ -1,10 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://www.lars-tesmer.com/blog/2010/05/11/welcome-to-my-blog/</loc>
-        <lastmod>2011-08-28T17:33:48+02:00</lastmod>
-    </url>
-    <url>
         <loc>
             http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/
         </loc>
@@ -21,11 +17,17 @@
         <lastmod>2011-08-28T17:35:02+02:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/
+        </loc>
+        <lastmod>2011-08-29T21:17:46+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.lars-tesmer.com/blog/archives/</loc>
-        <lastmod>2011-08-28T17:35:02+02:00</lastmod>
+        <lastmod>2011-08-29T21:17:46+02:00</lastmod>
     </url>
     <url>
         <loc>http://www.lars-tesmer.com/</loc>
-        <lastmod>2011-08-28T17:35:02+02:00</lastmod>
+        <lastmod>2011-08-29T21:17:46+02:00</lastmod>
     </url>
 </urlset>

@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Lars Tesmer's Blog</title>
+  <title>Lars Tesmer's Blog: PHPUnit: Better Syntax for Expecting Exceptions</title>
   <meta name="author" content="Lars Tesmer">
   
 
@@ -16,7 +16,7 @@
 
   
 
-  <link rel="canonical" href="http://www.lars-tesmer.com/index.html"/>
+  <link rel="canonical" href="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
   <link href="/favicon.png" rel="shortcut icon" />
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -92,15 +92,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
-
-
-
-  <article>
-    
+      <div>
+<article class="hentry">
+  
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/">PHPUnit: Better Syntax for Expecting Exceptions</a></h1>
+      <h1 class="entry-title">PHPUnit: Better Syntax for Expecting Exceptions</h1>
     
     
       <p class="meta">
@@ -116,7 +113,7 @@
   </header>
 
 
-  <div class="entry-content"><p>Recently, while starting to learn Ruby, I&#8217;ve stumbled upon the following code snippet
+<div class="entry-content"><p>Recently, while starting to learn Ruby, I&#8217;ve stumbled upon the following code snippet
 which demonstrates how you can assert that a piece of code throws as exception in Ruby&#8217;s Test::Unit:</p>
 
 <div><figure role=code><figcaption><span>Expecting exceptions in Test::Unit  </span></figcaption>
@@ -296,192 +293,62 @@ expressiveness over terseness any day.</p>
 <p>What do you think, should I turn this into a real patch for PHPUnit?<br/>
 Or am I just crazy? ;)</p>
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lars Tesmer</span></span>
+
+      
+
+
+
+
+<time datetime="2011-08-29 18:32:00 +0200" pubdate  updated >Aug 29<span>th</span>, 2011</time>
+
+
+
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/" data-via="kiltec" data-counturl="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/" >Tweet</a>
   
   
-
-
-  </article>
-
-
-  <article>
-    
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/10/01/colored-diffs-in-thunderbird/">Colored Diffs in Thunderbird</a></h1>
-    
-    
-      <p class="meta">
-
-
-
-
-<time datetime="2010-10-01 00:00:00 +0200" pubdate  updated >Oct 1<span>st</span>, 2010</time>
-
-
-</p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>
-At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
-</p>
-<p>
-<a href="http://code.google.com/p/colorediffs/">colorediffs by Vadim Atlygin</a> 
-</p>
-<p>
-It features various display modes, e.g. simple coloring of unified diffs:
-</p>
-<img src="http://www.lars-tesmer.com/images/unified.png" /><br />
-<p>
-Or side-by-side diffs:
-</p>
-<img src="http://www.lars-tesmer.com/images/side-by-side.png" /> <br />
-<p>
-As you can see it will also display whitespace characters, if you want to.<br />
-Moreover, you can set the tab width to your preferred value.<br />
-You can find more screenshots <a href="http://code.google.com/p/colorediffs/wiki/Screenshots">in the wiki of colorediffs.</a>
-</p>
-<p>
-Yet again, another useful Thunderbird-addon making my life a little bit easier.
-</p>
+  <g:plusone size="medium"></g:plusone>
+  
 </div>
-  
-  
 
-
-  </article>
-
-
-  <article>
     
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/">No Time to Read That Blog - Read It Later!</a></h1>
-    
-    
-      <p class="meta">
+  </footer>
+</article>
 
-
-
-
-<time datetime="2010-09-29 00:00:00 +0200" pubdate  updated >Sep 29<span>th</span>, 2010</time>
-
-
-</p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>
-In order to keep up-to-date with what&#8217;s going on in the tech world, I read a lot of blogs, visit <a href="http://news.ycombinator.com/">Hacker News</a> regularly etc. during my lunch break for example.
-</p>
-<p>
-Frequently, I will stumble upon seemingly interesting articles but either they&#8217;re too long to be read during the break or there&#8217;s no time left to read them.<br />
-What I used to do until a year ago was to move those articles into a bookmark folder called &#8216;toread&#8217;, in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.<br />
-</p>
-<p>
-Then I discovered <a href="http://readitlaterlist.com/">Read It Later</a>.</p>
-<p>
-It&#8217;s a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you&#8217;re currently viewing into a list for later access.<br />
-When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and <a href="http://readitlaterlist.com/">Read It Later</a> will get you to the next page you&#8217;ve saved in chronological order.<br />
-Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.<br />
-Additionally, if you use several computers, you can optionally save the list remotely, so you can access the same list from different computers.<br />
-And there are <a href="http://readitlaterlist.com/firefox/">many more features</a>, for example an API you can use to code your own app.
-</p>
-<p>
-The way I use it is that I&#8217;ll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I&#8217;ll go through those items and read them - or rather, not read them.<br />
-That&#8217;s the beauty about this, often it will turn out that the article or blog I&#8217;m getting to isn&#8217;t that interesting after all and I can quickly move to the next article in the list.<br />
-And that decision is really based on my thinking it isn&#8217;t interesting and not by feeling under pressure due to lack of time.
-</p>
-<p>
-This is absolutely one of those Firefox addons I don&#8217;t want to live without anymore.
-</p>
-</div>
-  
-  
-
-
-  </article>
-
-
-  <article>
-    
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/09/20/git---how-to-get-better-diffs-for-images/">Git - How to Get Better Diffs for Images</a></h1>
-    
-    
-      <p class="meta">
-
-
-
-
-<time datetime="2010-09-20 00:00:00 +0200" pubdate  updated >Sep 20<span>th</span>, 2010</time>
-
-
-</p>
-    
-  </header>
-
-
-  <div class="entry-content">Here&#8217;s a really useful addition to my Git config that will tell Git to use <i>exiftool</i>
-to create diffs of changes made to images:
-<pre>
-cd /path_to_project
-echo '*.png diff=exif' >> .gitattributes
-echo '*.jpg diff=exif' >> .gitattributes
-echo '*.gif diff=exif' >> .gitattributes
-git config diff.exif.textconv exiftool
-</pre>
-From now on, diffs for images will look something like this:<br />
-<pre>
---- a/img.png
-+++ b/img.png
-@@ -1,7 +1,7 @@
- ExifTool Version Number         : 7.89
--File Size                       : 8.9 kB
-+File Size                       : 8.3 kB
- File Modification Date/Time     : 2010:09:20 16:55:41+02:00
- File Type                       : PNG
- MIME Type                       : image/png
--Image Width                     : 58
--Image Height                    : 80
-+Image Width                     : 60
-+Image Height                    : 87
-</pre>
-Nothing spectacular but much more useful than the default.<br />
-Originally, I found this in some slides I read many moons ago.
-I tried to find those slides again, unsuccessfully.<br />
-Luckily, I&#8217;ve found another source explaining how to do it:<br />
-<a href="http://progit.org/book/ch7-2.html">Chapter 7 of &#8220;Pro Git&#8221;</a><br />
-Thanks, Scott Chacon!<br />
-</div>
-  
-  
-
-
-  </article>
-
-<nav role="pagination">
-  <div>
-    
-    <a href="/blog/archives">Blog Archives</a>
-    
-  </div>
-</nav>
-
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread"><div id="disqus_thread"></div>
 <script type="text/javascript">
-    var disqus_shortname = 'larstesmer';
-    (function () {
-      var s = document.createElement('script'); s.async = true;
-      s.type = 'text/javascript';
-      s.src = 'http://' + disqus_shortname + '.disqus.com/count.js';
-      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
+  var disqus_shortname = 'larstesmer';
+  var disqus_identifier = 'http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/';
+  var disqus_url = 'http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/';
+  //var disqus_developer = 1;
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
 </script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
+
 <aside role=sidebar>
   
     <section>
@@ -533,6 +400,7 @@ Thanks, Scott Chacon!<br />
 
   
 </aside>
+
 
     </div>
   </div>
