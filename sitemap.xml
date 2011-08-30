@@ -4,17 +4,17 @@
         <loc>
             http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/
         </loc>
-        <lastmod>2011-08-28T17:34:14+02:00</lastmod>
+        <lastmod>2011-08-30T09:27:13+02:00</lastmod>
     </url>
     <url>
         <loc>
             http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/
         </loc>
-        <lastmod>2011-08-28T17:34:36+02:00</lastmod>
+        <lastmod>2011-08-30T09:25:51+02:00</lastmod>
     </url>
     <url>
         <loc>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/</loc>
-        <lastmod>2011-08-29T21:34:54+02:00</lastmod>
+        <lastmod>2011-08-30T09:24:24+02:00</lastmod>
     </url>
     <url>
         <loc>
@@ -23,11 +23,19 @@
         <lastmod>2011-08-29T21:36:37+02:00</lastmod>
     </url>
     <url>
+        <loc>http://www.lars-tesmer.com/about/</loc>
+        <lastmod>2011-08-30T09:54:32+02:00</lastmod>
+    </url>
+    <url>
         <loc>http://www.lars-tesmer.com/blog/archives/</loc>
-        <lastmod>2011-08-29T21:36:37+02:00</lastmod>
+        <lastmod>2011-08-30T09:27:13+02:00</lastmod>
     </url>
     <url>
         <loc>http://www.lars-tesmer.com/</loc>
-        <lastmod>2011-08-29T21:36:37+02:00</lastmod>
+        <lastmod>2011-08-30T09:27:13+02:00</lastmod>
+    </url>
+    <url>
+        <loc>http://www.lars-tesmer.com/contact/</loc>
+        <lastmod>2011-08-30T10:01:31+02:00</lastmod>
     </url>
 </urlset>

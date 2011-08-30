@@ -4,7 +4,7 @@
   <title>Lars Tesmer's Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-08-29T21:36:46+02:00</updated>
+  <updated>2011-08-30T10:01:31+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -212,6 +212,7 @@ Or am I just crazy? ;)&lt;/p&gt;
     <content type="html">&lt;p&gt;
 At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
 &lt;/p&gt;
+&lt;!--more--&gt;
 &lt;p&gt;
 &lt;a href=&quot;http://code.google.com/p/colorediffs/&quot;&gt;colorediffs by Vadim Atlygin&lt;/a&gt; 
 &lt;/p&gt;
@@ -249,6 +250,7 @@ What I used to do until a year ago was to move those articles into a bookmark fo
 &lt;p&gt;
 Then I discovered &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;
+&lt;!--more--&gt;
 It's a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you're currently viewing into a list for later access.&lt;br /&gt;
 When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt; will get you to the next page you've saved in chronological order.&lt;br /&gt;
 Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.&lt;br /&gt;
@@ -271,8 +273,10 @@ This is absolutely one of those Firefox addons I don't want to live without anym
     <link href="http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
     <updated>2010-09-20T00:00:00+02:00</updated>
     <id>http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images</id>
-    <content type="html">Here's a really useful addition to my Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
+    <content type="html">Have you ever wondered if there's something that would make Git to show better diffs for images?&lt;br /&gt;
+Well, here's a really useful addition to one's Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
 to create diffs of changes made to images:
+&lt;!--more--&gt;
 &lt;pre&gt;
 cd /path_to_project
 echo '*.png diff=exif' &gt;&gt; .gitattributes
