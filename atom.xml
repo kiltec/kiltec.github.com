@@ -4,7 +4,7 @@
   <title>Lars Tesmer's Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-04T17:09:29+02:00</updated>
+  <updated>2011-09-04T17:11:26+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -33,7 +33,7 @@ Robert C. Martin aka Uncle Bob, a programmer with decades of experience under hi
 &lt;p&gt;Self Responsibility.&lt;/p&gt;
 
 &lt;p&gt;Especially when talking about his failures, this &lt;em&gt;leitmotif&lt;/em&gt; becomes evident:&lt;br/&gt;
-Neither is Robert C. Martin blaming other people, nor the environment, nor bad luck, nor lack of time - no, the essence of his stories is that he himself failed, failed to be resonsible, failed to act professionally.&lt;/p&gt;
+Neither is Robert C. Martin blaming other people, nor the environment, nor bad luck, nor lack of time - no, the essence of his stories is that he himself failed, failed to be responsible, failed to act professionally.&lt;/p&gt;
 
 &lt;p&gt;What a hard realization!&lt;/p&gt;
 
@@ -48,7 +48,7 @@ If it's &lt;em&gt;your&lt;/em&gt; fault, &lt;em&gt;your&lt;/em&gt; responsibilit
 &lt;p&gt;However, I still think it's a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:&lt;br/&gt;
 The code you work on sucks? - Well, then start to write better code!&lt;/p&gt;
 
-&lt;p&gt;Your company company doesn't allow for much time to practice, to hone your skills? - Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!&lt;/p&gt;
+&lt;p&gt;Your company doesn't allow for much time to practice, to hone your skills? - Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!&lt;/p&gt;
 
 &lt;p&gt;Summing up, &lt;em&gt;The Clean Coder&lt;/em&gt; is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.&lt;/p&gt;
 </content>
