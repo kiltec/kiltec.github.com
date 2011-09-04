@@ -4,7 +4,7 @@
   <title>Lars Tesmer's Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-04T17:21:26+02:00</updated>
+  <updated>2011-09-04T17:24:59+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -69,11 +69,11 @@ If you want to learn Ruby and you already know another programming language, &lt
 
 &lt;p&gt;For starters, this book is really well written, it never gets boring, it isn't a dry explanation of yet another programming language - it's simply an enjoyable read.&lt;/p&gt;
 
-&lt;p&gt;More importantly, it doesn't suffer from the mistake as oh so many other books:&lt;br/&gt;
-As an experienced programmer it's really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.&lt;br/&gt;
-In &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby&lt;/a&gt; there's none of that. Or when there is, it's written in a way that's not treating you like a programmer on his first day.&lt;/p&gt;
+&lt;p&gt;More importantly, it doesn't suffer from the mistake of oh so many other books:&lt;br/&gt;
+As an experienced programmer it's really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;Eloquent Ruby&lt;/em&gt; does not only teach you the syntax but teaches you &lt;em&gt;idiomatic&lt;/em&gt; Ruby, so you'll be able to write Ruby that actually looks like Ruby.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby&lt;/a&gt; there's none of that. Or when there is, it's written in a way that's not treating you like a programmer on his first day.&lt;br/&gt;
+&lt;em&gt;Eloquent Ruby&lt;/em&gt; does not only teach you the syntax but teaches you &lt;em&gt;idiomatic&lt;/em&gt; Ruby, so you'll be able to write Ruby that actually looks like Ruby.&lt;/p&gt;
 
 &lt;p&gt;The book consists of four large sections. The first section introduces you to the basics of Ruby, the second deals about the possibilities offered by classes, modules and blocks in Ruby.&lt;br/&gt;
 The third section is where it gets &lt;em&gt;really&lt;/em&gt; meaty, you're introduced to the power (and dangers) of metaprogramming. The final section is about pulling everything you've learned so far together, e.g. by showing how to build both internal and external DSLs with Ruby.&lt;/p&gt;
