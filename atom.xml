@@ -4,7 +4,7 @@
   <title>Lars Tesmer's Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-04T17:04:32+02:00</updated>
+  <updated>2011-09-04T17:09:29+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -19,7 +19,7 @@
     <id>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
     <content type="html">&lt;p&gt;&lt;img class='left ' src='http://lars-tesmer.com/images/books/the_clean_coder.jpg' width='' height='' alt='' title=''&gt;
 Robert C. Martin aka Uncle Bob, a programmer with decades of experience under his belt, lets us in about what he has learned in his professional life and, more importantly, how he has failed, sometimes failed miserably.
-&lt;em&gt;The Clean Coder&lt;/em&gt; is an important book.&lt;/p&gt;
+&lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073&quot;&gt;The Clean Coder&lt;/a&gt; is an important book.&lt;/p&gt;
 
 &lt;p&gt;In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one's quest to become a true professional, a software master.&lt;/p&gt;
 
@@ -50,7 +50,7 @@ The code you work on sucks? - Well, then start to write better code!&lt;/p&gt;
 
 &lt;p&gt;Your company company doesn't allow for much time to practice, to hone your skills? - Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!&lt;/p&gt;
 
-&lt;p&gt;Concludingly, &lt;em&gt;The Clean Coder&lt;/em&gt; is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.&lt;/p&gt;
+&lt;p&gt;Summing up, &lt;em&gt;The Clean Coder&lt;/em&gt; is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.&lt;/p&gt;
 </content>
   </entry>
   
