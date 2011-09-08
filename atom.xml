@@ -4,13 +4,148 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-08T11:19:25+02:00</updated>
+  <updated>2011-09-09T01:17:27+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
     
   </author>
 
+  
+  <entry>
+    <title>What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
+    <updated>2011-09-08T23:06:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2011/09/08/what-my-co&#8212;workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit</id>
+    <content type="html">&lt;p&gt;Today a bunch of co-workers and me got together right after work to hone our skills, more specifically, our unit testing skills.&lt;br/&gt;
+A couple of weeks before, I had discovered that the code coverage of &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/&quot;&gt;PHPUnit&lt;/a&gt; is only at ~55%, so I thought it would be a great exercise for our after work hacking to help increase its code coverage by writing unit tests for it.&lt;/p&gt;
+
+&lt;p&gt;The plan was to try and write as many tests as we could for the &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/tree/master/PHPUnit/Framework/Constraint&quot;&gt;Constraint classes&lt;/a&gt; PHPUnit uses to implement its assertions.&lt;br/&gt;
+Those Constraint classes are pretty small, fairly easy to understand and not entirely covered by tests - in short, very well suited for our group, a mix of programmers having quite some experience in unit testing as well as others just having started to learn unit testing.&lt;/p&gt;
+
+&lt;p&gt;Well, our plan didn&amp;#8217;t work out that way, we didn&amp;#8217;t really succeed in writing a considerable amount of unit tests.&lt;br/&gt;
+However, it still was a valuable experience, as it turned out the unit tests of the Constraints are a good example of how not to unit test.&lt;/p&gt;
+
+&lt;p&gt;So here&amp;#8217;s what we learned (or were reminded of):&lt;/p&gt;
+
+&lt;!&#8211; more &#8211;&gt;
+
+
+&lt;h3&gt;1. Don&amp;#8217;t use one single test case class to test several different classes&lt;/h3&gt;
+
+&lt;p&gt;The unit tests for the constraint classes of PHPUnit are lumped together &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php&quot;&gt;in one large file&lt;/a&gt;. I think the reasoning behind that might have been that all constraints derive from the same parent class, &lt;em&gt;PHPUnit_Framework_Constraint&lt;/em&gt;.&lt;br/&gt;
+Don&amp;#8217;t do that.&lt;br/&gt;
+It renders it quite hard to find your way to the tests for one of the constraints, it&amp;#8217;s quite annoying to navigate through that class.&lt;br/&gt;
+If each class has its own test case, it&amp;#8217;s much easier to find its test, too.&lt;/p&gt;
+
+&lt;h3&gt;2. Name your tests well&lt;/h3&gt;
+
+&lt;p&gt;You should name your tests such that they convey the intent of the test, describe what the test is about and how they&amp;#8217;re different from other tests. &lt;br/&gt;
+The tests in &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php&quot;&gt;ConstraintTest.php&lt;/a&gt; wear names like:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;testConstraintIsEmpty&lt;/li&gt;
+&lt;li&gt;testConstraintPCREMatch&lt;/li&gt;
+&lt;li&gt;testConstraintClassNotHasStaticAttribute&lt;/li&gt;
+&lt;li&gt;testConstraintStringMatches&lt;/li&gt;
+&lt;li&gt;testConstraintStringMatches2&lt;/li&gt;
+&lt;li&gt;testConstraintStringMatches3&lt;/li&gt;
+&lt;li&gt;testConstraintStringMatches4&lt;/li&gt;
+&lt;li&gt;testConstraintStringMatches5&lt;/li&gt;
+&lt;li&gt;testConstraintStringMatches6 (sic!)&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;It&amp;#8217;s really hard to understand what&amp;#8217;s going on in tests named in such a way.&lt;/p&gt;
+
+&lt;h3&gt;3. Avoid to test more than one behaviour in one single test&lt;/h3&gt;
+
+&lt;p&gt;The tests in ConstraintTest.php test a lot of behavior in one single test, here&amp;#8217;s an example:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Whoa! A lot of stuff going on in here! &lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_Constraint_IsType&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_Assert::isType&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_Constraint::count&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_TestFailure::exceptionToString&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function testConstraintIsType()&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $constraint = PHPUnit_Framework_Assert::isType(&amp;#39;string&amp;#39;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertFalse($constraint-&amp;gt;evaluate(0, &amp;#39;&amp;#39;, TRUE));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertTrue($constraint-&amp;gt;evaluate(&amp;#39;&amp;#39;, &amp;#39;&amp;#39;, TRUE));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertEquals(&amp;#39;is of type &amp;quot;string&amp;quot;&amp;#39;, $constraint-&amp;gt;toString());&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertEquals(1, count($constraint));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    try {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $constraint-&amp;gt;evaluate(new stdClass);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    catch (PHPUnit_Framework_ExpectationFailedException $e) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;assertEquals(&amp;lt;&amp;lt;&amp;lt;EOF&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;Failed asserting that stdClass Object () is of type &amp;quot;string&amp;quot;.&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;EOF&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;          ,&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;          self::trimnl(PHPUnit_Framework_TestFailure::exceptionToString($e))&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        );&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        return;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;fail();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Especially in conjunction with #2, this makes it really hard to figure out what a given test is supposed to test. In our practice group we sat in pairs in front of our laptops and yet it still took us quite some time to find out what those tests were actually doing.&lt;/p&gt;
+
+&lt;p&gt;If you find yourself writing more than one assertion in a single test, take your hands from the keyboard and find out whether you&amp;#8217;re about to test more than a single behavior.&lt;br/&gt;
+Otherwise you will probably curse yourself when you come back to that test code in, say, 6 months&amp;#8230;&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;If you plan to introduce others to unit testing by letting them loose on a real world codebase, I&amp;#8217;d suggest not to pick PHPUnit, as ironic as it may sound.&lt;br/&gt;
+PHPUnit itself is a very valuable tool and I&amp;#8217;m very grateful for its existence, I&amp;#8217;m using it daily at work. Yet, its test are no good example of how to write good unit tests, working on those tests will cause quite some confusion especially among programmers new to unit testing.&lt;/p&gt;
+
+&lt;p&gt;Anyways, for our next practice group meeting we&amp;#8217;ll choose something more appropriate, we&amp;#8217;re thinking about trying our luck on &lt;a href=&quot;https://github.com/kriswallsmith/assetic&quot;&gt;Symfony&amp;#8217;s Assetic&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;However, we will very probably come back to PHPUnit at some point in the future in order to try and refactor its tests.&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Review: The Clean Coder - A Code of Conduct for Professional Programmers</title>

@@ -1,0 +1,384 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit - Lars Tesmer's Blog</title>
+  <meta name="author" content="Lars Tesmer">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+  <link rel="canonical" href="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
+  <link href="/favicon.png" rel="shortcut icon" />
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="http://s3.amazonaws.com/ender-js/jeesh.min.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/larstesmer" rel="alternate" title="Lars Tesmer's Blog" type="application/atom+xml"/>
+  <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+
+</head>
+
+<body  >
+  <header><hgroup>
+  <h1><a href="/">Lars Tesmer's Blog</a></h1>
+  
+    <h2>From Journeyman to Master - A Software Craftsman's Blog</h2>
+  
+</hgroup>
+
+</header>
+  <nav role=navigation><ul role=subscription data-subscription="rss">
+  <li><a href="http://feeds.feedburner.com/larstesmer" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+<form action="http://google.com/search" method="get">
+  <fieldset role="site-search">
+    <input type="hidden" name="q" value="site:www.lars-tesmer.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+<ul role=main-navigation>
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+	<li><a href="/about">About</a></li>
+	<li><a href="/contact">Contact</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry">
+  
+  <header>
+    
+      <h1 class="entry-title">What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</h1>
+    
+    
+      <p class="meta">
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-09-08T23:06:00+02:00" pubdate  data-updated="true" >Sep 8<span>th</span>, 2011</time></p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Today a bunch of co-workers and me got together right after work to hone our skills, more specifically, our unit testing skills.<br/>
+A couple of weeks before, I had discovered that the code coverage of <a href="https://github.com/sebastianbergmann/phpunit/">PHPUnit</a> is only at ~55%, so I thought it would be a great exercise for our after work hacking to help increase its code coverage by writing unit tests for it.</p>
+
+<p>The plan was to try and write as many tests as we could for the <a href="https://github.com/sebastianbergmann/phpunit/tree/master/PHPUnit/Framework/Constraint">Constraint classes</a> PHPUnit uses to implement its assertions.<br/>
+Those Constraint classes are pretty small, fairly easy to understand and not entirely covered by tests - in short, very well suited for our group, a mix of programmers having quite some experience in unit testing as well as others just having started to learn unit testing.</p>
+
+<p>Well, our plan didn&#8217;t work out that way, we didn&#8217;t really succeed in writing a considerable amount of unit tests.<br/>
+However, it still was a valuable experience, as it turned out the unit tests of the Constraints are a good example of how not to unit test.</p>
+
+<p>So here&#8217;s what we learned (or were reminded of):</p>
+
+<!-- more -->
+
+
+<h3>1. Don&#8217;t use one single test case class to test several different classes</h3>
+
+<p>The unit tests for the constraint classes of PHPUnit are lumped together <a href="https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php">in one large file</a>. I think the reasoning behind that might have been that all constraints derive from the same parent class, <em>PHPUnit_Framework_Constraint</em>.<br/>
+Don&#8217;t do that.<br/>
+It renders it quite hard to find your way to the tests for one of the constraints, it&#8217;s quite annoying to navigate through that class.<br/>
+If each class has its own test case, it&#8217;s much easier to find its test, too.</p>
+
+<h3>2. Name your tests well</h3>
+
+<p>You should name your tests such that they convey the intent of the test, describe what the test is about and how they&#8217;re different from other tests. <br/>
+The tests in <a href="https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php">ConstraintTest.php</a> wear names like:</p>
+
+<ul>
+<li>testConstraintIsEmpty</li>
+<li>testConstraintPCREMatch</li>
+<li>testConstraintClassNotHasStaticAttribute</li>
+<li>testConstraintStringMatches</li>
+<li>testConstraintStringMatches2</li>
+<li>testConstraintStringMatches3</li>
+<li>testConstraintStringMatches4</li>
+<li>testConstraintStringMatches5</li>
+<li>testConstraintStringMatches6 (sic!)</li>
+</ul>
+
+
+<p>It&#8217;s really hard to understand what&#8217;s going on in tests named in such a way.</p>
+
+<h3>3. Avoid to test more than one behaviour in one single test</h3>
+
+<p>The tests in ConstraintTest.php test a lot of behavior in one single test, here&#8217;s an example:</p>
+
+<figure role=code><figcaption><span>Whoa! A lot of stuff going on in here! </span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+<span class='line'>10</span>
+<span class='line'>11</span>
+<span class='line'>12</span>
+<span class='line'>13</span>
+<span class='line'>14</span>
+<span class='line'>15</span>
+<span class='line'>16</span>
+<span class='line'>17</span>
+<span class='line'>18</span>
+<span class='line'>19</span>
+<span class='line'>20</span>
+<span class='line'>21</span>
+<span class='line'>22</span>
+<span class='line'>23</span>
+<span class='line'>24</span>
+<span class='line'>25</span>
+<span class='line'>26</span>
+<span class='line'>27</span>
+<span class='line'>28</span>
+<span class='line'>29</span>
+<span class='line'>30</span>
+<span class='line'>31</span>
+<span class='line'>32</span>
+<span class='line'>33</span>
+</pre></td><td class='code' width='100%'><pre><code class='php'><div class='line'><span class="x">/**</span>
+</div><div class='line'><span class="x"> * @covers PHPUnit_Framework_Constraint_IsType</span>
+</div><div class='line'><span class="x"> * @covers PHPUnit_Framework_Assert::isType</span>
+</div><div class='line'><span class="x"> * @covers PHPUnit_Framework_Constraint::count</span>
+</div><div class='line'><span class="x"> * @covers PHPUnit_Framework_TestFailure::exceptionToString</span>
+</div><div class='line'><span class="x"> */</span>
+</div><div class='line'><span class="x">public function testConstraintIsType()</span>
+</div><div class='line'><span class="x">{</span>
+</div><div class='line'><span class="x">    $constraint = PHPUnit_Framework_Assert::isType(&#39;string&#39;);</span>
+</div><div class='line'>
+</div><div class='line'><span class="x">    $this-&gt;assertFalse($constraint-&gt;evaluate(0, &#39;&#39;, TRUE));</span>
+</div><div class='line'><span class="x">    $this-&gt;assertTrue($constraint-&gt;evaluate(&#39;&#39;, &#39;&#39;, TRUE));</span>
+</div><div class='line'><span class="x">    $this-&gt;assertEquals(&#39;is of type &quot;string&quot;&#39;, $constraint-&gt;toString());</span>
+</div><div class='line'><span class="x">    $this-&gt;assertEquals(1, count($constraint));</span>
+</div><div class='line'>
+</div><div class='line'><span class="x">    try {</span>
+</div><div class='line'><span class="x">        $constraint-&gt;evaluate(new stdClass);</span>
+</div><div class='line'><span class="x">    }</span>
+</div><div class='line'>
+</div><div class='line'><span class="x">    catch (PHPUnit_Framework_ExpectationFailedException $e) {</span>
+</div><div class='line'><span class="x">        $this-&gt;assertEquals(&lt;&lt;&lt;EOF</span>
+</div><div class='line'><span class="x">Failed asserting that stdClass Object () is of type &quot;string&quot;.</span>
+</div><div class='line'>
+</div><div class='line'><span class="x">EOF</span>
+</div><div class='line'><span class="x">          ,</span>
+</div><div class='line'><span class="x">          self::trimnl(PHPUnit_Framework_TestFailure::exceptionToString($e))</span>
+</div><div class='line'><span class="x">        );</span>
+</div><div class='line'>
+</div><div class='line'><span class="x">        return;</span>
+</div><div class='line'><span class="x">    }</span>
+</div><div class='line'>
+</div><div class='line'><span class="x">    $this-&gt;fail();</span>
+</div><div class='line'><span class="x">}</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
+<p>Especially in conjunction with #2, this makes it really hard to figure out what a given test is supposed to test. In our practice group we sat in pairs in front of our laptops and yet it still took us quite some time to find out what those tests were actually doing.</p>
+
+<p>If you find yourself writing more than one assertion in a single test, take your hands from the keyboard and find out whether you&#8217;re about to test more than a single behavior.<br/>
+Otherwise you will probably curse yourself when you come back to that test code in, say, 6 months&#8230;</p>
+
+<h3>Conclusion</h3>
+
+<p>If you plan to introduce others to unit testing by letting them loose on a real world codebase, I&#8217;d suggest not to pick PHPUnit, as ironic as it may sound.<br/>
+PHPUnit itself is a very valuable tool and I&#8217;m very grateful for its existence, I&#8217;m using it daily at work. Yet, its test are no good example of how to write good unit tests, working on those tests will cause quite some confusion especially among programmers new to unit testing.</p>
+
+<p>Anyways, for our next practice group meeting we&#8217;ll choose something more appropriate, we&#8217;re thinking about trying our luck on <a href="https://github.com/kriswallsmith/assetic">Symfony&#8217;s Assetic</a>.</p>
+
+<p>However, we will very probably come back to PHPUnit at some point in the future in order to try and refactor its tests.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Lars Tesmer</span></span>
+
+      
+
+
+
+
+
+  
+
+
+
+<time datetime="2011-09-08T23:06:00+02:00" pubdate  data-updated="true" >Sep 8<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/clean-code/'>Clean Code</a>, <a class='category' href='/blog/categories/code-quality/'>Code Quality</a>, <a class='category' href='/blog/categories/phpunit/'>PHPUnit</a>, <a class='category' href='/blog/categories/unit-testing/'>Unit Testing</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/" data-via="kiltec" data-counturl="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+</div>
+
+    
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread"><div id="disqus_thread"></div>
+<script type="text/javascript">
+  var disqus_shortname = 'larstesmer';
+  var disqus_identifier = 'http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/';
+  var disqus_url = 'http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/';
+  //var disqus_developer = 1;
+  (function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside role=sidebar>
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/">What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/">Review: The Clean Coder - A Code of Conduct for Professional Programmers</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/">Review: Eloquent Ruby by Russ Olsen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/">PHPUnit: Better Syntax for Expecting Exceptions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/10/01/colored-diffs-in-thunderbird/">Colored Diffs in Thunderbird</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("kiltec", 5, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/kiltec" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @kiltec</a>
+  
+</section>
+
+
+<section>
+  <h1>On Delicious</h1>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/js/sprudelpaul?title=&count=5&sort=date&extended"></script>
+  <p><a href="http://delicious.com/sprudelpaul">My Delicious Bookmarks &raquo;</a></p>
+</section>
+
+<section>
+	<h1>Currently Reading</h1>
+	<p>
+		<a title="Agile Software Development, Principles, Patterns, and Practices by Robert C. Martin" href="http://www.amazon.com/Software-Development-Principles-Patterns-Practices/dp/0135974445"><img src="/images/books/agile_software_dev_unclebob.jpg" alt="Agile Software Development, Principles, Patterns, and Practices" /></a>
+	</p>
+</section>
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer><p>
+  Copyright &copy; 2011 - Lars Tesmer -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-16367267-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+  
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+</body>
+</html>
