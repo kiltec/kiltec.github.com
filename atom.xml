@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title>Lars Tesmer's Blog</title>
+  <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-05T08:28:58+02:00</updated>
+  <updated>2011-09-08T11:19:25+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -17,17 +17,17 @@
     <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
     <updated>2011-09-04T14:08:00+02:00</updated>
     <id>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
-    <content type="html">&lt;p&gt;&lt;img class='left ' src='http://lars-tesmer.com/images/books/the_clean_coder.jpg' width='' height='' alt='' title=''&gt;
+    <content type="html">&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://lars-tesmer.com/images/books/the_clean_coder.jpg&#8217; width=&#8221; height=&#8221; alt=&#8221; title=&#8221;&gt;
 Robert C. Martin aka Uncle Bob, a programmer with decades of experience under his belt, lets us in about what he has learned in his professional life and, more importantly, how he has failed, sometimes failed miserably.
 &lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073&quot;&gt;The Clean Coder&lt;/a&gt; is an important book.&lt;/p&gt;
 
-&lt;p&gt;In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one's quest to become a true professional, a software master.&lt;/p&gt;
+&lt;p&gt;In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one&amp;#8217;s quest to become a true professional, a software master.&lt;/p&gt;
 
 &lt;p&gt;The book covers several topics, e.g. how to say no (and yes!), how to write clean code, how to test, how to become more effective and efficient.&lt;/p&gt;
 
-&lt;p&gt;And while all those topics are different in content, there's one big &lt;em&gt;leitmotif&lt;/em&gt;:&lt;/p&gt;
+&lt;p&gt;And while all those topics are different in content, there&amp;#8217;s one big &lt;em&gt;leitmotif&lt;/em&gt;:&lt;/p&gt;
 
-&lt;!-- more --&gt;
+&lt;!&#8211; more &#8211;&gt;
 
 
 &lt;p&gt;Self Responsibility.&lt;/p&gt;
@@ -37,18 +37,18 @@ Neither is Robert C. Martin blaming other people, nor the environment, nor bad l
 
 &lt;p&gt;What a tough realization!&lt;/p&gt;
 
-&lt;p&gt;I mean, it's a little bit depressing to see it this way, think about it:&lt;br/&gt;
-Your project is a mess, you're under constant pressure, haven't seen your family for a long time, you hate your co-workers - why, it's &lt;strong&gt;your&lt;/strong&gt; fault, according to the author.&lt;/p&gt;
+&lt;p&gt;I mean, it&amp;#8217;s a little bit depressing to see it this way, think about it:&lt;br/&gt;
+Your project is a mess, you&amp;#8217;re under constant pressure, haven&amp;#8217;t seen your family for a long time, you hate your co-workers - why, it&amp;#8217;s &lt;strong&gt;your&lt;/strong&gt; fault, according to the author.&lt;/p&gt;
 
 &lt;p&gt;At the same time, this is also an optimistic way to view things:&lt;br/&gt;
-If it's &lt;em&gt;your&lt;/em&gt; fault, &lt;em&gt;your&lt;/em&gt; responsibility to having got into such a situation, then it's also &lt;strong&gt;you&lt;/strong&gt; who can change it! You don't depend on others, you only depend on yourself.&lt;/p&gt;
+If it&amp;#8217;s &lt;em&gt;your&lt;/em&gt; fault, &lt;em&gt;your&lt;/em&gt; responsibility to having got into such a situation, then it&amp;#8217;s also &lt;strong&gt;you&lt;/strong&gt; who can change it! You don&amp;#8217;t depend on others, you only depend on yourself.&lt;/p&gt;
 
-&lt;p&gt;Now, I'm not sure if I entirely follow this conclusion, it's a thin line to walk between a successful career and depression/burnout. You have to be very self-observant and tread carefully when adapting this way of thinking.&lt;/p&gt;
+&lt;p&gt;Now, I&amp;#8217;m not sure if I entirely follow this conclusion, it&amp;#8217;s a thin line to walk between a successful career and depression/burnout. You have to be very self-observant and tread carefully when adapting this way of thinking.&lt;/p&gt;
 
-&lt;p&gt;However, I still think it's a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:&lt;br/&gt;
+&lt;p&gt;However, I still think it&amp;#8217;s a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:&lt;br/&gt;
 The code you work on sucks? - Well, then start to write better code!&lt;/p&gt;
 
-&lt;p&gt;Your company doesn't allow for much time to practice, to hone your skills? - Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!&lt;/p&gt;
+&lt;p&gt;Your company doesn&amp;#8217;t allow for much time to practice, to hone your skills? - Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!&lt;/p&gt;
 
 &lt;p&gt;Summing up, &lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073&quot;&gt;The Clean Coder&lt;/a&gt; is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.&lt;/p&gt;
 </content>
@@ -59,24 +59,24 @@ The code you work on sucks? - Well, then start to write better code!&lt;/p&gt;
     <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/"/>
     <updated>2011-09-04T13:17:00+02:00</updated>
     <id>http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen</id>
-    <content type="html">&lt;p&gt;&lt;img class='left ' src='http://lars-tesmer.com/images/books/eloquent_ruby.jpg' width='' height='' alt='' title=''&gt;
+    <content type="html">&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://lars-tesmer.com/images/books/eloquent_ruby.jpg&#8217; width=&#8221; height=&#8221; alt=&#8221; title=&#8221;&gt;
 If you want to learn Ruby and you already know another programming language, &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby by Russ Olsen&lt;/a&gt; is a book you absolutely should read. Heck, even if you do &lt;em&gt;not&lt;/em&gt; want to learn Ruby, you might want to read it because, who knows, it might give you &lt;a href=&quot;http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/&quot;&gt;ideas for the programming language you currently use&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;So, why do I think this way?&lt;/p&gt;
 
-&lt;!-- more --&gt;
+&lt;!&#8211; more &#8211;&gt;
 
 
-&lt;p&gt;For starters, this book is really well written, it never gets boring, it isn't a dry explanation of yet another programming language - it's simply an enjoyable read.&lt;/p&gt;
+&lt;p&gt;For starters, this book is really well written, it never gets boring, it isn&amp;#8217;t a dry explanation of yet another programming language - it&amp;#8217;s simply an enjoyable read.&lt;/p&gt;
 
-&lt;p&gt;More importantly, it doesn't suffer from the mistake of oh so many other books:&lt;br/&gt;
-As an experienced programmer it's really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.&lt;/p&gt;
+&lt;p&gt;More importantly, it doesn&amp;#8217;t suffer from the mistake of oh so many other books:&lt;br/&gt;
+As an experienced programmer it&amp;#8217;s really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.&lt;/p&gt;
 
-&lt;p&gt;In &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby&lt;/a&gt; there's none of that. Or when there is, it's written in a way that's not treating you like a programmer on his first day.&lt;br/&gt;
-&lt;em&gt;Eloquent Ruby&lt;/em&gt; does not only teach you the syntax but teaches you &lt;em&gt;idiomatic&lt;/em&gt; Ruby, so you'll be able to write Ruby that actually looks like Ruby.&lt;/p&gt;
+&lt;p&gt;In &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby&lt;/a&gt; there&amp;#8217;s none of that. Or when there is, it&amp;#8217;s written in a way that&amp;#8217;s not treating you like a programmer on his first day.&lt;br/&gt;
+&lt;em&gt;Eloquent Ruby&lt;/em&gt; does not only teach you the syntax but teaches you &lt;em&gt;idiomatic&lt;/em&gt; Ruby, so you&amp;#8217;ll be able to write Ruby that actually looks like Ruby.&lt;/p&gt;
 
 &lt;p&gt;The book consists of four large sections. The first section introduces you to the basics of Ruby, the second deals about the possibilities offered by classes, modules and blocks in Ruby.&lt;br/&gt;
-The third section is where it gets &lt;em&gt;really&lt;/em&gt; meaty, you're introduced to the power (and dangers) of metaprogramming. The final section is about pulling everything you've learned so far together, e.g. by showing how to build both internal and external DSLs with Ruby.&lt;/p&gt;
+The third section is where it gets &lt;em&gt;really&lt;/em&gt; meaty, you&amp;#8217;re introduced to the power (and dangers) of metaprogramming. The final section is about pulling everything you&amp;#8217;ve learned so far together, e.g. by showing how to build both internal and external DSLs with Ruby.&lt;/p&gt;
 
 &lt;p&gt;I really like the way each chapter is structured:&lt;br/&gt;
 Every chapter first teaches you to the basic concepts of the topic at hand, giving lots of code examples.&lt;br/&gt;
@@ -89,12 +89,12 @@ More importantly, each chapters closes with the same three subsections:&lt;/p&gt
 &lt;/ul&gt;
 
 
-&lt;p&gt;&lt;em&gt;In the Wild&lt;/em&gt; features real world examples, using the concepts you've been familiarized with in the previous subsections of the chapter code taken from actually existing software.&lt;br/&gt;
-&lt;em&gt;Staying Out of Trouble&lt;/em&gt; helps you to avoid any pitfalls you could fall into when applying the stuff you've just learned. I've found those sections to be especially useful.&lt;br/&gt;
-&lt;em&gt;Wrapping up&lt;/em&gt; does what its name suggests: Summing up what's been covered in the current chapter in a mere paragraph, allowing you to review what you've just learned.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;In the Wild&lt;/em&gt; features real world examples, using the concepts you&amp;#8217;ve been familiarized with in the previous subsections of the chapter code taken from actually existing software.&lt;br/&gt;
+&lt;em&gt;Staying Out of Trouble&lt;/em&gt; helps you to avoid any pitfalls you could fall into when applying the stuff you&amp;#8217;ve just learned. I&amp;#8217;ve found those sections to be especially useful.&lt;br/&gt;
+&lt;em&gt;Wrapping up&lt;/em&gt; does what its name suggests: Summing up what&amp;#8217;s been covered in the current chapter in a mere paragraph, allowing you to review what you&amp;#8217;ve just learned.&lt;/p&gt;
 
-&lt;p&gt;In conclusion, if you're an aspiring Ruby programmer, do yourself a favour and &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;get this most excellent book&lt;/a&gt;.
-And while you're at it, check out the equally excellent &lt;a href=&quot;http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009/&quot;&gt;Ruby Best Practices&lt;/a&gt; by Gregory T. Brown, too! :D&lt;/p&gt;
+&lt;p&gt;In conclusion, if you&amp;#8217;re an aspiring Ruby programmer, do yourself a favour and &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;get this most excellent book&lt;/a&gt;.
+And while you&amp;#8217;re at it, check out the equally excellent &lt;a href=&quot;http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009/&quot;&gt;Ruby Best Practices&lt;/a&gt; by Gregory T. Brown, too! :D&lt;/p&gt;
 </content>
   </entry>
   
@@ -103,110 +103,110 @@ And while you're at it, check out the equally excellent &lt;a href=&quot;http://
     <link href="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
     <updated>2011-08-29T18:32:00+02:00</updated>
     <id>http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions</id>
-    <content type="html">&lt;p&gt;Recently, while starting to learn Ruby, I've stumbled upon the following code snippet
-which demonstrates how you can assert that a piece of code throws as exception in Ruby's Test::Unit:&lt;/p&gt;
+    <content type="html">&lt;p&gt;Recently, while starting to learn Ruby, I&amp;#8217;ve stumbled upon the following code snippet
+which demonstrates how you can assert that a piece of code throws as exception in Ruby&amp;#8217;s Test::Unit:&lt;/p&gt;
 
-&lt;div&gt;&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Expecting exceptions in Test::Unit  &lt;/span&gt;&lt;/figcaption&gt;
- &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class='line'&gt;1&lt;/span&gt;
-&lt;span class='line'&gt;2&lt;/span&gt;
-&lt;span class='line'&gt;3&lt;/span&gt;
-&lt;span class='line'&gt;4&lt;/span&gt;
-&lt;span class='line'&gt;5&lt;/span&gt;
-&lt;span class='line'&gt;6&lt;/span&gt;
-&lt;span class='line'&gt;7&lt;/span&gt;
-&lt;span class='line'&gt;8&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class='code' width='100%'&gt;&lt;pre&gt;&lt;code class='ruby'&gt;&lt;div class='line'&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_some_important_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;n&quot;&gt;some_obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SomeObj&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;c1&quot;&gt;# Potentially large amount of code&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;n&quot;&gt;assert_raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;InvalidArgumentException&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;n&quot;&gt;some_obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;someMethod&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/div&gt;
-
-
-&lt;p&gt;Check out lines 5-7 - isn't this a really elegant and readable way of expecting an exception?
-Now let's contrast this with how it's done in PHPUnit:&lt;/p&gt;
-
-&lt;!--more--&gt;
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Expecting exceptions in Test::Unit  &lt;/span&gt;&lt;/figcaption&gt;
+ &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_some_important_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;some_obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SomeObj&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;c1&quot;&gt;# Potentially large amount of code&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;assert_raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;InvalidArgumentException&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;some_obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;someMethod&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
 
 
+&lt;p&gt;Check out lines 5-7 - isn&amp;#8217;t this a really elegant and readable way of expecting an exception?
+Now let&amp;#8217;s contrast this with how it&amp;#8217;s done in PHPUnit:&lt;/p&gt;
+
+&lt;!&#8211;more&#8211;&gt;
 
 
-&lt;div&gt;&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Current way of expecting exceptions in PHPUnit  &lt;/span&gt;&lt;/figcaption&gt;
- &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class='line'&gt;1&lt;/span&gt;
-&lt;span class='line'&gt;2&lt;/span&gt;
-&lt;span class='line'&gt;3&lt;/span&gt;
-&lt;span class='line'&gt;4&lt;/span&gt;
-&lt;span class='line'&gt;5&lt;/span&gt;
-&lt;span class='line'&gt;6&lt;/span&gt;
-&lt;span class='line'&gt;7&lt;/span&gt;
-&lt;span class='line'&gt;8&lt;/span&gt;
-&lt;span class='line'&gt;9&lt;/span&gt;
-&lt;span class='line'&gt;10&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class='code' width='100%'&gt;&lt;pre&gt;&lt;code class='php'&gt;&lt;div class='line'&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;sd&quot;&gt; * @expectedException InvalidArgumentException&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;sd&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testSomeImportantMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;nv&quot;&gt;$some_obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;c1&quot;&gt;// Potentially large amount of code&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;nv&quot;&gt;$some_obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/div&gt;
 
 
-&lt;p&gt;Well, that isn't too horrible but I've never been really happy with this.&lt;br/&gt;
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Current way of expecting exceptions in PHPUnit  &lt;/span&gt;&lt;/figcaption&gt;
+ &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;sd&quot;&gt; * @expectedException InvalidArgumentException&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;sd&quot;&gt; */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testSomeImportantMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$some_obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;c1&quot;&gt;// Potentially large amount of code&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$some_obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Well, that isn&amp;#8217;t too horrible but I&amp;#8217;ve never been really happy with this.&lt;br/&gt;
 My main issues with this way of expecting exceptions are:&lt;/p&gt;
 
-&lt;p&gt;The expectation is pretty far away from the location you'd normally expect to find an assertion.
+&lt;p&gt;The expectation is pretty far away from the location you&amp;#8217;d normally expect to find an assertion.
 Usually, an assertion can be found at the bottom of each test function, whereas with the current method PHPUnit uses,
-it's at the &lt;em&gt;top&lt;/em&gt; of the test-function.&lt;/p&gt;
+it&amp;#8217;s at the &lt;em&gt;top&lt;/em&gt; of the test-function.&lt;/p&gt;
 
-&lt;p&gt;Additionally, it's an annotation &quot;buried&quot; in a comment which is easy to miss.&lt;/p&gt;
+&lt;p&gt;Additionally, it&amp;#8217;s an annotation &amp;#8220;buried&amp;#8221; in a comment which is easy to miss.&lt;/p&gt;
 
 &lt;p&gt;Finally, PHPUnit will watch for an exception thrown by &lt;em&gt;any&lt;/em&gt; of the code inside the test-function. Normally,
-it's the last line of the test-function, so it isn't hard to find - but what if the expected exception is thrown in
+it&amp;#8217;s the last line of the test-function, so it isn&amp;#8217;t hard to find - but what if the expected exception is thrown in
 a line &lt;em&gt;before&lt;/em&gt; the last line, maybe due to a bug?&lt;/p&gt;
 
 &lt;p&gt;So, is there a way to mimic the method of Test::Unit in PHPUnit?&lt;br/&gt;
 As you may have guessed, there is one, using anonymous functions and closures, which are available since PHP 5.3!&lt;/p&gt;
 
-&lt;p&gt;Here's the code for a simple function we can use to check if a given piece of code throws an exception:&lt;/p&gt;
+&lt;p&gt;Here&amp;#8217;s the code for a simple function we can use to check if a given piece of code throws an exception:&lt;/p&gt;
 
-&lt;div&gt;&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class='line'&gt;1&lt;/span&gt;
-&lt;span class='line'&gt;2&lt;/span&gt;
-&lt;span class='line'&gt;3&lt;/span&gt;
-&lt;span class='line'&gt;4&lt;/span&gt;
-&lt;span class='line'&gt;5&lt;/span&gt;
-&lt;span class='line'&gt;6&lt;/span&gt;
-&lt;span class='line'&gt;7&lt;/span&gt;
-&lt;span class='line'&gt;8&lt;/span&gt;
-&lt;span class='line'&gt;9&lt;/span&gt;
-&lt;span class='line'&gt;10&lt;/span&gt;
-&lt;span class='line'&gt;11&lt;/span&gt;
-&lt;span class='line'&gt;12&lt;/span&gt;
-&lt;span class='line'&gt;13&lt;/span&gt;
-&lt;span class='line'&gt;14&lt;/span&gt;
-&lt;span class='line'&gt;15&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class='code' width='100%'&gt;&lt;pre&gt;&lt;code class='php'&gt;&lt;div class='line'&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$exception_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;c1&quot;&gt;// No more code, we only want to catch the exception in $e&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exception_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Correct exception thrown!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Incorrect exception thrown!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/div&gt;
+&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$exception_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;c1&quot;&gt;// No more code, we only want to catch the exception in $e&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exception_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Correct exception thrown!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Incorrect exception thrown!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
 
 
 &lt;p&gt;Confused?&lt;br/&gt;
@@ -214,75 +214,75 @@ Well, the most important line of that function is line 5.  &lt;br/&gt;
 There, the anonymous function that was passed into the function as the second argument gets executed, which allows
 us to catch any exception thrown by it.&lt;/p&gt;
 
-&lt;p&gt;Still confused? Let's check out an example:&lt;/p&gt;
+&lt;p&gt;Still confused? Let&amp;#8217;s check out an example:&lt;/p&gt;
 
-&lt;div&gt;&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Let's throw an exception, yay!  &lt;/span&gt;&lt;/figcaption&gt;
- &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class='line'&gt;1&lt;/span&gt;
-&lt;span class='line'&gt;2&lt;/span&gt;
-&lt;span class='line'&gt;3&lt;/span&gt;
-&lt;span class='line'&gt;4&lt;/span&gt;
-&lt;span class='line'&gt;5&lt;/span&gt;
-&lt;span class='line'&gt;6&lt;/span&gt;
-&lt;span class='line'&gt;7&lt;/span&gt;
-&lt;span class='line'&gt;8&lt;/span&gt;
-&lt;span class='line'&gt;9&lt;/span&gt;
-&lt;span class='line'&gt;10&lt;/span&gt;
-&lt;span class='line'&gt;11&lt;/span&gt;
-&lt;span class='line'&gt;12&lt;/span&gt;
-&lt;span class='line'&gt;13&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class='code' width='100%'&gt;&lt;pre&gt;&lt;code class='php'&gt;&lt;div class='line'&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExceptionThrower&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\InvalidArgumentException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;I&amp;#39;m an exception&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExceptionThrower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;nx&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;InvalidArgumentException&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/div&gt;
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Let&amp;#8217;s throw an exception, yay!  &lt;/span&gt;&lt;/figcaption&gt;
+ &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExceptionThrower&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\InvalidArgumentException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;I&amp;#39;m an exception&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExceptionThrower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nx&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;InvalidArgumentException&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
 
 
 &lt;p&gt;The magic happens in lines 10-13:&lt;br/&gt;
-The &lt;em&gt;execute&lt;/em&gt;-method of ExceptionThrower doesn't get executed immediately because it's wrapped in an anonymous function, i.e.
+The &lt;em&gt;execute&lt;/em&gt;-method of ExceptionThrower doesn&amp;#8217;t get executed immediately because it&amp;#8217;s wrapped in an anonymous function, i.e.
 &lt;em&gt;execute&lt;/em&gt; will only be invoked when we call the anonymous function contained in &lt;em&gt;$code&lt;/em&gt; in line 5 of &lt;em&gt;assertThrowsException()&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Now one question remains - can this be done in PHPUnit with a &quot;proper&quot; assertion?&lt;br/&gt;
+&lt;p&gt;Now one question remains - can this be done in PHPUnit with a &amp;#8220;proper&amp;#8221; assertion?&lt;br/&gt;
 Yes, it can!&lt;/p&gt;
 
-&lt;p&gt;I won't post the full code into this blog, it would be a bit too much but you can find the code adding a new assertion
+&lt;p&gt;I won&amp;#8217;t post the full code into this blog, it would be a bit too much but you can find the code adding a new assertion
 &lt;em&gt;assertThrowsException()&lt;/em&gt; in the following commit to my fork of PHPUnit 3.5:&lt;br/&gt;
 &lt;a href=&quot;https://github.com/kiltec/phpunit/commit/dd5c7bd71d6eb8d4b58ce79b5ae069fbb0734354&quot;&gt;Link to Github commit&lt;/a&gt;&lt;br/&gt;
-Note that this code is not production-ready, it's a proof-of-concept with just enough code to get PHPUnit to run the
+Note that this code is not production-ready, it&amp;#8217;s a proof-of-concept with just enough code to get PHPUnit to run the
 new assertion without throwing a fit, just so I could find out whether such a new assertion would be possible at all.&lt;/p&gt;
 
 &lt;p&gt;Anyway, with the new assertion the PHPUnit test-method from the beginning of this blog would look like this:&lt;/p&gt;
 
-&lt;div&gt;&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class='line'&gt;1&lt;/span&gt;
-&lt;span class='line'&gt;2&lt;/span&gt;
-&lt;span class='line'&gt;3&lt;/span&gt;
-&lt;span class='line'&gt;4&lt;/span&gt;
-&lt;span class='line'&gt;5&lt;/span&gt;
-&lt;span class='line'&gt;6&lt;/span&gt;
-&lt;span class='line'&gt;7&lt;/span&gt;
-&lt;span class='line'&gt;8&lt;/span&gt;
-&lt;span class='line'&gt;9&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class='code' width='100%'&gt;&lt;pre&gt;&lt;code class='php'&gt;&lt;div class='line'&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testSomeImportantMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;InvalidArgumentException&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;            &lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class='line'&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;&lt;/div&gt;
+&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testSomeImportantMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;InvalidArgumentException&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
 
 
-&lt;p&gt;Granted, you have more to type than in the current way but in my opinion, this offers more control and is more expressive and I'd prefer
+&lt;p&gt;Granted, you have more to type than in the current way but in my opinion, this offers more control and is more expressive and I&amp;#8217;d prefer
 expressiveness over terseness any day.&lt;/p&gt;
 
 &lt;p&gt;What do you think, should I turn this into a real patch for PHPUnit?&lt;br/&gt;
@@ -298,7 +298,7 @@ Or am I just crazy? ;)&lt;/p&gt;
     <content type="html">&lt;p&gt;
 At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
 &lt;/p&gt;
-&lt;!--more--&gt;
+&lt;!&#8211;more&#8211;&gt;
 &lt;p&gt;
 &lt;a href=&quot;http://code.google.com/p/colorediffs/&quot;&gt;colorediffs by Vadim Atlygin&lt;/a&gt; 
 &lt;/p&gt;
@@ -325,31 +325,31 @@ Yet again, another useful Thunderbird-addon making my life a little bit easier.
     <title>No Time to Read That Blog - Read It Later!</title>
     <link href="http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
     <updated>2010-09-29T00:00:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later</id>
+    <id>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog&#8212;read-it-later</id>
     <content type="html">&lt;p&gt;
-In order to keep up-to-date with what's going on in the tech world, I read a lot of blogs, visit &lt;a href=&quot;http://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt; regularly etc. during my lunch break for example.
+In order to keep up-to-date with what&amp;#8217;s going on in the tech world, I read a lot of blogs, visit &lt;a href=&quot;http://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt; regularly etc. during my lunch break for example.
 &lt;/p&gt;
 &lt;p&gt;
-Frequently, I will stumble upon seemingly interesting articles but either they're too long to be read during the break or there's no time left to read them.&lt;br /&gt;
-What I used to do until a year ago was to move those articles into a bookmark folder called 'toread', in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.&lt;br /&gt;
+Frequently, I will stumble upon seemingly interesting articles but either they&amp;#8217;re too long to be read during the break or there&amp;#8217;s no time left to read them.&lt;br /&gt;
+What I used to do until a year ago was to move those articles into a bookmark folder called &amp;#8216;toread&amp;#8217;, in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.&lt;br /&gt;
 &lt;/p&gt;
 &lt;p&gt;
 Then I discovered &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;
-&lt;!--more--&gt;
-It's a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you're currently viewing into a list for later access.&lt;br /&gt;
-When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt; will get you to the next page you've saved in chronological order.&lt;br /&gt;
+&lt;!&#8211;more&#8211;&gt;
+It&amp;#8217;s a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you&amp;#8217;re currently viewing into a list for later access.&lt;br /&gt;
+When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt; will get you to the next page you&amp;#8217;ve saved in chronological order.&lt;br /&gt;
 Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.&lt;br /&gt;
 Additionally, if you use several computers, you can optionally save the list remotely, so you can access the same list from different computers.&lt;br /&gt;
 And there are &lt;a href=&quot;http://readitlaterlist.com/firefox/&quot;&gt;many more features&lt;/a&gt;, for example an API you can use to code your own app.
 &lt;/p&gt;
 &lt;p&gt;
-The way I use it is that I'll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I'll go through those items and read them - or rather, not read them.&lt;br /&gt;
-That's the beauty about this, often it will turn out that the article or blog I'm getting to isn't that interesting after all and I can quickly move to the next article in the list.&lt;br /&gt;
-And that decision is really based on my thinking it isn't interesting and not by feeling under pressure due to lack of time.
+The way I use it is that I&amp;#8217;ll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I&amp;#8217;ll go through those items and read them - or rather, not read them.&lt;br /&gt;
+That&amp;#8217;s the beauty about this, often it will turn out that the article or blog I&amp;#8217;m getting to isn&amp;#8217;t that interesting after all and I can quickly move to the next article in the list.&lt;br /&gt;
+And that decision is really based on my thinking it isn&amp;#8217;t interesting and not by feeling under pressure due to lack of time.
 &lt;/p&gt;
 &lt;p&gt;
-This is absolutely one of those Firefox addons I don't want to live without anymore.
+This is absolutely one of those Firefox addons I don&amp;#8217;t want to live without anymore.
 &lt;/p&gt;
 </content>
   </entry>
@@ -358,21 +358,21 @@ This is absolutely one of those Firefox addons I don't want to live without anym
     <title>Git - How to get better diffs for images</title>
     <link href="http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
     <updated>2010-09-20T00:00:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images</id>
-    <content type="html">Have you ever wondered if there's something that would make Git to show better diffs for images?&lt;br /&gt;
-Well, here's a really useful addition to one's Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
+    <id>http://www.lars-tesmer.com/blog/2010/09/20/git&#8212;how-to-get-better-diffs-for-images</id>
+    <content type="html">Have you ever wondered if there&amp;#8217;s something that would make Git to show better diffs for images?&lt;br /&gt;
+Well, here&amp;#8217;s a really useful addition to one&amp;#8217;s Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
 to create diffs of changes made to images:
-&lt;!--more--&gt;
+&lt;!&#8211;more&#8211;&gt;
 &lt;pre&gt;
 cd /path_to_project
-echo '*.png diff=exif' &gt;&gt; .gitattributes
-echo '*.jpg diff=exif' &gt;&gt; .gitattributes
-echo '*.gif diff=exif' &gt;&gt; .gitattributes
+echo &#8216;*.png diff=exif&#8217; &gt;&gt; .gitattributes
+echo &#8216;*.jpg diff=exif&#8217; &gt;&gt; .gitattributes
+echo &#8216;*.gif diff=exif&#8217; &gt;&gt; .gitattributes
 git config diff.exif.textconv exiftool
 &lt;/pre&gt;
 From now on, diffs for images will look something like this:&lt;br /&gt;
 &lt;pre&gt;
---- a/img.png
+&#8212; a/img.png
 +++ b/img.png
 @@ -1,7 +1,7 @@
  ExifTool Version Number         : 7.89
@@ -389,8 +389,8 @@ From now on, diffs for images will look something like this:&lt;br /&gt;
 Nothing spectacular but much more useful than the default.&lt;br /&gt;
 Originally, I found this in some slides I read many moons ago.
 I tried to find those slides again, unsuccessfully.&lt;br /&gt;
-Luckily, I've found another source explaining how to do it:&lt;br /&gt;
-&lt;a href=&quot;http://progit.org/book/ch7-2.html&quot;&gt;Chapter 7 of &quot;Pro Git&quot;&lt;/a&gt;&lt;br /&gt;
+Luckily, I&amp;#8217;ve found another source explaining how to do it:&lt;br /&gt;
+&lt;a href=&quot;http://progit.org/book/ch7-2.html&quot;&gt;Chapter 7 of &amp;#8220;Pro Git&amp;#8221;&lt;/a&gt;&lt;br /&gt;
 Thanks, Scott Chacon!&lt;br /&gt;
 </content>
   </entry>
