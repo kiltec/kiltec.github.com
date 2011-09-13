@@ -4,13 +4,106 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-09T01:24:28+02:00</updated>
+  <updated>2011-09-13T19:30:11+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
     
   </author>
 
+  
+  <entry>
+    <title>Learning Ruby: Gotchas and Pitfalls for PHP Programmers</title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/"/>
+    <updated>2011-09-13T18:09:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers</id>
+    <content type="html">&lt;p&gt;I&amp;#8217;m currently learning Ruby. In this post I&amp;#8217;ll list some pitfalls for programmers coming from PHP that would probably cause some confusion if you aren&amp;#8217;t aware of them.&lt;br/&gt;
+This list is by no means complete, while I learn Ruby I&amp;#8217;ll very probably encounter more gotchas, which I will blog about, too.&lt;/p&gt;
+
+&lt;p&gt;Anyways, here we go, the incomplete list of things Ruby does differently than PHP:&lt;/p&gt;
+
+&lt;!&#8211; more &#8211;&gt;
+
+
+&lt;h3&gt;1. Arrays are continuous&lt;/h3&gt;
+
+&lt;p&gt;As a PHP programmer, you&amp;#8217;re used to, for example, put User-objects into an array with the index being the user id:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Now you have an array with one element containing an User.
+Let&amp;#8217;s do the same in Ruby:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Don&amp;#8217;t do this!&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Do &lt;em&gt;not&lt;/em&gt; do it like that in Ruby!&lt;br/&gt;
+If &lt;em&gt;user_id&lt;/em&gt; is 9999, the above code will create an array of &lt;strong&gt;10.000&lt;/strong&gt; elements, the last of them containing the User, all other elements containing &lt;em&gt;nil&lt;/em&gt;!&lt;br/&gt;
+Imaging having user ids in the range of millions&amp;#8230;&lt;br/&gt;
+Instead you must use hashes, like so:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Do this instead&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Note the curly braces&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt; This will create a hash containing only one element, the User.&lt;/p&gt;
+
+&lt;h3&gt;2. Zero is not falsy&lt;/h3&gt;
+
+&lt;p&gt;In Ruby only &lt;em&gt;nil&lt;/em&gt; and &lt;em&gt;false&lt;/em&gt; are false, &lt;strong&gt;everything&lt;/strong&gt; else evaluates to true!&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;This will not output anything&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;No users!&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt; // This will never be printed&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;This is of course a good thing but in PHP this is something you&amp;#8217;re probably used to do frequently - but it won&amp;#8217;t work in Ruby!&lt;/p&gt;
+
+&lt;h3&gt;3. The keywords &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt;&lt;/h3&gt;
+
+&lt;p&gt;In Ruby any methods which are defined as &lt;em&gt;private&lt;/em&gt; are not visible from outside the class but they &lt;em&gt;are&lt;/em&gt; still visible to subclasses of the class containing the private method!&lt;br/&gt;
+However, a private method is not visible to instances of the same class.&lt;/p&gt;
+
+&lt;p&gt;Methods that are &lt;em&gt;protected&lt;/em&gt; have the same visibility as &lt;em&gt;private&lt;/em&gt; methods - except that a protected method &lt;strong&gt;is&lt;/strong&gt; visible to instances of the same class.&lt;/p&gt;
+
+&lt;p&gt;So by using &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt; you do not influence the visibility of methods for subclasses but the their visibility to instances of the same class.
+In PHP &amp;#8220;private&amp;#8221; means &amp;#8220;private to this class&amp;#8221; while in Ruby it means &amp;#8220;private to this instance&amp;#8221;.&lt;/p&gt;
+
+&lt;h3&gt;4. There&amp;#8217;s no &lt;em&gt;static&lt;/em&gt; keyword&lt;/h3&gt;
+
+&lt;p&gt;If you&amp;#8217;re looking for &lt;em&gt;static&lt;/em&gt; in Ruby, well, stop looking.&lt;br/&gt;
+This keyword doesn&amp;#8217;t exist.&lt;/p&gt;
+
+&lt;p&gt;However, what exists instead, is the concept of &lt;em&gt;class methods&lt;/em&gt;. Class methods are similar to static methods, in that they can be called without having to instantiate the class.&lt;/p&gt;
+
+&lt;p&gt;Explaining what class methods are, is out of the scope of this blog post but here are two blog posts about them from other authors:
+&lt;a href=&quot;http://railstips.org/blog/archives/2009/05/11/class-and-instance-methods-in-ruby/&quot;&gt;Class and Instance Methods in Ruby&lt;/a&gt; &lt;br/&gt;
+&lt;a href=&quot;http://blog.jayfields.com/2007/04/ruby-class-methods.html&quot;&gt;Advantages of class methods over static methods&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;I hope this list of differences between Ruby and PHP will help in your mission to learn Ruby and prevent you from shooting yourself in the foot.&lt;br/&gt;
+I will almost certainly find more gotchas, thus I suggest you subscribe to my blog so you won&amp;#8217;t miss them.&lt;/p&gt;
+
+&lt;p&gt;Anyways, have fun learning Ruby - I sure have! ;)&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</title>
