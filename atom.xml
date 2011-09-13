@@ -4,7 +4,7 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-13T19:30:11+02:00</updated>
+  <updated>2011-09-13T19:33:20+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -92,8 +92,9 @@ This keyword doesn&amp;#8217;t exist.&lt;/p&gt;
 
 &lt;p&gt;However, what exists instead, is the concept of &lt;em&gt;class methods&lt;/em&gt;. Class methods are similar to static methods, in that they can be called without having to instantiate the class.&lt;/p&gt;
 
-&lt;p&gt;Explaining what class methods are, is out of the scope of this blog post but here are two blog posts about them from other authors:
-&lt;a href=&quot;http://railstips.org/blog/archives/2009/05/11/class-and-instance-methods-in-ruby/&quot;&gt;Class and Instance Methods in Ruby&lt;/a&gt; &lt;br/&gt;
+&lt;p&gt;Explaining what class methods are, is out of the scope of this blog post but here are two blog posts about them from other authors:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://railstips.org/blog/archives/2009/05/11/class-and-instance-methods-in-ruby/&quot;&gt;Class and Instance Methods in Ruby&lt;/a&gt; &lt;br/&gt;
 &lt;a href=&quot;http://blog.jayfields.com/2007/04/ruby-class-methods.html&quot;&gt;Advantages of class methods over static methods&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3&gt;Conclusion&lt;/h3&gt;
