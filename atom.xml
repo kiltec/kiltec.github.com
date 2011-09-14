@@ -4,7 +4,7 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://lars-tesmer.com/"/>
-  <updated>2011-09-14T10:51:11+02:00</updated>
+  <updated>2011-09-14T11:14:55+02:00</updated>
   <id>http://lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -103,6 +103,9 @@ This keyword doesn&amp;#8217;t exist.&lt;/p&gt;
 I will almost certainly find more gotchas, thus I&amp;#8217;d suggest you &lt;a href=&quot;http://feeds.feedburner.com/larstesmer&quot;&gt;subscribe to my blog&lt;/a&gt; so you won&amp;#8217;t miss them.&lt;/p&gt;
 
 &lt;p&gt;Anyways, have fun learning Ruby - I sure have! ;)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Related posts:&lt;/em&gt;&lt;br/&gt;
+&lt;a href=&quot;http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/&quot;&gt;Review: Eloquent Ruby&lt;/a&gt;&lt;/p&gt;
 </content>
   </entry>
   
