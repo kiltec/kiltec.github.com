@@ -149,6 +149,78 @@ However, a private method is not visible to instances of the same class.</p>
 <p>So by using <em>private</em> and <em>protected</em> you do not influence the visibility of methods for subclasses but the their visibility to instances of the same class.
 In PHP &#8220;private&#8221; means &#8220;private to this class&#8221; while in Ruby it means &#8220;private to this instance&#8221;.</p>
 
+<p><em>Update</em><br/>
+Here&#8217;s an example illustrating showing how <em>private</em> and <em>protected</em> change the visibility of methods from within instances of the same class:</p>
+
+<figure role=code><figcaption><span>Example: protected vs. private</span></figcaption><div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
+<span class='line'>2</span>
+<span class='line'>3</span>
+<span class='line'>4</span>
+<span class='line'>5</span>
+<span class='line'>6</span>
+<span class='line'>7</span>
+<span class='line'>8</span>
+<span class='line'>9</span>
+<span class='line'>10</span>
+<span class='line'>11</span>
+<span class='line'>12</span>
+<span class='line'>13</span>
+<span class='line'>14</span>
+<span class='line'>15</span>
+<span class='line'>16</span>
+<span class='line'>17</span>
+<span class='line'>18</span>
+<span class='line'>19</span>
+<span class='line'>20</span>
+<span class='line'>21</span>
+<span class='line'>22</span>
+<span class='line'>23</span>
+<span class='line'>24</span>
+<span class='line'>25</span>
+<span class='line'>26</span>
+<span class='line'>27</span>
+<span class='line'>28</span>
+<span class='line'>29</span>
+<span class='line'>30</span>
+<span class='line'>31</span>
+<span class='line'>32</span>
+<span class='line'>33</span>
+</pre></td><td class='code' width='100%'><pre><code class='ruby'><div class='line'><span class="k">class</span> <span class="nc">SomeClass</span>
+</div><div class='line'>    <span class="k">def</span> <span class="nf">call_private_method</span><span class="p">(</span><span class="n">instance_of_some_class</span><span class="p">)</span>
+</div><div class='line'>        <span class="n">instance_of_some_class</span><span class="o">.</span><span class="n">a_private_method</span>
+</div><div class='line'>    <span class="k">end</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="k">def</span> <span class="nf">call_protected_method</span><span class="p">(</span><span class="n">instance_of_some_class</span><span class="p">)</span>
+</div><div class='line'>        <span class="n">instance_of_some_class</span><span class="o">.</span><span class="n">a_protected_method</span>
+</div><div class='line'>    <span class="k">end</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="kp">protected</span>   
+</div><div class='line'>    <span class="k">def</span> <span class="nf">a_protected_method</span><span class="p">()</span>
+</div><div class='line'>        <span class="nb">print</span> <span class="s2">&quot;I&#39;m a protected method!</span><span class="se">\n</span><span class="s2">&quot;</span>
+</div><div class='line'>    <span class="k">end</span>
+</div><div class='line'>
+</div><div class='line'>    <span class="kp">private</span>
+</div><div class='line'>    <span class="k">def</span> <span class="nf">a_private_method</span><span class="p">()</span>
+</div><div class='line'>        <span class="nb">print</span> <span class="s2">&quot;I&#39;m a private method!&quot;</span>
+</div><div class='line'>    <span class="k">end</span>
+</div><div class='line'><span class="k">end</span>
+</div><div class='line'>
+</div><div class='line'><span class="n">some_class_1</span> <span class="o">=</span> <span class="no">SomeClass</span><span class="o">.</span><span class="n">new</span>
+</div><div class='line'><span class="n">some_class_2</span> <span class="o">=</span> <span class="no">SomeClass</span><span class="o">.</span><span class="n">new</span> <span class="c1"># New instance of same class!</span>
+</div><div class='line'>
+</div><div class='line'><span class="c1"># The following call will work</span>
+</div><div class='line'><span class="n">some_class_1</span><span class="o">.</span><span class="n">call_protected_method</span><span class="p">(</span><span class="n">some_class_2</span><span class="p">)</span>
+</div><div class='line'>
+</div><div class='line'><span class="c1"># This will throw an error!</span>
+</div><div class='line'><span class="n">some_class_1</span><span class="o">.</span><span class="n">call_private_method</span><span class="p">(</span><span class="n">some_class_2</span><span class="p">)</span>
+</div><div class='line'>
+</div><div class='line'><span class="c1"># And the following two calls will throw an error, too.</span>
+</div><div class='line'><span class="c1"># Neither private nor public methods are visible from outside.</span>
+</div><div class='line'><span class="n">some_class_2</span><span class="o">.</span><span class="n">a_protected_method</span>
+</div><div class='line'><span class="n">some_class_2</span><span class="o">.</span><span class="n">a_private_method</span>
+</div></code></pre></td></tr></table></div></figure>
+
+
 <h3>4. There&#8217;s no <em>static</em> keyword</h3>
 
 <p>If you&#8217;re looking for <em>static</em> in Ruby, well, stop looking.<br/>
@@ -169,7 +241,7 @@ I will almost certainly find more gotchas, thus I&#8217;d suggest you <a href="h
 <p>Anyways, have fun learning Ruby - I sure have! ;)</p>
 
 <p><em>Related posts:</em><br/>
-<a href="http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/">Review: Eloquent Ruby</a></p>
+<a href="http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/">Review: Eloquent Ruby</a></p>
 </div>
 
 
