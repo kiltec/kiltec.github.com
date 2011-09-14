@@ -4,7 +4,7 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-14T10:10:05+02:00</updated>
+  <updated>2011-09-14T10:16:40+02:00</updated>
   <id>http://www.lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -100,7 +100,7 @@ This keyword doesn&amp;#8217;t exist.&lt;/p&gt;
 &lt;h3&gt;Conclusion&lt;/h3&gt;
 
 &lt;p&gt;I hope this list of differences between Ruby and PHP will help in your mission to learn Ruby and prevent you from shooting yourself in the foot.&lt;br/&gt;
-I will almost certainly find more gotchas, thus I suggest you subscribe to my blog so you won&amp;#8217;t miss them.&lt;/p&gt;
+I will almost certainly find more gotchas, thus I&amp;#8217;d suggest you &lt;a href=&quot;http://feeds.feedburner.com/larstesmer&quot;&gt;subscribe to my blog&lt;/a&gt; so you won&amp;#8217;t miss them.&lt;/p&gt;
 
 &lt;p&gt;Anyways, have fun learning Ruby - I sure have! ;)&lt;/p&gt;
 </content>
