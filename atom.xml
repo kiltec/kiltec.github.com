@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title>Lars Tesmer&#8217;s Blog</title>
-  <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
-  <link href="http://www.lars-tesmer.com/"/>
-  <updated>2011-09-14T10:16:40+02:00</updated>
-  <id>http://www.lars-tesmer.com/</id>
+  <link href="http://lars-tesmer.com/atom.xml" rel="self"/>
+  <link href="http://lars-tesmer.com/"/>
+  <updated>2011-09-14T10:51:11+02:00</updated>
+  <id>http://lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
     
@@ -14,9 +14,9 @@
   
   <entry>
     <title>Learning Ruby: Gotchas and Pitfalls for PHP Programmers</title>
-    <link href="http://www.lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/"/>
+    <link href="http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/"/>
     <updated>2011-09-13T18:09:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers</id>
+    <id>http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers</id>
     <content type="html">&lt;p&gt;I&amp;#8217;m currently learning Ruby. In this post I&amp;#8217;ll list some pitfalls for programmers coming from PHP that would probably cause some confusion if you aren&amp;#8217;t aware of them.&lt;br/&gt;
 This list is by no means complete, while I learn Ruby I&amp;#8217;ll very probably encounter more gotchas, which I will blog about, too.&lt;/p&gt;
 
@@ -108,9 +108,9 @@ I will almost certainly find more gotchas, thus I&amp;#8217;d suggest you &lt;a 
   
   <entry>
     <title>What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</title>
-    <link href="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
+    <link href="http://lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
     <updated>2011-09-08T23:06:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2011/09/08/what-my-co&#8212;workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit</id>
+    <id>http://lars-tesmer.com/blog/2011/09/08/what-my-co&#8212;workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit</id>
     <content type="html">&lt;p&gt;Today a bunch of co-workers and me got together right after work to hone our skills, more specifically, our unit testing skills.&lt;br/&gt;
 A couple of weeks before, I had discovered that the code coverage of &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/&quot;&gt;PHPUnit&lt;/a&gt; is only at ~55%, so I thought it would be a great exercise for our after work hacking to help increase its code coverage by writing unit tests for it.&lt;/p&gt;
 
@@ -243,9 +243,9 @@ PHPUnit itself is a very valuable tool and I&amp;#8217;m very grateful for its e
   
   <entry>
     <title>Review: The Clean Coder - A Code of Conduct for Professional Programmers</title>
-    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
+    <link href="http://lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
     <updated>2011-09-04T14:08:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
+    <id>http://lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
     <content type="html">&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://lars-tesmer.com/images/books/the_clean_coder.jpg&#8217; width=&#8221; height=&#8221; alt=&#8221; title=&#8221;&gt;
 Robert C. Martin aka Uncle Bob, a programmer with decades of experience under his belt, lets us in about what he has learned in his professional life and, more importantly, how he has failed, sometimes failed miserably.
 &lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073&quot;&gt;The Clean Coder&lt;/a&gt; is an important book.&lt;/p&gt;
@@ -285,9 +285,9 @@ The code you work on sucks? - Well, then start to write better code!&lt;/p&gt;
   
   <entry>
     <title>Review: Eloquent Ruby by Russ Olsen</title>
-    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/"/>
+    <link href="http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/"/>
     <updated>2011-09-04T13:17:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen</id>
+    <id>http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen</id>
     <content type="html">&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://lars-tesmer.com/images/books/eloquent_ruby.jpg&#8217; width=&#8221; height=&#8221; alt=&#8221; title=&#8221;&gt;
 If you want to learn Ruby and you already know another programming language, &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby by Russ Olsen&lt;/a&gt; is a book you absolutely should read. Heck, even if you do &lt;em&gt;not&lt;/em&gt; want to learn Ruby, you might want to read it because, who knows, it might give you &lt;a href=&quot;http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/&quot;&gt;ideas for the programming language you currently use&lt;/a&gt;.&lt;/p&gt;
 
@@ -329,9 +329,9 @@ And while you&amp;#8217;re at it, check out the equally excellent &lt;a href=&qu
   
   <entry>
     <title>PHPUnit: Better Syntax for Expecting Exceptions</title>
-    <link href="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
+    <link href="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
     <updated>2011-08-29T18:32:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions</id>
+    <id>http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions</id>
     <content type="html">&lt;p&gt;Recently, while starting to learn Ruby, I&amp;#8217;ve stumbled upon the following code snippet
 which demonstrates how you can assert that a piece of code throws as exception in Ruby&amp;#8217;s Test::Unit:&lt;/p&gt;
 
@@ -521,9 +521,9 @@ Or am I just crazy? ;)&lt;/p&gt;
   
   <entry>
     <title>Colored Diffs in Thunderbird</title>
-    <link href="http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
+    <link href="http://lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
     <updated>2010-10-01T00:00:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
+    <id>http://lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
     <content type="html">&lt;p&gt;
 At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
 &lt;/p&gt;
@@ -552,9 +552,9 @@ Yet again, another useful Thunderbird-addon making my life a little bit easier.
   
   <entry>
     <title>No Time to Read That Blog - Read It Later!</title>
-    <link href="http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
+    <link href="http://lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
     <updated>2010-09-29T00:00:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog&#8212;read-it-later</id>
+    <id>http://lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog&#8212;read-it-later</id>
     <content type="html">&lt;p&gt;
 In order to keep up-to-date with what&amp;#8217;s going on in the tech world, I read a lot of blogs, visit &lt;a href=&quot;http://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt; regularly etc. during my lunch break for example.
 &lt;/p&gt;
@@ -585,9 +585,9 @@ This is absolutely one of those Firefox addons I don&amp;#8217;t want to live wi
   
   <entry>
     <title>Git - How to get better diffs for images</title>
-    <link href="http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
+    <link href="http://lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
     <updated>2010-09-20T00:00:00+02:00</updated>
-    <id>http://www.lars-tesmer.com/blog/2010/09/20/git&#8212;how-to-get-better-diffs-for-images</id>
+    <id>http://lars-tesmer.com/blog/2010/09/20/git&#8212;how-to-get-better-diffs-for-images</id>
     <content type="html">Have you ever wondered if there&amp;#8217;s something that would make Git to show better diffs for images?&lt;br /&gt;
 Well, here&amp;#8217;s a really useful addition to one&amp;#8217;s Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
 to create diffs of changes made to images:
