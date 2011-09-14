@@ -4,7 +4,7 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://lars-tesmer.com/"/>
-  <updated>2011-09-14T19:50:24+02:00</updated>
+  <updated>2011-09-14T20:09:23+02:00</updated>
   <id>http://lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
@@ -82,7 +82,7 @@ However, a private method is not visible to instances of the same class.&lt;/p&g
 
 &lt;p&gt;Methods that are &lt;em&gt;protected&lt;/em&gt; have the same visibility as &lt;em&gt;private&lt;/em&gt; methods - except that a protected method &lt;strong&gt;is&lt;/strong&gt; visible to instances of the same class.&lt;/p&gt;
 
-&lt;p&gt;So by using &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt; you do not influence the visibility of methods for subclasses but the their visibility to instances of the same class.
+&lt;p&gt;So by using &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt; you do not influence the visibility of methods for subclasses but their visibility to instances of the same class.
 In PHP &amp;#8220;private&amp;#8221; means &amp;#8220;private to this class&amp;#8221; while in Ruby it means &amp;#8220;private to this instance&amp;#8221;.&lt;/p&gt;
 
 &lt;p&gt;&lt;em&gt;Update&lt;/em&gt;&lt;br/&gt;
@@ -156,6 +156,8 @@ Here&amp;#8217;s an example illustrating showing how &lt;em&gt;private&lt;/em&gt
 &lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_private_method&lt;/span&gt;
 &lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
 
+
+&lt;p&gt;Oh, and in PHP both private and protected methods can always be accessed from within instances of the same class, there&amp;#8217;s no way to prevent that.&lt;/p&gt;
 
 &lt;h3&gt;4. There&amp;#8217;s no &lt;em&gt;static&lt;/em&gt; keyword&lt;/h3&gt;
 

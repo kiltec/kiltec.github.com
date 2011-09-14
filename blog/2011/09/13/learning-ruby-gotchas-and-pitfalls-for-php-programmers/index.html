@@ -146,7 +146,7 @@ However, a private method is not visible to instances of the same class.</p>
 
 <p>Methods that are <em>protected</em> have the same visibility as <em>private</em> methods - except that a protected method <strong>is</strong> visible to instances of the same class.</p>
 
-<p>So by using <em>private</em> and <em>protected</em> you do not influence the visibility of methods for subclasses but the their visibility to instances of the same class.
+<p>So by using <em>private</em> and <em>protected</em> you do not influence the visibility of methods for subclasses but their visibility to instances of the same class.
 In PHP &#8220;private&#8221; means &#8220;private to this class&#8221; while in Ruby it means &#8220;private to this instance&#8221;.</p>
 
 <p><em>Update</em><br/>
@@ -220,6 +220,8 @@ Here&#8217;s an example illustrating showing how <em>private</em> and <em>protec
 </div><div class='line'><span class="n">some_class_2</span><span class="o">.</span><span class="n">a_private_method</span>
 </div></code></pre></td></tr></table></div></figure>
 
+
+<p>Oh, and in PHP both private and protected methods can always be accessed from within instances of the same class, there&#8217;s no way to prevent that.</p>
 
 <h3>4. There&#8217;s no <em>static</em> keyword</h3>
 
