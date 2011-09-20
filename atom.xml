@@ -4,13 +4,389 @@
   <title>Lars Tesmer&#8217;s Blog</title>
   <link href="http://lars-tesmer.com/atom.xml" rel="self"/>
   <link href="http://lars-tesmer.com/"/>
-  <updated>2011-09-16T21:32:56+02:00</updated>
+  <updated>2011-09-20T18:18:52+02:00</updated>
   <id>http://lars-tesmer.com/</id>
   <author>
     <name>Lars Tesmer</name>
     
   </author>
 
+  
+  <entry>
+    <title>How to Unit Test a Class Making Calls to An URL (or the Filesystem) with PHPUnit</title>
+    <link href="http://lars-tesmer.com/blog/2011/09/20/how-to-unit-test-a-class-making-calls-to-an-url-or-the-filesystem-with-phpunit/"/>
+    <updated>2011-09-20T19:16:00+02:00</updated>
+    <id>http://lars-tesmer.com/blog/2011/09/20/how-to-unit-test-a-class-making-calls-to-an-url-or-the-filesystem-with-phpunit</id>
+    <content type="html">&lt;p&gt;For our most recent &lt;a href=&quot;http://lars-tesmer.com/blog/categories/after-work-hacking/&quot;&gt;After Work Hacking&lt;/a&gt; my co-workers and me decided to write unit tests forthe open source project &lt;a href=&quot;https://github.com/kriswallsmith/assetic&quot;&gt;Assetic&lt;/a&gt;. That turned out to be a better decision than our last one, yet we still ran into an interesting challenge.&lt;/p&gt;
+
+&lt;!&#8211; more &#8211;&gt;
+
+
+&lt;p&gt;Here&amp;#8217;s the class in &lt;a href=&quot;https://github.com/kriswallsmith/assetic&quot;&gt;Assetic&lt;/a&gt; we decided to write unit tests for:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;HttpAsset.php&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;34&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;35&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;36&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;37&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;38&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;39&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;40&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;41&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;42&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;43&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;44&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;45&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;46&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;47&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;48&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;49&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;50&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;51&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;52&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;53&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;54&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;55&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;56&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;57&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;58&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;59&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;60&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;61&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;62&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;63&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;64&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;65&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;namespace Assetic\Asset;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;use Assetic\Filter\FilterInterface;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * Represents an asset loaded via an HTTP request.&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; *&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @author Kris Wallsmith &amp;lt;kris.wallsmith@gmail.com&amp;gt;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;class HttpAsset extends BaseAsset&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $sourceUrl;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $ignoreErrors;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    /**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * Constructor.&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param string $sourceUrl The source URL&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param array  $filters   An array of filters&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @throws InvalidArgumentException If the first argument is not an URL&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function __construct($sourceUrl, $filters = array(), $ignoreErrors = false)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        if (0 === strpos($sourceUrl, &amp;#39;//&amp;#39;)) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            $sourceUrl = &amp;#39;http:&amp;#39;.$sourceUrl;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    } elseif (false === strpos($sourceUrl, &amp;#39;://&amp;#39;)) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    throw new \InvalidArgumentException(sprintf(&amp;#39;&amp;quot;%s&amp;quot; is not a valid URL.&amp;#39;, $sourceUrl));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;sourceUrl = $sourceUrl;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;ignoreErrors = $ignoreErrors;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    list($scheme, $url) = explode(&amp;#39;://&amp;#39;, $sourceUrl, 2);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    list($host, $path) = explode(&amp;#39;/&amp;#39;, $url, 2);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    parent::__construct($filters, $scheme.&amp;#39;://&amp;#39;.$host, $path);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function load(FilterInterface $additionalFilter = null)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        if (false === $content = @file_get_contents($this-&amp;gt;sourceUrl)) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            if ($this-&amp;gt;ignoreErrors) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                return;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            } else {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                throw new \RuntimeException(sprintf(&amp;#39;Unable to load asset from URL &amp;quot;%s&amp;quot;&amp;#39;, $this-&amp;gt;sourceUrl));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;doLoad($content, $additionalFilter);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function getLastModified()&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        if (false !== @file_get_contents($this-&amp;gt;sourceUrl, false, stream_context_create(array(&amp;#39;http&amp;#39; =&amp;gt; array(&amp;#39;method&amp;#39; =&amp;gt; &amp;#39;HEAD&amp;#39;))))) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            foreach ($http_response_header as $header) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                if (0 === stripos($header, &amp;#39;Last-Modified: &amp;#39;)) {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                    list(, $mtime) = explode(&amp;#39;:&amp;#39;, $header, 2);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                    return strtotime(trim($mtime));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;So we started to write the unit tests for this class.&lt;br/&gt;
+The first test is pretty straight forward, it&amp;#8217;s a test for the if-statement inside of the constructor:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @test&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function UrlMustBeValid() {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $url = &amp;quot;foobar&amp;quot;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;setExpectedException(&amp;#39;InvalidArgumentException&amp;#39;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $http_asset = new HttpAsset($url);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;Ok, nice, so is there anything else in the constructor we could write a test for?&lt;br/&gt;
+No, there isn&amp;#8217;t anything left in the constructor we can directly test. In order to test the rest of the code of the constructor, we have to call the &lt;em&gt;load()&lt;/em&gt;-method.&lt;/p&gt;
+
+&lt;p&gt;So here&amp;#8217;s the rather easy test of passing an URL into HttpAsset which passes the tests in the constructor but isn&amp;#8217;t actually a valid URL and thus causes &lt;em&gt;load()&lt;/em&gt; to throw an exception:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @test&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function cannotLoadAnUnreachableUrl() {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;setExpectedException(&amp;#39;RuntimeException&amp;#39;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset = new HttpAsset(&amp;#39;http://invalid.com/foobar&amp;#39;);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset-&amp;gt;load();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;But now it&amp;#8217;s getting interesting:&lt;/p&gt;
+
+&lt;p&gt;The problem is in line 42 of HttpAsset where the native PHP function &lt;a href=&quot;http://php.net/manual/en/function.file-get-contents.php&quot;&gt;file_get_contents()&lt;/a&gt; is called. It isn&amp;#8217;t actually a call to the filesystem - &lt;em&gt;file_get_contents&lt;/em&gt; can also handle URLs - but how can we test that?&lt;/p&gt;
+
+&lt;p&gt;Here are the possibilities we have at our disposal:&lt;/p&gt;
+
+&lt;h3&gt;1. Use a real URL&lt;/h3&gt;
+
+&lt;p&gt;The obvious thing to do is simply pass a real URL into HttpAsset. That&amp;#8217;s also the option chosen by the authors of the tests for HttpAsset (there already are tests for Assetic but we threw them away to practice):&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @test&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function loadsContentWithValidAndReachableUrl() {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $url = &amp;#39;https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js&amp;#39;;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset = new HttpAsset($url);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset-&amp;gt;load();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertGreaterThan(0, strlen($asset-&amp;gt;getContent()));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;However, this method has a number of problems:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The test will fail when there&amp;#8217;s no connection to the internet.&lt;/li&gt;
+&lt;li&gt;The test will fail when the URL you use changes.&lt;/li&gt;
+&lt;li&gt;You have little control about the content returned by the call to the URL.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Ok, what else could we do? Read on!&lt;/p&gt;
+
+&lt;h3&gt;2. Wrap the use of file_get_contents() into a new class.&lt;/h3&gt;
+
+&lt;p&gt;If you move the code using the filesystem or another external resource into a new class and inject it into HttpAsset, you will able to mock that class when testing HttpAsset.&lt;br/&gt;
+Normally, that would be my preferred way of making classes like &lt;em&gt;HttpAsset&lt;/em&gt; easier to test.&lt;/p&gt;
+
+&lt;p&gt;However, in this case I&amp;#8217;m not so sure about it.&lt;br/&gt;
+To see why, let&amp;#8217;s check out how &lt;em&gt;HttpAsset&lt;/em&gt; would look like if we moved all code concerned with getting the content over HTTP into a new class &lt;em&gt;ContentFetcher&lt;/em&gt;:&lt;/p&gt;
+
+&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;HttpAsset using a ContentFetcher&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;34&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;35&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;36&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;37&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;38&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;39&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;40&lt;/span&gt;
+&lt;span class=&#8217;line&#8217;&gt;41&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;class HttpAsset extends BaseAsset&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $sourceUrl;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $ignoreErrors;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $contentFetcher;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    /**&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * Constructor.&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param string $sourceUrl The source URL&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param array  $filters   An array of filters&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @throws InvalidArgumentException If the first argument is not an URL&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     */&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function __construct(ContentFetcher $contentFetcher, $filters = array(), $ignoreErrors = false)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;contentFetcher = $contentFetcher;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;sourceUrl = $contentFetcher-&amp;gt;getSourceUrl();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;ignoreErrors = $ignoreErrors;&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $scheme = $this-&amp;gt;contentFetcher-&amp;gt;getScheme();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $host = $this-&amp;gt;contentFetcher-&amp;gt;getHost();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $path = $this-&amp;gt;contentFetcher-&amp;gt;getPath();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        parent::__construct($filters, $scheme.&amp;#39;://&amp;#39;.$host, $path);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function load(FilterInterface $additionalFilter = null)&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $content = $this-&amp;gt;contentFetcher-&amp;gt;fetch();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;doLoad($content, $additionalFilter);&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function getLastModified()&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $metaData = $this-&amp;gt;contentFetcher-&amp;gt;getMetaData();&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        return strtotime(trim($metaData-&amp;gt;lastModified));&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
+&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+
+
+&lt;p&gt;I&amp;#8217;ll leave the implementation of &lt;em&gt;ContentFetcher&lt;/em&gt; as an exercise for the reader (yes, I can be a lazy bum sometimes&amp;#8230; ;) ). Note how I don&amp;#8217;t pass an URL into HttpAsset anymore but an instance of &lt;em&gt;ContentFetcher&lt;/em&gt;. Accordingly, all code responsible for validating the URL has been moved into &lt;em&gt;ContentFetcher&lt;/em&gt;.&lt;br/&gt;
+Anyway, now it isn&amp;#8217;t any problem at all anymore to write some tests avoiding the problems mentioned in the previous section, for you&amp;#8217;re able to &lt;a href=&quot;http://www.phpunit.de/manual/3.6/en/test-doubles.html&quot;&gt;mock&lt;/a&gt; &lt;em&gt;ContentFetcher&lt;/em&gt; with PHPUnit.&lt;br/&gt;
+Additionally, &lt;em&gt;HttpAsset&lt;/em&gt; has become much simpler.&lt;/p&gt;
+
+&lt;p&gt;Well, I think it has maybe become &lt;strong&gt;too&lt;/strong&gt; simple, there really isn&amp;#8217;t anything interesting going on anymore in &lt;em&gt;HttpAsset&lt;/em&gt; and that&amp;#8217;s because &lt;em&gt;HttpAsset&lt;/em&gt; itself already &lt;strong&gt;was&lt;/strong&gt; a class to abstract away from the nitty-gritty details of fetching or loading content via HTTP.&lt;/p&gt;
+
+&lt;p&gt;Hence, in this particular case, it&amp;#8217;s probably better to leave HttpAsset as it is and look to another option.&lt;/p&gt;
+
+&lt;h3&gt;3. Mock the filesystem with vfsStream&lt;/h3&gt;
+
+&lt;p&gt;This sounds suspiciously similar to the previous option - but it isn&amp;#8217;t!&lt;br/&gt;
+What I mean is to mock the underlying filesystem, i.e. replace the &amp;#8220;real&amp;#8221; filesystem with a virtual filesystem, thus allowing you to have full control about what get returned etc.&lt;/p&gt;
+
+&lt;p&gt;And fortunately, a library making this possible exists: &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt;.&lt;br/&gt;
+&lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt; is a &lt;a href=&quot;http://www.php.net/streams&quot;&gt;stream wrapper&lt;/a&gt; for a virtual filesystem allowing you to mock the real filesystem.&lt;br/&gt;
+This allows you to possibly keep the code under test unchanged, you simply swap out the real filesystem with a fake one you have full control over.&lt;/p&gt;
+
+&lt;p&gt;Explaining how to use &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt; is out of the scope of this blog but luckily, you can find some examples in the documentation for PHPUnit:&lt;br/&gt;
+&lt;a href=&quot;http://www.phpunit.de/manual/3.6/en/test-doubles.html#test-doubles.mocking-the-filesystem&quot;&gt;Using vfsStream with PHPUnit&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The bottom line is, whenever you need to test a class accessing the filesystem, e.g. removing or creating directories, take a look at &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt;, it will be of a great help!&lt;/p&gt;
+
+&lt;p&gt;Yet, in our particular case &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt; cannot be used.&lt;/p&gt;
+
+&lt;p&gt;First off, it doesn&amp;#8217;t support requests via HTTP, as it&amp;#8217;s done in &lt;em&gt;HttpAsset&lt;/em&gt; using file_get_contents(). That&amp;#8217;s the bad news, the good news is: After having skimmed the source code of vfsStream, it looks like it is possible to add such a feature to &lt;em&gt;vfsStream&lt;/em&gt;!&lt;/p&gt;
+
+&lt;p&gt;Alas, secondly, you can only use vfsStream, if the code under test doesn&amp;#8217;t itself create a stream wrapper - and that&amp;#8217;s what &lt;em&gt;HttpAsset&lt;/em&gt; is doing in &lt;em&gt;getLastModified&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;What a bummer. ;)&lt;/p&gt;
+
+&lt;h3&gt;Conclusion&lt;/h3&gt;
+
+&lt;p&gt;In the case of testing &lt;em&gt;HttpAsset&lt;/em&gt;, I don&amp;#8217;t see any way how we could get around the test having to make a request to a real URL - do you?&lt;/p&gt;
+
+&lt;p&gt;However, in other cases, the options I&amp;#8217;ve explored in this blog might be a valid alternative. So the next time you have to test a class using the filesystem or performing HTTP requests:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;try to wrap the offending code into a new class, so you can mock it, or&lt;/li&gt;
+&lt;li&gt;try to mock the filesystem with &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Hope that helps!&lt;/p&gt;
+</content>
+  </entry>
   
   <entry>
     <title>Learning Ruby: Gotchas and Pitfalls for PHP Programmers</title>
