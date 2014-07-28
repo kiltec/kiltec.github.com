@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Craftsmanship | Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/blog/categories/craftsmanship/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name><![CDATA[Lars Tesmer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Review: The Clean Coder - a Code of Conduct for Professional Programmers]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
+    <updated>2011-09-04T14:08:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
+    <content type="html"><![CDATA[<p><img class="left <a" src="href="http://lars-tesmer.com/images/books/the_clean_coder.jpg">http://lars-tesmer.com/images/books/the_clean_coder.jpg</a>">
+Robert C. Martin aka Uncle Bob, a programmer with decades of experience under his belt, lets us in about what he has learned in his professional life and, more importantly, how he has failed, sometimes failed miserably.
+<a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a> is an important book.</p>
+
+<p>In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one&rsquo;s quest to become a true professional, a software master.</p>
+
+<p>The book covers several topics, e.g. how to say no (and yes!), how to write clean code, how to test, how to become more effective and efficient.</p>
+
+<p>And while all those topics are different in content, there&rsquo;s one big <em>leitmotif</em>:</p>
+
+<!-- more -->
+
+
+<p>Self Responsibility.</p>
+
+<p>Especially when talking about his failures, this <em>leitmotif</em> becomes evident:<br/>
+Neither is Robert C. Martin blaming other people, nor the environment, nor bad luck, nor lack of time &ndash; no, the essence of his stories is that he himself failed, failed to be responsible, failed to act professionally.</p>
+
+<p>What a tough realization!</p>
+
+<p>I mean, it&rsquo;s a little bit depressing to see it this way, think about it:<br/>
+Your project is a mess, you&rsquo;re under constant pressure, haven&rsquo;t seen your family for a long time, you hate your co-workers &ndash; why, it&rsquo;s <strong>your</strong> fault, according to the author.</p>
+
+<p>At the same time, this is also an optimistic way to view things:<br/>
+If it&rsquo;s <em>your</em> fault, <em>your</em> responsibility to having got into such a situation, then it&rsquo;s also <strong>you</strong> who can change it! You don&rsquo;t depend on others, you only depend on yourself.</p>
+
+<p>Now, I&rsquo;m not sure if I entirely follow this conclusion, it&rsquo;s a thin line to walk between a successful career and depression/burnout. You have to be very self-observant and tread carefully when adapting this way of thinking.</p>
+
+<p>However, I still think it&rsquo;s a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:<br/>
+The code you work on sucks? &ndash; Well, then start to write better code!</p>
+
+<p>Your company doesn&rsquo;t allow for much time to practice, to hone your skills? &ndash; Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!</p>
+
+<p>Summing up, <a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a> is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.</p>
+]]></content>
+  </entry>
+  
+</feed>

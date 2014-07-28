@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Thunderbird | Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/blog/categories/thunderbird/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name><![CDATA[Lars Tesmer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Colored Diffs in Thunderbird]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
+    <updated>2010-10-01T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
+    <content type="html"><![CDATA[<p>
+At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
+</p>
+
+
+<!--more-->
+
+
+<p>
+<a href="http://code.google.com/p/colorediffs/">colorediffs by Vadim Atlygin</a> 
+</p>
+
+
+<p>
+It features various display modes, e.g. simple coloring of unified diffs:
+</p>
+
+
+<p><img src="http://www.lars-tesmer.com/images/unified.png" /><br /></p>
+
+<p>
+Or side-by-side diffs:
+</p>
+
+
+<p><img src="http://www.lars-tesmer.com/images/side-by-side.png" /> <br /></p>
+
+<p>
+As you can see it will also display whitespace characters, if you want to.<br />
+Moreover, you can set the tab width to your preferred value.<br />
+You can find more screenshots <a href="http://code.google.com/p/colorediffs/wiki/Screenshots">in the wiki of colorediffs.</a>
+</p>
+
+
+<p>
+Yet again, another useful Thunderbird-addon making my life a little bit easier.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

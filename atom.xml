@@ -1,1060 +1,512 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title>Lars Tesmer&#8217;s Blog</title>
-  <link href="http://lars-tesmer.com/atom.xml" rel="self"/>
-  <link href="http://lars-tesmer.com/"/>
-  <updated>2011-09-20T18:18:52+02:00</updated>
-  <id>http://lars-tesmer.com/</id>
+  <title><![CDATA[Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
   <author>
-    <name>Lars Tesmer</name>
+    <name><![CDATA[Lars Tesmer]]></name>
     
   </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
 
   
   <entry>
-    <title>How to Unit Test a Class Making Calls to An URL (or the Filesystem) with PHPUnit</title>
-    <link href="http://lars-tesmer.com/blog/2011/09/20/how-to-unit-test-a-class-making-calls-to-an-url-or-the-filesystem-with-phpunit/"/>
-    <updated>2011-09-20T19:16:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2011/09/20/how-to-unit-test-a-class-making-calls-to-an-url-or-the-filesystem-with-phpunit</id>
-    <content type="html">&lt;p&gt;For our most recent &lt;a href=&quot;http://lars-tesmer.com/blog/categories/after-work-hacking/&quot;&gt;After Work Hacking&lt;/a&gt; my co-workers and me decided to write unit tests forthe open source project &lt;a href=&quot;https://github.com/kriswallsmith/assetic&quot;&gt;Assetic&lt;/a&gt;. That turned out to be a better decision than our last one, yet we still ran into an interesting challenge.&lt;/p&gt;
-
-&lt;!&#8211; more &#8211;&gt;
-
-
-&lt;p&gt;Here&amp;#8217;s the class in &lt;a href=&quot;https://github.com/kriswallsmith/assetic&quot;&gt;Assetic&lt;/a&gt; we decided to write unit tests for:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;HttpAsset.php&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;34&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;35&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;36&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;37&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;38&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;39&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;40&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;41&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;42&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;43&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;44&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;45&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;46&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;47&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;48&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;49&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;50&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;51&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;52&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;53&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;54&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;55&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;56&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;57&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;58&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;59&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;60&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;61&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;62&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;63&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;64&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;65&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;namespace Assetic\Asset;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;use Assetic\Filter\FilterInterface;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * Represents an asset loaded via an HTTP request.&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; *&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @author Kris Wallsmith &amp;lt;kris.wallsmith@gmail.com&amp;gt;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;class HttpAsset extends BaseAsset&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $sourceUrl;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $ignoreErrors;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    /**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * Constructor.&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param string $sourceUrl The source URL&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param array  $filters   An array of filters&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @throws InvalidArgumentException If the first argument is not an URL&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function __construct($sourceUrl, $filters = array(), $ignoreErrors = false)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        if (0 === strpos($sourceUrl, &amp;#39;//&amp;#39;)) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            $sourceUrl = &amp;#39;http:&amp;#39;.$sourceUrl;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    } elseif (false === strpos($sourceUrl, &amp;#39;://&amp;#39;)) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    throw new \InvalidArgumentException(sprintf(&amp;#39;&amp;quot;%s&amp;quot; is not a valid URL.&amp;#39;, $sourceUrl));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;sourceUrl = $sourceUrl;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;ignoreErrors = $ignoreErrors;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    list($scheme, $url) = explode(&amp;#39;://&amp;#39;, $sourceUrl, 2);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    list($host, $path) = explode(&amp;#39;/&amp;#39;, $url, 2);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    parent::__construct($filters, $scheme.&amp;#39;://&amp;#39;.$host, $path);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function load(FilterInterface $additionalFilter = null)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        if (false === $content = @file_get_contents($this-&amp;gt;sourceUrl)) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            if ($this-&amp;gt;ignoreErrors) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                return;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            } else {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                throw new \RuntimeException(sprintf(&amp;#39;Unable to load asset from URL &amp;quot;%s&amp;quot;&amp;#39;, $this-&amp;gt;sourceUrl));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;doLoad($content, $additionalFilter);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function getLastModified()&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        if (false !== @file_get_contents($this-&amp;gt;sourceUrl, false, stream_context_create(array(&amp;#39;http&amp;#39; =&amp;gt; array(&amp;#39;method&amp;#39; =&amp;gt; &amp;#39;HEAD&amp;#39;))))) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            foreach ($http_response_header as $header) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                if (0 === stripos($header, &amp;#39;Last-Modified: &amp;#39;)) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                    list(, $mtime) = explode(&amp;#39;:&amp;#39;, $header, 2);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                    return strtotime(trim($mtime));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;                }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;            }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;So we started to write the unit tests for this class.&lt;br/&gt;
-The first test is pretty straight forward, it&amp;#8217;s a test for the if-statement inside of the constructor:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @test&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function UrlMustBeValid() {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $url = &amp;quot;foobar&amp;quot;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;setExpectedException(&amp;#39;InvalidArgumentException&amp;#39;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $http_asset = new HttpAsset($url);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;Ok, nice, so is there anything else in the constructor we could write a test for?&lt;br/&gt;
-No, there isn&amp;#8217;t anything left in the constructor we can directly test. In order to test the rest of the code of the constructor, we have to call the &lt;em&gt;load()&lt;/em&gt;-method.&lt;/p&gt;
-
-&lt;p&gt;So here&amp;#8217;s the rather easy test of passing an URL into HttpAsset which passes the tests in the constructor but isn&amp;#8217;t actually a valid URL and thus causes &lt;em&gt;load()&lt;/em&gt; to throw an exception:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @test&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function cannotLoadAnUnreachableUrl() {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;setExpectedException(&amp;#39;RuntimeException&amp;#39;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset = new HttpAsset(&amp;#39;http://invalid.com/foobar&amp;#39;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset-&amp;gt;load();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;But now it&amp;#8217;s getting interesting:&lt;/p&gt;
-
-&lt;p&gt;The problem is in line 42 of HttpAsset where the native PHP function &lt;a href=&quot;http://php.net/manual/en/function.file-get-contents.php&quot;&gt;file_get_contents()&lt;/a&gt; is called. It isn&amp;#8217;t actually a call to the filesystem - &lt;em&gt;file_get_contents&lt;/em&gt; can also handle URLs - but how can we test that?&lt;/p&gt;
-
-&lt;p&gt;Here are the possibilities we have at our disposal:&lt;/p&gt;
-
-&lt;h3&gt;1. Use a real URL&lt;/h3&gt;
-
-&lt;p&gt;The obvious thing to do is simply pass a real URL into HttpAsset. That&amp;#8217;s also the option chosen by the authors of the tests for HttpAsset (there already are tests for Assetic but we threw them away to practice):&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @test&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function loadsContentWithValidAndReachableUrl() {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $url = &amp;#39;https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js&amp;#39;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset = new HttpAsset($url);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $asset-&amp;gt;load();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertGreaterThan(0, strlen($asset-&amp;gt;getContent()));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;However, this method has a number of problems:&lt;/p&gt;
-
-&lt;ol&gt;
-&lt;li&gt;The test will fail when there&amp;#8217;s no connection to the internet.&lt;/li&gt;
-&lt;li&gt;The test will fail when the URL you use changes.&lt;/li&gt;
-&lt;li&gt;You have little control about the content returned by the call to the URL.&lt;/li&gt;
-&lt;/ol&gt;
-
-
-&lt;p&gt;Ok, what else could we do? Read on!&lt;/p&gt;
-
-&lt;h3&gt;2. Wrap the use of file_get_contents() into a new class.&lt;/h3&gt;
-
-&lt;p&gt;If you move the code using the filesystem or another external resource into a new class and inject it into HttpAsset, you will able to mock that class when testing HttpAsset.&lt;br/&gt;
-Normally, that would be my preferred way of making classes like &lt;em&gt;HttpAsset&lt;/em&gt; easier to test.&lt;/p&gt;
-
-&lt;p&gt;However, in this case I&amp;#8217;m not so sure about it.&lt;br/&gt;
-To see why, let&amp;#8217;s check out how &lt;em&gt;HttpAsset&lt;/em&gt; would look like if we moved all code concerned with getting the content over HTTP into a new class &lt;em&gt;ContentFetcher&lt;/em&gt;:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;HttpAsset using a ContentFetcher&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;34&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;35&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;36&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;37&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;38&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;39&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;40&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;41&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;class HttpAsset extends BaseAsset&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $sourceUrl;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $ignoreErrors;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    private $contentFetcher;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    /**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * Constructor.&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param string $sourceUrl The source URL&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @param array  $filters   An array of filters&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     *&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     * @throws InvalidArgumentException If the first argument is not an URL&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;     */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function __construct(ContentFetcher $contentFetcher, $filters = array(), $ignoreErrors = false)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;contentFetcher = $contentFetcher;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;sourceUrl = $contentFetcher-&amp;gt;getSourceUrl();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;ignoreErrors = $ignoreErrors;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $scheme = $this-&amp;gt;contentFetcher-&amp;gt;getScheme();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $host = $this-&amp;gt;contentFetcher-&amp;gt;getHost();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $path = $this-&amp;gt;contentFetcher-&amp;gt;getPath();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        parent::__construct($filters, $scheme.&amp;#39;://&amp;#39;.$host, $path);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function load(FilterInterface $additionalFilter = null)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $content = $this-&amp;gt;contentFetcher-&amp;gt;fetch();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;doLoad($content, $additionalFilter);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    public function getLastModified()&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $metaData = $this-&amp;gt;contentFetcher-&amp;gt;getMetaData();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        return strtotime(trim($metaData-&amp;gt;lastModified));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;I&amp;#8217;ll leave the implementation of &lt;em&gt;ContentFetcher&lt;/em&gt; as an exercise for the reader (yes, I can be a lazy bum sometimes&amp;#8230; ;) ). Note how I don&amp;#8217;t pass an URL into HttpAsset anymore but an instance of &lt;em&gt;ContentFetcher&lt;/em&gt;. Accordingly, all code responsible for validating the URL has been moved into &lt;em&gt;ContentFetcher&lt;/em&gt;.&lt;br/&gt;
-Anyway, now it isn&amp;#8217;t any problem at all anymore to write some tests avoiding the problems mentioned in the previous section, for you&amp;#8217;re able to &lt;a href=&quot;http://www.phpunit.de/manual/3.6/en/test-doubles.html&quot;&gt;mock&lt;/a&gt; &lt;em&gt;ContentFetcher&lt;/em&gt; with PHPUnit.&lt;br/&gt;
-Additionally, &lt;em&gt;HttpAsset&lt;/em&gt; has become much simpler.&lt;/p&gt;
-
-&lt;p&gt;Well, I think it has maybe become &lt;strong&gt;too&lt;/strong&gt; simple, there really isn&amp;#8217;t anything interesting going on anymore in &lt;em&gt;HttpAsset&lt;/em&gt; and that&amp;#8217;s because &lt;em&gt;HttpAsset&lt;/em&gt; itself already &lt;strong&gt;was&lt;/strong&gt; a class to abstract away from the nitty-gritty details of fetching or loading content via HTTP.&lt;/p&gt;
-
-&lt;p&gt;Hence, in this particular case, it&amp;#8217;s probably better to leave HttpAsset as it is and look to another option.&lt;/p&gt;
-
-&lt;h3&gt;3. Mock the filesystem with vfsStream&lt;/h3&gt;
-
-&lt;p&gt;This sounds suspiciously similar to the previous option - but it isn&amp;#8217;t!&lt;br/&gt;
-What I mean is to mock the underlying filesystem, i.e. replace the &amp;#8220;real&amp;#8221; filesystem with a virtual filesystem, thus allowing you to have full control about what get returned etc.&lt;/p&gt;
-
-&lt;p&gt;And fortunately, a library making this possible exists: &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt;.&lt;br/&gt;
-&lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt; is a &lt;a href=&quot;http://www.php.net/streams&quot;&gt;stream wrapper&lt;/a&gt; for a virtual filesystem allowing you to mock the real filesystem.&lt;br/&gt;
-This allows you to possibly keep the code under test unchanged, you simply swap out the real filesystem with a fake one you have full control over.&lt;/p&gt;
-
-&lt;p&gt;Explaining how to use &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt; is out of the scope of this blog but luckily, you can find some examples in the documentation for PHPUnit:&lt;br/&gt;
-&lt;a href=&quot;http://www.phpunit.de/manual/3.6/en/test-doubles.html#test-doubles.mocking-the-filesystem&quot;&gt;Using vfsStream with PHPUnit&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;The bottom line is, whenever you need to test a class accessing the filesystem, e.g. removing or creating directories, take a look at &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt;, it will be of a great help!&lt;/p&gt;
-
-&lt;p&gt;Yet, in our particular case &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt; cannot be used.&lt;/p&gt;
-
-&lt;p&gt;First off, it doesn&amp;#8217;t support requests via HTTP, as it&amp;#8217;s done in &lt;em&gt;HttpAsset&lt;/em&gt; using file_get_contents(). That&amp;#8217;s the bad news, the good news is: After having skimmed the source code of vfsStream, it looks like it is possible to add such a feature to &lt;em&gt;vfsStream&lt;/em&gt;!&lt;/p&gt;
-
-&lt;p&gt;Alas, secondly, you can only use vfsStream, if the code under test doesn&amp;#8217;t itself create a stream wrapper - and that&amp;#8217;s what &lt;em&gt;HttpAsset&lt;/em&gt; is doing in &lt;em&gt;getLastModified&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;What a bummer. ;)&lt;/p&gt;
-
-&lt;h3&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;In the case of testing &lt;em&gt;HttpAsset&lt;/em&gt;, I don&amp;#8217;t see any way how we could get around the test having to make a request to a real URL - do you?&lt;/p&gt;
-
-&lt;p&gt;However, in other cases, the options I&amp;#8217;ve explored in this blog might be a valid alternative. So the next time you have to test a class using the filesystem or performing HTTP requests:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;try to wrap the offending code into a new class, so you can mock it, or&lt;/li&gt;
-&lt;li&gt;try to mock the filesystem with &lt;a href=&quot;https://github.com/mikey179/vfsStream&quot;&gt;vfsStream&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-
-
-&lt;p&gt;Hope that helps!&lt;/p&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>Learning Ruby: Gotchas and Pitfalls for PHP Programmers</title>
-    <link href="http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/"/>
-    <updated>2011-09-13T18:09:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers</id>
-    <content type="html">&lt;p&gt;I&amp;#8217;m currently learning Ruby. In this post I&amp;#8217;ll list some pitfalls for programmers coming from PHP that would probably cause some confusion if you aren&amp;#8217;t aware of them.&lt;br/&gt;
-This list is by no means complete, while I learn Ruby I&amp;#8217;ll very probably encounter more gotchas, which I will blog about, too.&lt;/p&gt;
-
-&lt;p&gt;Anyways, here we go, the incomplete list of things Ruby does differently than PHP:&lt;/p&gt;
-
-&lt;!&#8211; more &#8211;&gt;
-
-
-&lt;h3&gt;1. Arrays are continuous&lt;/h3&gt;
-
-&lt;p&gt;As a PHP programmer, you&amp;#8217;re used to, for example, put User-objects into an array with the index being the user id:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$user_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;Now you have an array with one element containing an User.
-Let&amp;#8217;s do the same in Ruby:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Don&amp;#8217;t do this!&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;Do &lt;em&gt;not&lt;/em&gt; do it like that in Ruby!&lt;br/&gt;
-If &lt;em&gt;user_id&lt;/em&gt; is 9999, the above code will create an array of &lt;strong&gt;10.000&lt;/strong&gt; elements, the last of them containing the User, all other elements containing &lt;em&gt;nil&lt;/em&gt;!&lt;br/&gt;
-Imagine having user ids in the range of millions&amp;#8230;&lt;br/&gt;
-Instead you must use hashes, like so:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Do this instead&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# Note the curly braces&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user_id&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt; This will create a hash containing only one element, the User.&lt;/p&gt;
-
-&lt;h3&gt;2. Zero is not falsy&lt;/h3&gt;
-
-&lt;p&gt;In Ruby only &lt;em&gt;nil&lt;/em&gt; and &lt;em&gt;false&lt;/em&gt; are false, &lt;strong&gt;everything&lt;/strong&gt; else evaluates to true!&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;This will not output anything&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;No users!&amp;quot;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;length&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt; // This will never be printed&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;This is of course a good thing but in PHP this is something you&amp;#8217;re probably used to do frequently - but it won&amp;#8217;t work in Ruby!&lt;/p&gt;
-
-&lt;h3&gt;3. The keywords &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt;&lt;/h3&gt;
-
-&lt;p&gt;In Ruby any methods which are defined as &lt;em&gt;private&lt;/em&gt; are not visible from outside the class but they &lt;em&gt;are&lt;/em&gt; still visible to subclasses of the class containing the private method!&lt;br/&gt;
-However, a private method is not visible to instances of the same class.&lt;/p&gt;
-
-&lt;p&gt;Methods that are &lt;em&gt;protected&lt;/em&gt; have the same visibility as &lt;em&gt;private&lt;/em&gt; methods - except that a protected method &lt;strong&gt;is&lt;/strong&gt; visible to instances of the same class.&lt;/p&gt;
-
-&lt;p&gt;So by using &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt; you do not influence the visibility of methods for subclasses but their visibility to instances of the same class.
-In PHP &amp;#8220;private&amp;#8221; means &amp;#8220;private to this class&amp;#8221; while in Ruby it means &amp;#8220;private to this instance&amp;#8221;.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Update&lt;/em&gt;&lt;br/&gt;
-Here&amp;#8217;s an example illustrating showing how &lt;em&gt;private&lt;/em&gt; and &lt;em&gt;protected&lt;/em&gt; change the visibility of methods from within instances of the same class:&lt;/p&gt;
-
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Example: protected vs. private&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;SomeClass&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call_private_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance_of_some_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;instance_of_some_class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_private_method&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;call_protected_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;instance_of_some_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;instance_of_some_class&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_protected_method&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;kp&quot;&gt;protected&lt;/span&gt;   
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;a_protected_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;I&amp;#39;m a protected method!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;kp&quot;&gt;private&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;a_private_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;I&amp;#39;m a private method!&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# New instance of same class!&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;c1&quot;&gt;# The following call will work&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call_protected_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;some_class_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;c1&quot;&gt;# This will throw an error!&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;call_private_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;some_class_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;c1&quot;&gt;# And the following two calls will throw an error, too.&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;c1&quot;&gt;# Neither private nor public methods are visible from outside.&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_protected_method&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;n&quot;&gt;some_class_2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a_private_method&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;Oh, and in PHP both private and protected methods can always be accessed from within instances of the same class, there&amp;#8217;s no way to prevent that.&lt;/p&gt;
-
-&lt;h3&gt;4. There&amp;#8217;s no &lt;em&gt;static&lt;/em&gt; keyword&lt;/h3&gt;
-
-&lt;p&gt;If you&amp;#8217;re looking for &lt;em&gt;static&lt;/em&gt; in Ruby, well, stop looking.&lt;br/&gt;
-This keyword doesn&amp;#8217;t exist.&lt;/p&gt;
-
-&lt;p&gt;However, what exists instead, is the concept of &lt;em&gt;class methods&lt;/em&gt;. Class methods are similar to static methods, in that they can be called without having to instantiate the class.&lt;/p&gt;
-
-&lt;p&gt;Explaining what class methods are, is out of the scope of this blog post but here are two blog posts about them from other authors:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://railstips.org/blog/archives/2009/05/11/class-and-instance-methods-in-ruby/&quot;&gt;Class and Instance Methods in Ruby&lt;/a&gt; &lt;br/&gt;
-&lt;a href=&quot;http://blog.jayfields.com/2007/04/ruby-class-methods.html&quot;&gt;Advantages of class methods over static methods&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3&gt;Conclusion&lt;/h3&gt;
-
-&lt;p&gt;I hope this list of differences between Ruby and PHP will help in your mission to learn Ruby and prevent you from shooting yourself in the foot.&lt;br/&gt;
-I will almost certainly find more gotchas, thus I&amp;#8217;d suggest you &lt;a href=&quot;http://feeds.feedburner.com/larstesmer&quot;&gt;subscribe to my blog&lt;/a&gt; so you won&amp;#8217;t miss them.&lt;/p&gt;
-
-&lt;p&gt;Anyways, have fun learning Ruby - I sure have! ;)&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Related posts:&lt;/em&gt;&lt;br/&gt;
-&lt;a href=&quot;http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/&quot;&gt;Review: Eloquent Ruby&lt;/a&gt;&lt;/p&gt;
-</content>
-  </entry>
-  
-  <entry>
-    <title>What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</title>
-    <link href="http://lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
+    <title type="html"><![CDATA[What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
     <updated>2011-09-08T23:06:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2011/09/08/what-my-co&#8212;workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit</id>
-    <content type="html">&lt;p&gt;Today a bunch of co-workers and me got together right after work to hone our skills, more specifically, our unit testing skills.&lt;br/&gt;
-A couple of weeks before, I had discovered that the code coverage of &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/&quot;&gt;PHPUnit&lt;/a&gt; is only at ~55%, so I thought it would be a great exercise for our after work hacking to help increase its code coverage by writing unit tests for it.&lt;/p&gt;
+    <id>http://www.lars-tesmer.com/blog/2011/09/08/what-my-co&#8212;workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit</id>
+    <content type="html"><![CDATA[<p>Today a bunch of co-workers and me got together right after work to hone our skills, more specifically, our unit testing skills.<br/>
+A couple of weeks before, I had discovered that the code coverage of <a href="https://github.com/sebastianbergmann/phpunit/">PHPUnit</a> is only at ~55%, so I thought it would be a great exercise for our after work hacking to help increase its code coverage by writing unit tests for it.</p>
 
-&lt;p&gt;The plan was to try and write as many tests as we could for the &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/tree/master/PHPUnit/Framework/Constraint&quot;&gt;Constraint classes&lt;/a&gt; PHPUnit uses to implement its assertions.&lt;br/&gt;
-Those Constraint classes are pretty small, fairly easy to understand and not entirely covered by tests - in short, very well suited for our group, a mix of programmers having quite some experience in unit testing as well as others just having started to learn unit testing.&lt;/p&gt;
+<p>The plan was to try and write as many tests as we could for the <a href="https://github.com/sebastianbergmann/phpunit/tree/master/PHPUnit/Framework/Constraint">Constraint classes</a> PHPUnit uses to implement its assertions.<br/>
+Those Constraint classes are pretty small, fairly easy to understand and not entirely covered by tests &ndash; in short, very well suited for our group, a mix of programmers having quite some experience in unit testing as well as others just having started to learn unit testing.</p>
 
-&lt;p&gt;Well, our plan didn&amp;#8217;t work out that way, we didn&amp;#8217;t really succeed in writing a considerable amount of unit tests.&lt;br/&gt;
-However, it still was a valuable experience, as it turned out the unit tests of the Constraints are a good example of how not to unit test.&lt;/p&gt;
+<p>Well, our plan didn&rsquo;t work out that way, we didn&rsquo;t really succeed in writing a considerable amount of unit tests.<br/>
+However, it still was a valuable experience, as it turned out the unit tests of the Constraints are a good example of how not to unit test.</p>
 
-&lt;p&gt;So here&amp;#8217;s what we learned (or were reminded of):&lt;/p&gt;
+<p>So here&rsquo;s what we learned (or were reminded of):</p>
 
-&lt;!&#8211; more &#8211;&gt;
-
-
-&lt;h3&gt;1. Don&amp;#8217;t use one single test case class to test several different classes&lt;/h3&gt;
-
-&lt;p&gt;The unit tests for the constraint classes of PHPUnit are lumped together &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php&quot;&gt;in one large file&lt;/a&gt;. I think the reasoning behind that might have been that all constraints derive from the same parent class, &lt;em&gt;PHPUnit_Framework_Constraint&lt;/em&gt;.&lt;br/&gt;
-Don&amp;#8217;t do that.&lt;br/&gt;
-It renders it quite hard to find your way to the tests for one of the constraints, it&amp;#8217;s quite annoying to navigate through that class.&lt;br/&gt;
-If each class has its own test case, it&amp;#8217;s much easier to find its test, too.&lt;/p&gt;
-
-&lt;h3&gt;2. Name your tests well&lt;/h3&gt;
-
-&lt;p&gt;You should name your tests such that they convey the intent of the test, describe what the test is about and how they&amp;#8217;re different from other tests. &lt;br/&gt;
-The tests in &lt;a href=&quot;https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php&quot;&gt;ConstraintTest.php&lt;/a&gt; wear names like:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;testConstraintIsEmpty&lt;/li&gt;
-&lt;li&gt;testConstraintPCREMatch&lt;/li&gt;
-&lt;li&gt;testConstraintClassNotHasStaticAttribute&lt;/li&gt;
-&lt;li&gt;testConstraintStringMatches&lt;/li&gt;
-&lt;li&gt;testConstraintStringMatches2&lt;/li&gt;
-&lt;li&gt;testConstraintStringMatches3&lt;/li&gt;
-&lt;li&gt;testConstraintStringMatches4&lt;/li&gt;
-&lt;li&gt;testConstraintStringMatches5&lt;/li&gt;
-&lt;li&gt;testConstraintStringMatches6 (sic!)&lt;/li&gt;
-&lt;/ul&gt;
+<!-- more -->
 
 
-&lt;p&gt;It&amp;#8217;s really hard to understand what&amp;#8217;s going on in tests named in such a way.&lt;/p&gt;
+<h3>1. Don&rsquo;t use one single test case class to test several different classes</h3>
 
-&lt;h3&gt;3. Avoid to test more than one behaviour in one single test&lt;/h3&gt;
+<p>The unit tests for the constraint classes of PHPUnit are lumped together <a href="https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php">in one large file</a>. I think the reasoning behind that might have been that all constraints derive from the same parent class, <em>PHPUnit_Framework_Constraint</em>.<br/>
+Don&rsquo;t do that.<br/>
+It renders it quite hard to find your way to the tests for one of the constraints, it&rsquo;s quite annoying to navigate through that class.<br/>
+If each class has its own test case, it&rsquo;s much easier to find its test, too.</p>
 
-&lt;p&gt;The tests in ConstraintTest.php test a lot of behavior in one single test, here&amp;#8217;s an example:&lt;/p&gt;
+<h3>2. Name your tests well</h3>
 
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Whoa! A lot of stuff going on in here! &lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;16&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;17&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;18&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;19&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;20&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;21&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;22&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;23&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;24&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;25&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;26&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;27&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;28&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;29&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;30&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;31&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;32&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;33&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_Constraint_IsType&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_Assert::isType&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_Constraint::count&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; * @covers PHPUnit_Framework_TestFailure::exceptionToString&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;public function testConstraintIsType()&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $constraint = PHPUnit_Framework_Assert::isType(&amp;#39;string&amp;#39;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertFalse($constraint-&amp;gt;evaluate(0, &amp;#39;&amp;#39;, TRUE));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertTrue($constraint-&amp;gt;evaluate(&amp;#39;&amp;#39;, &amp;#39;&amp;#39;, TRUE));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertEquals(&amp;#39;is of type &amp;quot;string&amp;quot;&amp;#39;, $constraint-&amp;gt;toString());&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;assertEquals(1, count($constraint));&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    try {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $constraint-&amp;gt;evaluate(new stdClass);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    catch (PHPUnit_Framework_ExpectationFailedException $e) {&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        $this-&amp;gt;assertEquals(&amp;lt;&amp;lt;&amp;lt;EOF&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;Failed asserting that stdClass Object () is of type &amp;quot;string&amp;quot;.&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;EOF&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;          ,&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;          self::trimnl(PHPUnit_Framework_TestFailure::exceptionToString($e))&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        );&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;        return;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    }&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;    $this-&amp;gt;fail();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;x&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+<p>You should name your tests such that they convey the intent of the test, describe what the test is about and how they&rsquo;re different from other tests. <br/>
+The tests in <a href="https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php">ConstraintTest.php</a> wear names like:</p>
+
+<ul>
+<li>testConstraintIsEmpty</li>
+<li>testConstraintPCREMatch</li>
+<li>testConstraintClassNotHasStaticAttribute</li>
+<li>testConstraintStringMatches</li>
+<li>testConstraintStringMatches2</li>
+<li>testConstraintStringMatches3</li>
+<li>testConstraintStringMatches4</li>
+<li>testConstraintStringMatches5</li>
+<li>testConstraintStringMatches6 (sic!)</li>
+</ul>
 
 
-&lt;p&gt;Especially in conjunction with #2, this makes it really hard to figure out what a given test is supposed to test. In our practice group we sat in pairs in front of our laptops and yet it still took us quite some time to find out what those tests were actually doing.&lt;/p&gt;
+<p>It&rsquo;s really hard to understand what&rsquo;s going on in tests named in such a way.</p>
 
-&lt;p&gt;If you find yourself writing more than one assertion in a single test, take your hands off the keyboard and find out whether you&amp;#8217;re about to test more than a single behavior.&lt;br/&gt;
-Otherwise you will probably curse yourself when you come back to that test code in, say, 6 months&amp;#8230;&lt;/p&gt;
+<h3>3. Avoid to test more than one behaviour in one single test</h3>
 
-&lt;h3&gt;Conclusion&lt;/h3&gt;
+<p>The tests in ConstraintTest.php test a lot of behavior in one single test, here&rsquo;s an example:</p>
 
-&lt;p&gt;If you plan to introduce others to unit testing by letting them loose on a real world codebase, I&amp;#8217;d suggest not to pick PHPUnit, as ironic as it may sound.&lt;br/&gt;
-PHPUnit itself is a very valuable tool and I&amp;#8217;m very grateful for its existence, I&amp;#8217;m using it daily at work. Yet, its test are no good example of how to write good unit tests, working on those tests will cause quite some confusion especially among programmers new to unit testing.&lt;/p&gt;
+<figure class='code'><figcaption><span>Whoa! A lot of stuff going on in here! </span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="sd">/**</span>
+</span><span class='line'><span class="sd"> * @covers PHPUnit_Framework_Constraint_IsType</span>
+</span><span class='line'><span class="sd"> * @covers PHPUnit_Framework_Assert::isType</span>
+</span><span class='line'><span class="sd"> * @covers PHPUnit_Framework_Constraint::count</span>
+</span><span class='line'><span class="sd"> * @covers PHPUnit_Framework_TestFailure::exceptionToString</span>
+</span><span class='line'><span class="sd"> */</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testConstraintIsType</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="nv">$constraint</span> <span class="o">=</span> <span class="nx">PHPUnit_Framework_Assert</span><span class="o">::</span><span class="na">isType</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertFalse</span><span class="p">(</span><span class="nv">$constraint</span><span class="o">-&gt;</span><span class="na">evaluate</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">));</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertTrue</span><span class="p">(</span><span class="nv">$constraint</span><span class="o">-&gt;</span><span class="na">evaluate</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="k">TRUE</span><span class="p">));</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="s1">&#39;is of type &quot;string&quot;&#39;</span><span class="p">,</span> <span class="nv">$constraint</span><span class="o">-&gt;</span><span class="na">toString</span><span class="p">());</span>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">count</span><span class="p">(</span><span class="nv">$constraint</span><span class="p">));</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">try</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$constraint</span><span class="o">-&gt;</span><span class="na">evaluate</span><span class="p">(</span><span class="k">new</span> <span class="k">stdClass</span><span class="p">);</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">catch</span> <span class="p">(</span><span class="nx">PHPUnit_Framework_ExpectationFailedException</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>        <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertEquals</span><span class="p">(</span><span class="s">&lt;&lt;&lt;EOF</span>
+</span><span class='line'><span class="s">Failed asserting that stdClass Object () is of type &quot;string&quot;.</span>
+</span><span class='line'>
+</span><span class='line'><span class="s">EOF</span>
+</span><span class='line'>          <span class="p">,</span>
+</span><span class='line'>          <span class="nx">self</span><span class="o">::</span><span class="na">trimnl</span><span class="p">(</span><span class="nx">PHPUnit_Framework_TestFailure</span><span class="o">::</span><span class="na">exceptionToString</span><span class="p">(</span><span class="nv">$e</span><span class="p">))</span>
+</span><span class='line'>        <span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>        <span class="k">return</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">fail</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-&lt;p&gt;Anyways, for our next practice group meeting we&amp;#8217;ll choose something more appropriate, we&amp;#8217;re thinking about trying our luck on &lt;a href=&quot;https://github.com/kriswallsmith/assetic&quot;&gt;Symfony&amp;#8217;s Assetic&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;However, we will very probably come back to PHPUnit at some point in the future in order to try and refactor its tests.&lt;/p&gt;
-</content>
+<p>Especially in conjunction with #2, this makes it really hard to figure out what a given test is supposed to test. In our practice group we sat in pairs in front of our laptops and yet it still took us quite some time to find out what those tests were actually doing.</p>
+
+<p>If you find yourself writing more than one assertion in a single test, take your hands from the keyboard and find out whether you&rsquo;re about to test more than a single behavior.<br/>
+Otherwise you will probably curse yourself when you come back to that test code in, say, 6 months&hellip;</p>
+
+<h3>Conclusion</h3>
+
+<p>If you plan to introduce others to unit testing by letting them loose on a real world codebase, I&rsquo;d suggest not to pick PHPUnit, as ironic as it may sound.<br/>
+PHPUnit itself is a very valuable tool and I&rsquo;m very grateful for its existence, I&rsquo;m using it daily at work. Yet, its test are no good example of how to write good unit tests, working on those tests will cause quite some confusion especially among programmers new to unit testing.</p>
+
+<p>Anyways, for our next practice group meeting we&rsquo;ll choose something more appropriate, we&rsquo;re thinking about trying our luck on <a href="https://github.com/kriswallsmith/assetic">Symfony&rsquo;s Assetic</a>.</p>
+
+<p>However, we will very probably come back to PHPUnit at some point in the future in order to try and refactor its tests.</p>
+]]></content>
   </entry>
   
   <entry>
-    <title>Review: The Clean Coder - A Code of Conduct for Professional Programmers</title>
-    <link href="http://lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
+    <title type="html"><![CDATA[Review: The Clean Coder - a Code of Conduct for Professional Programmers]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
     <updated>2011-09-04T14:08:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
-    <content type="html">&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://lars-tesmer.com/images/books/the_clean_coder.jpg&#8217; width=&#8221; height=&#8221; alt=&#8221; title=&#8221;&gt;
+    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
+    <content type="html"><![CDATA[<p><img class="left" src="http://lars-tesmer.com/images/books/the_clean_coder.jpg">
 Robert C. Martin aka Uncle Bob, a programmer with decades of experience under his belt, lets us in about what he has learned in his professional life and, more importantly, how he has failed, sometimes failed miserably.
-&lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073&quot;&gt;The Clean Coder&lt;/a&gt; is an important book.&lt;/p&gt;
+<a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a> is an important book.</p>
 
-&lt;p&gt;In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one&amp;#8217;s quest to become a true professional, a software master.&lt;/p&gt;
+<p>In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one&rsquo;s quest to become a true professional, a software master.</p>
 
-&lt;p&gt;The book covers several topics, e.g. how to say no (and yes!), how to write clean code, how to test, how to become more effective and efficient.&lt;/p&gt;
+<p>The book covers several topics, e.g. how to say no (and yes!), how to write clean code, how to test, how to become more effective and efficient.</p>
 
-&lt;p&gt;And while all those topics are different in content, there&amp;#8217;s one big &lt;em&gt;leitmotif&lt;/em&gt;:&lt;/p&gt;
+<p>And while all those topics are different in content, there&rsquo;s one big <em>leitmotif</em>:</p>
 
-&lt;!&#8211; more &#8211;&gt;
+<!-- more -->
 
 
-&lt;p&gt;Self Responsibility.&lt;/p&gt;
+<p>Self Responsibility.</p>
 
-&lt;p&gt;Especially when talking about his failures, this &lt;em&gt;leitmotif&lt;/em&gt; becomes evident:&lt;br/&gt;
-Neither is Robert C. Martin blaming other people, nor the environment, nor bad luck, nor lack of time - no, the essence of his stories is that he himself failed, failed to be responsible, failed to act professionally.&lt;/p&gt;
+<p>Especially when talking about his failures, this <em>leitmotif</em> becomes evident:<br/>
+Neither is Robert C. Martin blaming other people, nor the environment, nor bad luck, nor lack of time &ndash; no, the essence of his stories is that he himself failed, failed to be responsible, failed to act professionally.</p>
 
-&lt;p&gt;What a tough realization!&lt;/p&gt;
+<p>What a tough realization!</p>
 
-&lt;p&gt;I mean, it&amp;#8217;s a little bit depressing to see it this way, think about it:&lt;br/&gt;
-Your project is a mess, you&amp;#8217;re under constant pressure, haven&amp;#8217;t seen your family for a long time, you hate your co-workers - why, it&amp;#8217;s &lt;strong&gt;your&lt;/strong&gt; fault, according to the author.&lt;/p&gt;
+<p>I mean, it&rsquo;s a little bit depressing to see it this way, think about it:<br/>
+Your project is a mess, you&rsquo;re under constant pressure, haven&rsquo;t seen your family for a long time, you hate your co-workers &ndash; why, it&rsquo;s <strong>your</strong> fault, according to the author.</p>
 
-&lt;p&gt;At the same time, this is also an optimistic way to view things:&lt;br/&gt;
-If it&amp;#8217;s &lt;em&gt;your&lt;/em&gt; fault, &lt;em&gt;your&lt;/em&gt; responsibility to having got into such a situation, then it&amp;#8217;s also &lt;strong&gt;you&lt;/strong&gt; who can change it! You don&amp;#8217;t depend on others, you only depend on yourself.&lt;/p&gt;
+<p>At the same time, this is also an optimistic way to view things:<br/>
+If it&rsquo;s <em>your</em> fault, <em>your</em> responsibility to having got into such a situation, then it&rsquo;s also <strong>you</strong> who can change it! You don&rsquo;t depend on others, you only depend on yourself.</p>
 
-&lt;p&gt;Now, I&amp;#8217;m not sure if I entirely follow this conclusion, it&amp;#8217;s a thin line to walk between a successful career and depression/burnout. You have to be very self-observant and tread carefully when adapting this way of thinking.&lt;/p&gt;
+<p>Now, I&rsquo;m not sure if I entirely follow this conclusion, it&rsquo;s a thin line to walk between a successful career and depression/burnout. You have to be very self-observant and tread carefully when adapting this way of thinking.</p>
 
-&lt;p&gt;However, I still think it&amp;#8217;s a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:&lt;br/&gt;
-The code you work on sucks? - Well, then start to write better code!&lt;/p&gt;
+<p>However, I still think it&rsquo;s a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:<br/>
+The code you work on sucks? &ndash; Well, then start to write better code!</p>
 
-&lt;p&gt;Your company doesn&amp;#8217;t allow for much time to practice, to hone your skills? - Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!&lt;/p&gt;
+<p>Your company doesn&rsquo;t allow for much time to practice, to hone your skills? &ndash; Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!</p>
 
-&lt;p&gt;Summing up, &lt;a href=&quot;http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073&quot;&gt;The Clean Coder&lt;/a&gt; is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.&lt;/p&gt;
-</content>
+<p>Summing up, <a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a> is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.</p>
+]]></content>
   </entry>
   
   <entry>
-    <title>Review: Eloquent Ruby by Russ Olsen</title>
-    <link href="http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/"/>
+    <title type="html"><![CDATA[Review: Eloquent Ruby by Russ Olsen]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/"/>
     <updated>2011-09-04T13:17:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen</id>
-    <content type="html">&lt;p&gt;&lt;img class=&#8217;left &#8217; src=&#8217;http://lars-tesmer.com/images/books/eloquent_ruby.jpg&#8217; width=&#8221; height=&#8221; alt=&#8221; title=&#8221;&gt;
-If you want to learn Ruby and you already know another programming language, &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby by Russ Olsen&lt;/a&gt; is a book you absolutely should read. Heck, even if you do &lt;em&gt;not&lt;/em&gt; want to learn Ruby, you might want to read it because, who knows, it might give you &lt;a href=&quot;http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/&quot;&gt;ideas for the programming language you currently use&lt;/a&gt;.&lt;/p&gt;
+    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen</id>
+    <content type="html"><![CDATA[<p><img class="left" src="http://lars-tesmer.com/images/books/eloquent_ruby.jpg">
+If you want to learn Ruby and you already know another programming language, <a href="http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104">Eloquent Ruby by Russ Olsen</a> is a book you absolutely should read. Heck, even if you do <em>not</em> want to learn Ruby, you might want to read it because, who knows, it might give you <a href="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/">ideas for the programming language you currently use</a>.</p>
 
-&lt;p&gt;So, why do I think this way?&lt;/p&gt;
+<p>So, why do I think this way?</p>
 
-&lt;!&#8211; more &#8211;&gt;
-
-
-&lt;p&gt;For starters, this book is really well written, it never gets boring, it isn&amp;#8217;t a dry explanation of yet another programming language - it&amp;#8217;s simply an enjoyable read.&lt;/p&gt;
-
-&lt;p&gt;More importantly, it doesn&amp;#8217;t suffer from the mistake of oh so many other books:&lt;br/&gt;
-As an experienced programmer it&amp;#8217;s really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.&lt;/p&gt;
-
-&lt;p&gt;In &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;Eloquent Ruby&lt;/a&gt; there&amp;#8217;s none of that. Or when there is, it&amp;#8217;s written in a way that&amp;#8217;s not treating you like a programmer on his first day.&lt;br/&gt;
-&lt;em&gt;Eloquent Ruby&lt;/em&gt; does not only teach you the syntax but teaches you &lt;em&gt;idiomatic&lt;/em&gt; Ruby, so you&amp;#8217;ll be able to write Ruby that actually looks like Ruby.&lt;/p&gt;
-
-&lt;p&gt;The book consists of four large sections. The first section introduces you to the basics of Ruby, the second deals about the possibilities offered by classes, modules and blocks in Ruby.&lt;br/&gt;
-The third section is where it gets &lt;em&gt;really&lt;/em&gt; meaty, you&amp;#8217;re introduced to the power (and dangers) of metaprogramming. The final section is about pulling everything you&amp;#8217;ve learned so far together, e.g. by showing how to build both internal and external DSLs with Ruby.&lt;/p&gt;
-
-&lt;p&gt;I really like the way each chapter is structured:&lt;br/&gt;
-Every chapter first teaches you to the basic concepts of the topic at hand, giving lots of code examples.&lt;br/&gt;
-More importantly, each chapters closes with the same three subsections:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;In the Wild&lt;/li&gt;
-&lt;li&gt;Staying Out of Trouble and&lt;/li&gt;
-&lt;li&gt;Wrapping up&lt;/li&gt;
-&lt;/ul&gt;
+<!-- more -->
 
 
-&lt;p&gt;&lt;em&gt;In the Wild&lt;/em&gt; features real world examples, using the concepts you&amp;#8217;ve been familiarized with in the previous subsections of the chapter code taken from actually existing software.&lt;br/&gt;
-&lt;em&gt;Staying Out of Trouble&lt;/em&gt; helps you to avoid any pitfalls you could fall into when applying the stuff you&amp;#8217;ve just learned. I&amp;#8217;ve found those sections to be especially useful.&lt;br/&gt;
-&lt;em&gt;Wrapping up&lt;/em&gt; does what its name suggests: Summing up what&amp;#8217;s been covered in the current chapter in a mere paragraph, allowing you to review what you&amp;#8217;ve just learned.&lt;/p&gt;
+<p>For starters, this book is really well written, it never gets boring, it isn&rsquo;t a dry explanation of yet another programming language &ndash; it&rsquo;s simply an enjoyable read.</p>
 
-&lt;p&gt;In conclusion, if you&amp;#8217;re an aspiring Ruby programmer, do yourself a favour and &lt;a href=&quot;http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104&quot;&gt;get this most excellent book&lt;/a&gt;.
-And while you&amp;#8217;re at it, check out the equally excellent &lt;a href=&quot;http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009/&quot;&gt;Ruby Best Practices&lt;/a&gt; by Gregory T. Brown, too! :D&lt;/p&gt;
-</content>
+<p>More importantly, it doesn&rsquo;t suffer from the mistake of oh so many other books:<br/>
+As an experienced programmer it&rsquo;s really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.</p>
+
+<p>In <a href="http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104">Eloquent Ruby</a> there&rsquo;s none of that. Or when there is, it&rsquo;s written in a way that&rsquo;s not treating you like a programmer on his first day.<br/>
+<em>Eloquent Ruby</em> does not only teach you the syntax but teaches you <em>idiomatic</em> Ruby, so you&rsquo;ll be able to write Ruby that actually looks like Ruby.</p>
+
+<p>The book consists of four large sections. The first section introduces you to the basics of Ruby, the second deals about the possibilities offered by classes, modules and blocks in Ruby.<br/>
+The third section is where it gets <em>really</em> meaty, you&rsquo;re introduced to the power (and dangers) of metaprogramming. The final section is about pulling everything you&rsquo;ve learned so far together, e.g. by showing how to build both internal and external DSLs with Ruby.</p>
+
+<p>I really like the way each chapter is structured:<br/>
+Every chapter first teaches you to the basic concepts of the topic at hand, giving lots of code examples.<br/>
+More importantly, each chapters closes with the same three subsections:</p>
+
+<ul>
+<li>In the Wild</li>
+<li>Staying Out of Trouble and</li>
+<li>Wrapping up</li>
+</ul>
+
+
+<p><em>In the Wild</em> features real world examples, using the concepts you&rsquo;ve been familiarized with in the previous subsections of the chapter code taken from actually existing software.<br/>
+<em>Staying Out of Trouble</em> helps you to avoid any pitfalls you could fall into when applying the stuff you&rsquo;ve just learned. I&rsquo;ve found those sections to be especially useful.<br/>
+<em>Wrapping up</em> does what its name suggests: Summing up what&rsquo;s been covered in the current chapter in a mere paragraph, allowing you to review what you&rsquo;ve just learned.</p>
+
+<p>In conclusion, if you&rsquo;re an aspiring Ruby programmer, do yourself a favour and <a href="http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104">get this most excellent book</a>.
+And while you&rsquo;re at it, check out the equally excellent <a href="http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009/">Ruby Best Practices</a> by Gregory T. Brown, too! :D</p>
+]]></content>
   </entry>
   
   <entry>
-    <title>PHPUnit: Better Syntax for Expecting Exceptions</title>
-    <link href="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
+    <title type="html"><![CDATA[PHPUnit: Better Syntax for Expecting Exceptions]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
     <updated>2011-08-29T18:32:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions</id>
-    <content type="html">&lt;p&gt;Recently, while starting to learn Ruby, I&amp;#8217;ve stumbled upon the following code snippet
-which demonstrates how you can assert that a piece of code throws as exception in Ruby&amp;#8217;s Test::Unit:&lt;/p&gt;
+    <id>http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions</id>
+    <content type="html"><![CDATA[<p>Recently, while starting to learn Ruby, I&rsquo;ve stumbled upon the following code snippet
+which demonstrates how you can assert that a piece of code throws as exception in Ruby&rsquo;s Test::Unit:</p>
 
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Expecting exceptions in Test::Unit  &lt;/span&gt;&lt;/figcaption&gt;
- &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;ruby&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;test_some_important_method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;some_obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;SomeObj&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;c1&quot;&gt;# Potentially large amount of code&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;n&quot;&gt;assert_raise&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;InvalidArgumentException&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;n&quot;&gt;some_obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;someMethod&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;Check out lines 5-7 - isn&amp;#8217;t this a really elegant and readable way of expecting an exception?
-Now let&amp;#8217;s contrast this with how it&amp;#8217;s done in PHPUnit:&lt;/p&gt;
-
-&lt;!&#8211;more&#8211;&gt;
+<figure class='code'><figcaption><span>Expecting exceptions in Test::Unit </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">test_some_important_method</span><span class="p">()</span>
+</span><span class='line'>  <span class="n">some_obj</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">SomeObj</span>
+</span><span class='line'>  <span class="c1"># Potentially large amount of code</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assert_raise</span> <span class="no">InvalidArgumentException</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">some_obj</span><span class="o">.</span><span class="n">someMethod</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
+<p>Check out lines 5-7 &ndash; isn&rsquo;t this a really elegant and readable way of expecting an exception?
+Now let&rsquo;s contrast this with how it&rsquo;s done in PHPUnit:</p>
+
+<!--more-->
 
 
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Current way of expecting exceptions in PHPUnit  &lt;/span&gt;&lt;/figcaption&gt;
- &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;sd&quot;&gt;/**&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;sd&quot;&gt; * @expectedException InvalidArgumentException&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;sd&quot;&gt; */&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testSomeImportantMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$some_obj&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeObj&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;c1&quot;&gt;// Potentially large amount of code&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$some_obj&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+<figure class='code'><figcaption><span>Current way of expecting exceptions in PHPUnit </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="sd">/**</span>
+</span><span class='line'><span class="sd"> * @expectedException InvalidArgumentException</span>
+</span><span class='line'><span class="sd"> */</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomeImportantMethod</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nv">$some_obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeObj</span><span class="p">();</span>
+</span><span class='line'>  <span class="c1">// Potentially large amount of code</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">$some_obj</span><span class="o">-&gt;</span><span class="na">someMethod</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-&lt;p&gt;Well, that isn&amp;#8217;t too horrible but I&amp;#8217;ve never been really happy with this.&lt;br/&gt;
-My main issues with this way of expecting exceptions are:&lt;/p&gt;
+<p>Well, that isn&rsquo;t too horrible but I&rsquo;ve never been really happy with this.<br/>
+My main issues with this way of expecting exceptions are:</p>
 
-&lt;p&gt;The expectation is pretty far away from the location you&amp;#8217;d normally expect to find an assertion.
+<p>The expectation is pretty far away from the location you&rsquo;d normally expect to find an assertion.
 Usually, an assertion can be found at the bottom of each test function, whereas with the current method PHPUnit uses,
-it&amp;#8217;s at the &lt;em&gt;top&lt;/em&gt; of the test-function.&lt;/p&gt;
+it&rsquo;s at the <em>top</em> of the test-function.</p>
 
-&lt;p&gt;Additionally, it&amp;#8217;s an annotation &amp;#8220;buried&amp;#8221; in a comment which is easy to miss.&lt;/p&gt;
+<p>Additionally, it&rsquo;s an annotation &ldquo;buried&rdquo; in a comment which is easy to miss.</p>
 
-&lt;p&gt;Finally, PHPUnit will watch for an exception thrown by &lt;em&gt;any&lt;/em&gt; of the code inside the test-function. Normally,
-it&amp;#8217;s the last line of the test-function, so it isn&amp;#8217;t hard to find - but what if the expected exception is thrown in
-a line &lt;em&gt;before&lt;/em&gt; the last line, maybe due to a bug?&lt;/p&gt;
+<p>Finally, PHPUnit will watch for an exception thrown by <em>any</em> of the code inside the test-function. Normally,
+it&rsquo;s the last line of the test-function, so it isn&rsquo;t hard to find &ndash; but what if the expected exception is thrown in
+a line <em>before</em> the last line, maybe due to a bug?</p>
 
-&lt;p&gt;So, is there a way to mimic the method of Test::Unit in PHPUnit?&lt;br/&gt;
-As you may have guessed, there is one, using anonymous functions and closures, which are available since PHP 5.3!&lt;/p&gt;
+<p>So, is there a way to mimic the method of Test::Unit in PHPUnit?<br/>
+As you may have guessed, there is one, using anonymous functions and closures, which are available since PHP 5.3!</p>
 
-&lt;p&gt;Here&amp;#8217;s the code for a simple function we can use to check if a given piece of code throws an exception:&lt;/p&gt;
+<p>Here&rsquo;s the code for a simple function we can use to check if a given piece of code throws an exception:</p>
 
-&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;14&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;15&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$exception_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;nv&quot;&gt;$code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;catch&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Exception&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;c1&quot;&gt;// No more code, we only want to catch the exception in $e&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$e&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;instanceof&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$exception_name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Correct exception thrown!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;Incorrect exception thrown!&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">function</span> <span class="nf">assertThrowsException</span><span class="p">(</span><span class="nv">$exception_name</span><span class="p">,</span> <span class="nv">$code</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nv">$e</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">try</span><span class="p">{</span>
+</span><span class='line'>      <span class="nv">$code</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// No more code, we only want to catch the exception in $e</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nv">$e</span> <span class="o">&amp;&amp;</span> <span class="nv">$e</span> <span class="nx">instanceof</span> <span class="nv">$exception_name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Correct exception thrown!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Incorrect exception thrown!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-&lt;p&gt;Confused?&lt;br/&gt;
-Well, the most important line of that function is line 5.  &lt;br/&gt;
+<p>Confused?<br/>
+Well, the most important line of that function is line 5.  <br/>
 There, the anonymous function that was passed into the function as the second argument gets executed, which allows
-us to catch any exception thrown by it.&lt;/p&gt;
+us to catch any exception thrown by it.</p>
 
-&lt;p&gt;Still confused? Let&amp;#8217;s check out an example:&lt;/p&gt;
+<p>Still confused? Let&rsquo;s check out an example:</p>
 
-&lt;figure role=code&gt;&lt;figcaption&gt;&lt;span&gt;Let&amp;#8217;s throw an exception, yay!  &lt;/span&gt;&lt;/figcaption&gt;
- &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;10&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;11&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;12&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;13&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ExceptionThrower&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;k&quot;&gt;throw&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;\InvalidArgumentException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;I&amp;#39;m an exception&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;ExceptionThrower&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;nx&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;InvalidArgumentException&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;nv&quot;&gt;$subject&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;execute&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
-
-
-&lt;p&gt;The magic happens in lines 10-13:&lt;br/&gt;
-The &lt;em&gt;execute&lt;/em&gt;-method of ExceptionThrower doesn&amp;#8217;t get executed immediately because it&amp;#8217;s wrapped in an anonymous function, i.e.
-&lt;em&gt;execute&lt;/em&gt; will only be invoked when we call the anonymous function contained in &lt;em&gt;$code&lt;/em&gt; in line 5 of &lt;em&gt;assertThrowsException()&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Now one question remains - can this be done in PHPUnit with a &amp;#8220;proper&amp;#8221; assertion?&lt;br/&gt;
-Yes, it can!&lt;/p&gt;
-
-&lt;p&gt;I won&amp;#8217;t post the full code into this blog, it would be a bit too much but you can find the code adding a new assertion
-&lt;em&gt;assertThrowsException()&lt;/em&gt; in the following commit to my fork of PHPUnit 3.5:&lt;br/&gt;
-&lt;a href=&quot;https://github.com/kiltec/phpunit/commit/dd5c7bd71d6eb8d4b58ce79b5ae069fbb0734354&quot;&gt;Link to Github commit&lt;/a&gt;&lt;br/&gt;
-Note that this code is not production-ready, it&amp;#8217;s a proof-of-concept with just enough code to get PHPUnit to run the
-new assertion without throwing a fit, just so I could find out whether such a new assertion would be possible at all.&lt;/p&gt;
-
-&lt;p&gt;Anyway, with the new assertion the PHPUnit test-method from the beginning of this blog would look like this:&lt;/p&gt;
-
-&lt;figure role=code&gt; &lt;div class=&quot;highlight&quot;&gt;&lt;table cellpadding=&quot;0&quot; cellspacing=&quot;0&quot;&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre class=&quot;line-numbers&quot;&gt;&lt;span class=&#8217;line&#8217;&gt;1&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;2&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;3&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;4&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;5&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;6&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;7&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;8&lt;/span&gt;
-&lt;span class=&#8217;line&#8217;&gt;9&lt;/span&gt;
-&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#8217;code&#8217; width=&#8217;100%&#8217;&gt;&lt;pre&gt;&lt;code class=&#8217;php&#8217;&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;testSomeImportantMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;SomeClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;nv&quot;&gt;$this&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;assertThrowsException&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;InvalidArgumentException&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;            &lt;span class=&quot;nv&quot;&gt;$someClass&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;someMethod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;    &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;/div&gt;&lt;div class=&#8217;line&#8217;&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;/div&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;&lt;/figure&gt;
+<figure class='code'><figcaption><span>Let&#8217;s throw an exception, yay! </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ExceptionThrower</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">throw</span> <span class="k">new</span> <span class="nx">\InvalidArgumentException</span><span class="p">(</span><span class="s2">&quot;I&#39;m an exception&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$subject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExceptionThrower</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">assertThrowsException</span><span class="p">(</span><span class="s1">&#39;InvalidArgumentException&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$subject</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$subject</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-&lt;p&gt;Granted, you have more to type than in the current way but in my opinion, this offers more control and is more expressive and I&amp;#8217;d prefer
-expressiveness over terseness any day.&lt;/p&gt;
+<p>The magic happens in lines 10-13:<br/>
+The <em>execute</em>-method of ExceptionThrower doesn&rsquo;t get executed immediately because it&rsquo;s wrapped in an anonymous function, i.e.
+<em>execute</em> will only be invoked when we call the anonymous function contained in <em>$code</em> in line 5 of <em>assertThrowsException()</em>.</p>
 
-&lt;p&gt;What do you think, should I turn this into a real patch for PHPUnit?&lt;br/&gt;
-Or am I just crazy? ;)&lt;/p&gt;
-</content>
+<p>Now one question remains &ndash; can this be done in PHPUnit with a &ldquo;proper&rdquo; assertion?<br/>
+Yes, it can!</p>
+
+<p>I won&rsquo;t post the full code into this blog, it would be a bit too much but you can find the code adding a new assertion
+<em>assertThrowsException()</em> in the following commit to my fork of PHPUnit 3.5:<br/>
+<a href="https://github.com/kiltec/phpunit/commit/dd5c7bd71d6eb8d4b58ce79b5ae069fbb0734354">Link to Github commit</a><br/>
+Note that this code is not production-ready, it&rsquo;s a proof-of-concept with just enough code to get PHPUnit to run the
+new assertion without throwing a fit, just so I could find out whether such a new assertion would be possible at all.</p>
+
+<p>Anyway, with the new assertion the PHPUnit test-method from the beginning of this blog would look like this:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomeImportantMethod</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nv">$someClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeClass</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThrowsException</span><span class="p">(</span><span class="s1">&#39;InvalidArgumentException&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span><span class="p">(</span><span class="nv">$someClass</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nv">$someClass</span><span class="o">-&gt;</span><span class="na">someMethod</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Granted, you have more to type than in the current way but in my opinion, this offers more control and is more expressive and I&rsquo;d prefer
+expressiveness over terseness any day.</p>
+
+<p>What do you think, should I turn this into a real patch for PHPUnit?<br/>
+Or am I just crazy? ;)</p>
+]]></content>
   </entry>
   
   <entry>
-    <title>Colored Diffs in Thunderbird</title>
-    <link href="http://lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
+    <title type="html"><![CDATA[Colored Diffs in Thunderbird]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
     <updated>2010-10-01T00:00:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
-    <content type="html">&lt;p&gt;
+    <id>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
+    <content type="html"><![CDATA[<p>
 At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
-&lt;/p&gt;
-&lt;!&#8211;more&#8211;&gt;
-&lt;p&gt;
-&lt;a href=&quot;http://code.google.com/p/colorediffs/&quot;&gt;colorediffs by Vadim Atlygin&lt;/a&gt; 
-&lt;/p&gt;
-&lt;p&gt;
+</p>
+<!--more-->
+<p>
+<a href="http://code.google.com/p/colorediffs/">colorediffs by Vadim Atlygin</a> 
+</p>
+<p>
 It features various display modes, e.g. simple coloring of unified diffs:
-&lt;/p&gt;
-&lt;img src=&quot;http://www.lars-tesmer.com/images/unified.png&quot; /&gt;&lt;br /&gt;
-&lt;p&gt;
+</p>
+<img src="http://www.lars-tesmer.com/images/unified.png" /><br />
+<p>
 Or side-by-side diffs:
-&lt;/p&gt;
-&lt;img src=&quot;http://www.lars-tesmer.com/images/side-by-side.png&quot; /&gt; &lt;br /&gt;
-&lt;p&gt;
-As you can see it will also display whitespace characters, if you want to.&lt;br /&gt;
-Moreover, you can set the tab width to your preferred value.&lt;br /&gt;
-You can find more screenshots &lt;a href=&quot;http://code.google.com/p/colorediffs/wiki/Screenshots&quot;&gt;in the wiki of colorediffs.&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;
+</p>
+<img src="http://www.lars-tesmer.com/images/side-by-side.png" /> <br />
+<p>
+As you can see it will also display whitespace characters, if you want to.<br />
+Moreover, you can set the tab width to your preferred value.<br />
+You can find more screenshots <a href="http://code.google.com/p/colorediffs/wiki/Screenshots">in the wiki of colorediffs.</a>
+</p>
+<p>
 Yet again, another useful Thunderbird-addon making my life a little bit easier.
-&lt;/p&gt;
-</content>
+</p>
+]]></content>
   </entry>
   
   <entry>
-    <title>No Time to Read That Blog - Read It Later!</title>
-    <link href="http://lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
+    <title type="html"><![CDATA[No Time to Read That Blog - Read It Later!]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
     <updated>2010-09-29T00:00:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog&#8212;read-it-later</id>
-    <content type="html">&lt;p&gt;
-In order to keep up-to-date with what&amp;#8217;s going on in the tech world, I read a lot of blogs, visit &lt;a href=&quot;http://news.ycombinator.com/&quot;&gt;Hacker News&lt;/a&gt; regularly etc. during my lunch break for example.
-&lt;/p&gt;
-&lt;p&gt;
-Frequently, I will stumble upon seemingly interesting articles but either they&amp;#8217;re too long to be read during the break or there&amp;#8217;s no time left to read them.&lt;br /&gt;
-What I used to do until a year ago was to move those articles into a bookmark folder called &amp;#8216;toread&amp;#8217;, in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.&lt;br /&gt;
-&lt;/p&gt;
-&lt;p&gt;
-Then I discovered &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;
-&lt;!&#8211;more&#8211;&gt;
-It&amp;#8217;s a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you&amp;#8217;re currently viewing into a list for later access.&lt;br /&gt;
-When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and &lt;a href=&quot;http://readitlaterlist.com/&quot;&gt;Read It Later&lt;/a&gt; will get you to the next page you&amp;#8217;ve saved in chronological order.&lt;br /&gt;
-Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.&lt;br /&gt;
-Additionally, if you use several computers, you can optionally save the list remotely, so you can access the same list from different computers.&lt;br /&gt;
-And there are &lt;a href=&quot;http://readitlaterlist.com/firefox/&quot;&gt;many more features&lt;/a&gt;, for example an API you can use to code your own app.
-&lt;/p&gt;
-&lt;p&gt;
-The way I use it is that I&amp;#8217;ll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I&amp;#8217;ll go through those items and read them - or rather, not read them.&lt;br /&gt;
-That&amp;#8217;s the beauty about this, often it will turn out that the article or blog I&amp;#8217;m getting to isn&amp;#8217;t that interesting after all and I can quickly move to the next article in the list.&lt;br /&gt;
-And that decision is really based on my thinking it isn&amp;#8217;t interesting and not by feeling under pressure due to lack of time.
-&lt;/p&gt;
-&lt;p&gt;
-This is absolutely one of those Firefox addons I don&amp;#8217;t want to live without anymore.
-&lt;/p&gt;
-</content>
+    <id>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog&#8212;read-it-later</id>
+    <content type="html"><![CDATA[<p>
+In order to keep up-to-date with what&#8217;s going on in the tech world, I read a lot of blogs, visit <a href="http://news.ycombinator.com/">Hacker News</a> regularly etc. during my lunch break for example.
+</p>
+<p>
+Frequently, I will stumble upon seemingly interesting articles but either they&#8217;re too long to be read during the break or there&#8217;s no time left to read them.<br />
+What I used to do until a year ago was to move those articles into a bookmark folder called &#8216;toread&#8217;, in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.<br />
+</p>
+<p>
+Then I discovered <a href="http://readitlaterlist.com/">Read It Later</a>.</p>
+<p>
+<!--more-->
+It&#8217;s a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you&#8217;re currently viewing into a list for later access.<br />
+When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and <a href="http://readitlaterlist.com/">Read It Later</a> will get you to the next page you&#8217;ve saved in chronological order.<br />
+Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.<br />
+Additionally, if you use several computers, you can optionally save the list remotely, so you can access the same list from different computers.<br />
+And there are <a href="http://readitlaterlist.com/firefox/">many more features</a>, for example an API you can use to code your own app.
+</p>
+<p>
+The way I use it is that I&#8217;ll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I&#8217;ll go through those items and read them - or rather, not read them.<br />
+That&#8217;s the beauty about this, often it will turn out that the article or blog I&#8217;m getting to isn&#8217;t that interesting after all and I can quickly move to the next article in the list.<br />
+And that decision is really based on my thinking it isn&#8217;t interesting and not by feeling under pressure due to lack of time.
+</p>
+<p>
+This is absolutely one of those Firefox addons I don&#8217;t want to live without anymore.
+</p>
+]]></content>
   </entry>
   
   <entry>
-    <title>Git - How to get better diffs for images</title>
-    <link href="http://lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
+    <title type="html"><![CDATA[Git - How to Get Better Diffs for Images]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
     <updated>2010-09-20T00:00:00+02:00</updated>
-    <id>http://lars-tesmer.com/blog/2010/09/20/git&#8212;how-to-get-better-diffs-for-images</id>
-    <content type="html">Have you ever wondered if there&amp;#8217;s something that would make Git to show better diffs for images?&lt;br /&gt;
-Well, here&amp;#8217;s a really useful addition to one&amp;#8217;s Git config that will tell Git to use &lt;i&gt;exiftool&lt;/i&gt;
+    <id>http://www.lars-tesmer.com/blog/2010/09/20/git&#8212;how-to-get-better-diffs-for-images</id>
+    <content type="html"><![CDATA[Have you ever wondered if there's something that would make Git to show better diffs for images?<br />
+Well, here&#8217;s a really useful addition to one&#8217;s Git config that will tell Git to use <i>exiftool</i>
 to create diffs of changes made to images:
-&lt;!&#8211;more&#8211;&gt;
-&lt;pre&gt;
+<!--more-->
+<pre>
 cd /path_to_project
-echo &#8216;*.png diff=exif&#8217; &gt;&gt; .gitattributes
-echo &#8216;*.jpg diff=exif&#8217; &gt;&gt; .gitattributes
-echo &#8216;*.gif diff=exif&#8217; &gt;&gt; .gitattributes
+echo '*.png diff=exif' >> .gitattributes
+echo '*.jpg diff=exif' >> .gitattributes
+echo '*.gif diff=exif' >> .gitattributes
 git config diff.exif.textconv exiftool
-&lt;/pre&gt;
-From now on, diffs for images will look something like this:&lt;br /&gt;
-&lt;pre&gt;
-&#8212; a/img.png
+</pre>
+From now on, diffs for images will look something like this:<br />
+<pre>
+--- a/img.png
 +++ b/img.png
 @@ -1,7 +1,7 @@
  ExifTool Version Number         : 7.89
@@ -1067,14 +519,14 @@ From now on, diffs for images will look something like this:&lt;br /&gt;
 -Image Height                    : 80
 +Image Width                     : 60
 +Image Height                    : 87
-&lt;/pre&gt;
-Nothing spectacular but much more useful than the default.&lt;br /&gt;
+</pre>
+Nothing spectacular but much more useful than the default.<br />
 Originally, I found this in some slides I read many moons ago.
-I tried to find those slides again, unsuccessfully.&lt;br /&gt;
-Luckily, I&amp;#8217;ve found another source explaining how to do it:&lt;br /&gt;
-&lt;a href=&quot;http://progit.org/book/ch7-2.html&quot;&gt;Chapter 7 of &amp;#8220;Pro Git&amp;#8221;&lt;/a&gt;&lt;br /&gt;
-Thanks, Scott Chacon!&lt;br /&gt;
-</content>
+I tried to find those slides again, unsuccessfully.<br />
+Luckily, I&#8217;ve found another source explaining how to do it:<br />
+<a href="http://progit.org/book/ch7-2.html">Chapter 7 of &#8220;Pro Git&#8221;</a><br />
+Thanks, Scott Chacon!<br />
+]]></content>
   </entry>
   
 </feed>

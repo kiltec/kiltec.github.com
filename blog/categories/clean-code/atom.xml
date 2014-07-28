@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Clean Code | Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/blog/categories/clean-code/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name><![CDATA[Lars Tesmer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/"/>
+    <updated>2011-09-08T23:06:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit</id>
+    <content type="html"><![CDATA[<p>Today a bunch of co-workers and me got together right after work to hone our skills, more specifically, our unit testing skills.<br/>
+A couple of weeks before, I had discovered that the code coverage of <a href="https://github.com/sebastianbergmann/phpunit/">PHPUnit</a> is only at ~55%, so I thought it would be a great exercise for our after work hacking to help increase its code coverage by writing unit tests for it.</p>
+
+<p>The plan was to try and write as many tests as we could for the <a href="https://github.com/sebastianbergmann/phpunit/tree/master/PHPUnit/Framework/Constraint">Constraint classes</a> PHPUnit uses to implement its assertions.<br/>
+Those Constraint classes are pretty small, fairly easy to understand and not entirely covered by tests &ndash; in short, very well suited for our group, a mix of programmers having quite some experience in unit testing as well as others just having started to learn unit testing.</p>
+
+<p>Well, our plan didn&rsquo;t work out that way, we didn&rsquo;t really succeed in writing a considerable amount of unit tests.<br/>
+However, it still was a valuable experience, as it turned out the unit tests of the Constraints are a good example of how not to unit test.</p>
+
+<p>So here&rsquo;s what we learned (or were reminded of):</p>
+
+<!-- more -->
+
+
+<h3>1. Don&rsquo;t use one single test case class to test several different classes</h3>
+
+<p>The unit tests for the constraint classes of PHPUnit are lumped together <a href="https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php">in one large file</a>. I think the reasoning behind that might have been that all constraints derive from the same parent class, <em>PHPUnit_Framework_Constraint</em>.<br/>
+Don&rsquo;t do that.<br/>
+It renders it quite hard to find your way to the tests for one of the constraints, it&rsquo;s quite annoying to navigate through that class.<br/>
+If each class has its own test case, it&rsquo;s much easier to find its test, too.</p>
+
+<h3>2. Name your tests well</h3>
+
+<p>You should name your tests such that they convey the intent of the test, describe what the test is about and how they&rsquo;re different from other tests. <br/>
+The tests in <a href="https://github.com/sebastianbergmann/phpunit/blob/3.5/Tests/Framework/ConstraintTest.php">ConstraintTest.php</a> wear names like:</p>
+
+<ul>
+<li>testConstraintIsEmpty</li>
+<li>testConstraintPCREMatch</li>
+<li>testConstraintClassNotHasStaticAttribute</li>
+<li>testConstraintStringMatches</li>
+<li>testConstraintStringMatches2</li>
+<li>testConstraintStringMatches3</li>
+<li>testConstraintStringMatches4</li>
+<li>testConstraintStringMatches5</li>
+<li>testConstraintStringMatches6 (sic!)</li>
+</ul>
+
+
+<p>It&rsquo;s really hard to understand what&rsquo;s going on in tests named in such a way.</p>
+
+<h3>3. Avoid to test more than one behaviour in one single test</h3>
+
+<p>The tests in ConstraintTest.php test a lot of behavior in one single test, here&rsquo;s an example:</p>
+
+<p>``` php Whoa! A lot of stuff going on in here!</p>
+
+<pre><code>/**
+ * @covers PHPUnit_Framework_Constraint_IsType
+ * @covers PHPUnit_Framework_Assert::isType
+ * @covers PHPUnit_Framework_Constraint::count
+ * @covers PHPUnit_Framework_TestFailure::exceptionToString
+ */
+public function testConstraintIsType()
+{
+    $constraint = PHPUnit_Framework_Assert::isType('string');
+
+    $this-&gt;assertFalse($constraint-&gt;evaluate(0, '', TRUE));
+    $this-&gt;assertTrue($constraint-&gt;evaluate('', '', TRUE));
+    $this-&gt;assertEquals('is of type "string"', $constraint-&gt;toString());
+    $this-&gt;assertEquals(1, count($constraint));
+
+    try {
+        $constraint-&gt;evaluate(new stdClass);
+    }
+
+    catch (PHPUnit_Framework_ExpectationFailedException $e) {
+        $this-&gt;assertEquals(&lt;&lt;&lt;EOF
+</code></pre>
+
+<p>Failed asserting that stdClass Object () is of type &ldquo;string&rdquo;.</p>
+
+<p>EOF</p>
+
+<pre><code>          ,
+          self::trimnl(PHPUnit_Framework_TestFailure::exceptionToString($e))
+        );
+
+        return;
+    }
+
+    $this-&gt;fail();
+}
+</code></pre>
+
+<p>```
+Especially in conjunction with #2, this makes it really hard to figure out what a given test is supposed to test. In our practice group we sat in pairs in front of our laptops and yet it still took us quite some time to find out what those tests were actually doing.</p>
+
+<p>If you find yourself writing more than one assertion in a single test, take your hands from the keyboard and find out whether you&rsquo;re about to test more than a single behavior.<br/>
+Otherwise you will probably curse yourself when you come back to that test code in, say, 6 months&hellip;</p>
+
+<h3>Conclusion</h3>
+
+<p>If you plan to introduce others to unit testing by letting them loose on a real world codebase, I&rsquo;d suggest not to pick PHPUnit, as ironic as it may sound.<br/>
+PHPUnit itself is a very valuable tool and I&rsquo;m very grateful for its existence, I&rsquo;m using it daily at work. Yet, its test are no good example of how to write good unit tests, working on those tests will cause quite some confusion especially among programmers new to unit testing.</p>
+
+<p>Anyways, for our next practice group meeting we&rsquo;ll choose something more appropriate, we&rsquo;re thinking about trying our luck on <a href="https://github.com/kriswallsmith/assetic">Symfony&rsquo;s Assetic</a>.</p>
+
+<p>However, we will very probably come back to PHPUnit at some point in the future in order to try and refactor its tests.</p>
+]]></content>
+  </entry>
+  
+</feed>

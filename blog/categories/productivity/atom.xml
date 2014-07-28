@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Productivity | Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/blog/categories/productivity/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name><![CDATA[Lars Tesmer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Colored Diffs in Thunderbird]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
+    <updated>2010-10-01T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
+    <content type="html"><![CDATA[<p>
+At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
+</p>
+
+
+<!--more-->
+
+
+<p>
+<a href="http://code.google.com/p/colorediffs/">colorediffs by Vadim Atlygin</a> 
+</p>
+
+
+<p>
+It features various display modes, e.g. simple coloring of unified diffs:
+</p>
+
+
+<p><img src="http://www.lars-tesmer.com/images/unified.png" /><br /></p>
+
+<p>
+Or side-by-side diffs:
+</p>
+
+
+<p><img src="http://www.lars-tesmer.com/images/side-by-side.png" /> <br /></p>
+
+<p>
+As you can see it will also display whitespace characters, if you want to.<br />
+Moreover, you can set the tab width to your preferred value.<br />
+You can find more screenshots <a href="http://code.google.com/p/colorediffs/wiki/Screenshots">in the wiki of colorediffs.</a>
+</p>
+
+
+<p>
+Yet again, another useful Thunderbird-addon making my life a little bit easier.
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[No Time to Read That Blog - Read It Later!]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/"/>
+    <updated>2010-09-29T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later</id>
+    <content type="html"><![CDATA[<p>
+In order to keep up-to-date with what's going on in the tech world, I read a lot of blogs, visit <a href="http://news.ycombinator.com/">Hacker News</a> regularly etc. during my lunch break for example.
+</p>
+
+
+<p>
+Frequently, I will stumble upon seemingly interesting articles but either they're too long to be read during the break or there's no time left to read them.<br />
+What I used to do until a year ago was to move those articles into a bookmark folder called 'toread', in order to remember to read it when I would have more time. But it was always a bit of a hassle, so I was never really satisfied with that solution.<br />
+</p>
+
+
+<p>
+Then I discovered <a href="http://readitlaterlist.com/">Read It Later</a>.</p>
+
+
+<p>
+<!--more-->
+It's a Firefox Addon that with the click on a button or hitting a keyboard shortcut will save the page you're currently viewing into a list for later access.<br />
+When you have time, you can check out said list and with one click or shortcut, you remove the page from the list and <a href="http://readitlaterlist.com/">Read It Later</a> will get you to the next page you've saved in chronological order.<br />
+Not only that, it also integrates with Google Reader, allowing you to directly save articles without having to leave it.<br />
+Additionally, if you use several computers, you can optionally save the list remotely, so you can access the same list from different computers.<br />
+And there are <a href="http://readitlaterlist.com/firefox/">many more features</a>, for example an API you can use to code your own app.
+</p>
+
+
+<p>
+The way I use it is that I'll put articles into it until I hit the threshold of 100 saved items and when I have time, e.g. during the weekend, I'll go through those items and read them - or rather, not read them.<br />
+That's the beauty about this, often it will turn out that the article or blog I'm getting to isn't that interesting after all and I can quickly move to the next article in the list.<br />
+And that decision is really based on my thinking it isn't interesting and not by feeling under pressure due to lack of time.
+</p>
+
+
+<p>
+This is absolutely one of those Firefox addons I don't want to live without anymore.
+</p>
+
+]]></content>
+  </entry>
+  
+</feed>

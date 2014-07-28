@@ -1,73 +1,83 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/
-        </loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog---read-it-later/
-        </loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/</loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/
-        </loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/</loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/
-        </loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/
-        </loc>
-        <lastmod>2011-09-20T15:22:14+02:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/
-        </loc>
-        <lastmod>2011-09-20T15:14:17+02:00</lastmod>
-    </url>
-    <url>
-        <loc>
-            http://lars-tesmer.com/blog/2011/09/20/how-to-unit-test-a-class-making-calls-to-an-url-or-the-filesystem-with-phpunit/
-        </loc>
-        <lastmod>2011-09-20T18:15:51+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/about/</loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/privacy/</loc>
-        <lastmod>2011-09-16T21:28:50+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/blog/archives/</loc>
-        <lastmod>2011-09-20T18:15:51+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/</loc>
-        <lastmod>2011-09-20T18:15:51+02:00</lastmod>
-    </url>
-    <url>
-        <loc>http://lars-tesmer.com/contact/</loc>
-        <lastmod>2011-09-08T09:42:49+02:00</lastmod>
-    </url>
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2011/09/08/what-my-co&#8212;workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/</loc>
+    <lastmod>2011-09-08T23:06:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/</loc>
+    <lastmod>2011-09-04T14:08:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/</loc>
+    <lastmod>2011-09-04T13:17:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/</loc>
+    <lastmod>2011-08-29T18:32:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/</loc>
+    <lastmod>2010-10-01T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2010/09/29/no-time-to-read-that-blog&#8212;read-it-later/</loc>
+    <lastmod>2010-09-29T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/2010/09/20/git&#8212;how-to-get-better-diffs-for-images/</loc>
+    <lastmod>2010-09-20T00:00:00+02:00</lastmod>
+    <priority>0.8</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/blog/archives/</loc>
+    <lastmod>2014-07-28T13:01:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/</loc>
+    <lastmod>2014-07-28T13:01:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/about/</loc>
+    <lastmod>2014-07-28T13:01:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/contact/</loc>
+    <lastmod>2014-07-28T13:01:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  
+  <url>
+    <loc>http://www.lars-tesmer.com/404.html</loc>
+    <lastmod>2014-07-28T12:03:1406541790Z</lastmod>
+    <priority>0.6</priority>
+  </url>
+  
 </urlset>

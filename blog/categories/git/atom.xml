@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Git | Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/blog/categories/git/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name><![CDATA[Lars Tesmer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Colored Diffs in Thunderbird]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird/"/>
+    <updated>2010-10-01T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/10/01/colored-diffs-in-thunderbird</id>
+    <content type="html"><![CDATA[<p>
+At work we do code review by getting emails with the diff of every commit to our SVN repository. One day I wondered whether there was an addon for Thunderbird to get colored diffs - and sure enough, there was:
+</p>
+
+
+<!--more-->
+
+
+<p>
+<a href="http://code.google.com/p/colorediffs/">colorediffs by Vadim Atlygin</a> 
+</p>
+
+
+<p>
+It features various display modes, e.g. simple coloring of unified diffs:
+</p>
+
+
+<p><img src="http://www.lars-tesmer.com/images/unified.png" /><br /></p>
+
+<p>
+Or side-by-side diffs:
+</p>
+
+
+<p><img src="http://www.lars-tesmer.com/images/side-by-side.png" /> <br /></p>
+
+<p>
+As you can see it will also display whitespace characters, if you want to.<br />
+Moreover, you can set the tab width to your preferred value.<br />
+You can find more screenshots <a href="http://code.google.com/p/colorediffs/wiki/Screenshots">in the wiki of colorediffs.</a>
+</p>
+
+
+<p>
+Yet again, another useful Thunderbird-addon making my life a little bit easier.
+</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Git - How to Get Better Diffs for Images]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images/"/>
+    <updated>2010-09-20T00:00:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2010/09/20/git---how-to-get-better-diffs-for-images</id>
+    <content type="html"><![CDATA[<p>Have you ever wondered if there&rsquo;s something that would make Git to show better diffs for images?<br />
+Well, here&rsquo;s a really useful addition to one&rsquo;s Git config that will tell Git to use <i>exiftool</i>
+to create diffs of changes made to images:</p>
+
+<!--more-->
+
+
+<pre>
+cd /path_to_project
+echo '*.png diff=exif' >> .gitattributes
+echo '*.jpg diff=exif' >> .gitattributes
+echo '*.gif diff=exif' >> .gitattributes
+git config diff.exif.textconv exiftool
+</pre>
+
+
+<p>From now on, diffs for images will look something like this:<br /></p>
+
+<pre>
+--- a/img.png
++++ b/img.png
+@@ -1,7 +1,7 @@
+ ExifTool Version Number         : 7.89
+-File Size                       : 8.9 kB
++File Size                       : 8.3 kB
+ File Modification Date/Time     : 2010:09:20 16:55:41+02:00
+ File Type                       : PNG
+ MIME Type                       : image/png
+-Image Width                     : 58
+-Image Height                    : 80
++Image Width                     : 60
++Image Height                    : 87
+</pre>
+
+
+<p>Nothing spectacular but much more useful than the default.<br />
+Originally, I found this in some slides I read many moons ago.
+I tried to find those slides again, unsuccessfully.<br />
+Luckily, I&rsquo;ve found another source explaining how to do it:<br />
+<a href="http://progit.org/book/ch7-2.html">Chapter 7 of &ldquo;Pro Git&rdquo;</a><br />
+Thanks, Scott Chacon!<br /></p>
+]]></content>
+  </entry>
+  
+</feed>

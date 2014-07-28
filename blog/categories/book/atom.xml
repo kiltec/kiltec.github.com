@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Book | Lars Tesmer's Blog]]></title>
+  <link href="http://www.lars-tesmer.com/blog/categories/book/atom.xml" rel="self"/>
+  <link href="http://www.lars-tesmer.com/"/>
+  <updated>2014-07-28T13:01:00+02:00</updated>
+  <id>http://www.lars-tesmer.com/</id>
+  <author>
+    <name><![CDATA[Lars Tesmer]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Review: The Clean Coder - a Code of Conduct for Professional Programmers]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/"/>
+    <updated>2011-09-04T14:08:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers</id>
+    <content type="html"><![CDATA[<p><img class="left <a" src="href="http://lars-tesmer.com/images/books/the_clean_coder.jpg">http://lars-tesmer.com/images/books/the_clean_coder.jpg</a>">
+Robert C. Martin aka Uncle Bob, a programmer with decades of experience under his belt, lets us in about what he has learned in his professional life and, more importantly, how he has failed, sometimes failed miserably.
+<a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a> is an important book.</p>
+
+<p>In short, the author helps you to prevent you from making the same mistakes that he committed, giving orientation in one&rsquo;s quest to become a true professional, a software master.</p>
+
+<p>The book covers several topics, e.g. how to say no (and yes!), how to write clean code, how to test, how to become more effective and efficient.</p>
+
+<p>And while all those topics are different in content, there&rsquo;s one big <em>leitmotif</em>:</p>
+
+<!-- more -->
+
+
+<p>Self Responsibility.</p>
+
+<p>Especially when talking about his failures, this <em>leitmotif</em> becomes evident:<br/>
+Neither is Robert C. Martin blaming other people, nor the environment, nor bad luck, nor lack of time &ndash; no, the essence of his stories is that he himself failed, failed to be responsible, failed to act professionally.</p>
+
+<p>What a tough realization!</p>
+
+<p>I mean, it&rsquo;s a little bit depressing to see it this way, think about it:<br/>
+Your project is a mess, you&rsquo;re under constant pressure, haven&rsquo;t seen your family for a long time, you hate your co-workers &ndash; why, it&rsquo;s <strong>your</strong> fault, according to the author.</p>
+
+<p>At the same time, this is also an optimistic way to view things:<br/>
+If it&rsquo;s <em>your</em> fault, <em>your</em> responsibility to having got into such a situation, then it&rsquo;s also <strong>you</strong> who can change it! You don&rsquo;t depend on others, you only depend on yourself.</p>
+
+<p>Now, I&rsquo;m not sure if I entirely follow this conclusion, it&rsquo;s a thin line to walk between a successful career and depression/burnout. You have to be very self-observant and tread carefully when adapting this way of thinking.</p>
+
+<p>However, I still think it&rsquo;s a very useful and effective way of thinking, it renders it harder to simply get used to bad situations:<br/>
+The code you work on sucks? &ndash; Well, then start to write better code!</p>
+
+<p>Your company doesn&rsquo;t allow for much time to practice, to hone your skills? &ndash; Well, go ahead and change it! Find some like-minded co-workers, practice with them after work, go to your bosses and pester them to allocate at least a few hours per month for practice!</p>
+
+<p>Summing up, <a href="http://www.amazon.com/Clean-Coder-Conduct-Professional-Programmers/dp/0137081073">The Clean Coder</a> is an opinionated, yet important book, which you should read (with a critical mind) in order to become a better, a more professional programmer.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Review: Eloquent Ruby by Russ Olsen]]></title>
+    <link href="http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/"/>
+    <updated>2011-09-04T13:17:00+02:00</updated>
+    <id>http://www.lars-tesmer.com/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen</id>
+    <content type="html"><![CDATA[<p><img class="left <a" src="href="http://lars-tesmer.com/images/books/eloquent_ruby.jpg">http://lars-tesmer.com/images/books/eloquent_ruby.jpg</a>">
+If you want to learn Ruby and you already know another programming language, <a href="http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104">Eloquent Ruby by Russ Olsen</a> is a book you absolutely should read. Heck, even if you do <em>not</em> want to learn Ruby, you might want to read it because, who knows, it might give you <a href="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/">ideas for the programming language you currently use</a>.</p>
+
+<p>So, why do I think this way?</p>
+
+<!-- more -->
+
+
+<p>For starters, this book is really well written, it never gets boring, it isn&rsquo;t a dry explanation of yet another programming language &ndash; it&rsquo;s simply an enjoyable read.</p>
+
+<p>More importantly, it doesn&rsquo;t suffer from the mistake of oh so many other books:<br/>
+As an experienced programmer it&rsquo;s really painful having to suffer through chapter after chapter explaining, for example, what an if-statement is, or that there are such things as, gasp!, loops.</p>
+
+<p>In <a href="http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104">Eloquent Ruby</a> there&rsquo;s none of that. Or when there is, it&rsquo;s written in a way that&rsquo;s not treating you like a programmer on his first day.<br/>
+<em>Eloquent Ruby</em> does not only teach you the syntax but teaches you <em>idiomatic</em> Ruby, so you&rsquo;ll be able to write Ruby that actually looks like Ruby.</p>
+
+<p>The book consists of four large sections. The first section introduces you to the basics of Ruby, the second deals about the possibilities offered by classes, modules and blocks in Ruby.<br/>
+The third section is where it gets <em>really</em> meaty, you&rsquo;re introduced to the power (and dangers) of metaprogramming. The final section is about pulling everything you&rsquo;ve learned so far together, e.g. by showing how to build both internal and external DSLs with Ruby.</p>
+
+<p>I really like the way each chapter is structured:<br/>
+Every chapter first teaches you to the basic concepts of the topic at hand, giving lots of code examples.<br/>
+More importantly, each chapters closes with the same three subsections:</p>
+
+<ul>
+<li>In the Wild</li>
+<li>Staying Out of Trouble and</li>
+<li>Wrapping up</li>
+</ul>
+
+
+<p><em>In the Wild</em> features real world examples, using the concepts you&rsquo;ve been familiarized with in the previous subsections of the chapter code taken from actually existing software.<br/>
+<em>Staying Out of Trouble</em> helps you to avoid any pitfalls you could fall into when applying the stuff you&rsquo;ve just learned. I&rsquo;ve found those sections to be especially useful.<br/>
+<em>Wrapping up</em> does what its name suggests: Summing up what&rsquo;s been covered in the current chapter in a mere paragraph, allowing you to review what you&rsquo;ve just learned.</p>
+
+<p>In conclusion, if you&rsquo;re an aspiring Ruby programmer, do yourself a favour and <a href="http://www.amazon.com/Eloquent-Ruby-Addison-Wesley-Professional/dp/0321584104">get this most excellent book</a>.
+And while you&rsquo;re at it, check out the equally excellent <a href="http://www.amazon.com/Ruby-Best-Practices-Gregory-Brown/dp/0596523009/">Ruby Best Practices</a> by Gregory T. Brown, too! :D</p>
+]]></content>
+  </entry>
+  
+</feed>

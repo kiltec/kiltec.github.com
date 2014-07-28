@@ -7,6 +7,10 @@
   <meta charset="utf-8">
   <title>PHPUnit: Better Syntax for Expecting Exceptions - Lars Tesmer's Blog</title>
   <meta name="author" content="Lars Tesmer">
+
+  
+  <meta name="description" content="Recently, while starting to learn Ruby, I&rsquo;ve stumbled upon the following code snippet
+which demonstrates how you can assert that a piece of &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -15,22 +19,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-
-  <link rel="canonical" href="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/"/>
-  <link href="/favicon.png" rel="shortcut icon" />
+  <link rel="canonical" href="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions">
+  <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="http://feeds.feedburner.com/larstesmer" rel="alternate" title="Lars Tesmer's Blog" type="application/atom+xml">
   <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="http://s3.amazonaws.com/ender-js/jeesh.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
   <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <link href="http://feeds.feedburner.com/larstesmer" rel="alternate" title="Lars Tesmer's Blog" type="application/atom+xml"/>
   <!--Fonts from Google's Web font directory at http://google.com/webfonts -->
 <link href='http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
 
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-16367267-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
 </head>
 
-<body  >
-  <header><hgroup>
+<body   >
+  <header role="banner"><hgroup>
   <h1><a href="/">Lars Tesmer's Blog</a></h1>
   
     <h2>From Journeyman to Master - A Software Craftsman's Blog</h2>
@@ -38,29 +56,30 @@
 </hgroup>
 
 </header>
-  <nav role=navigation><ul role=subscription data-subscription="rss">
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
   <li><a href="http://feeds.feedburner.com/larstesmer" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
   
 </ul>
+  
 <form action="http://google.com/search" method="get">
-  <fieldset role="site-search">
-    <input type="hidden" name="q" value="site:lars-tesmer.com" />
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:www.lars-tesmer.com" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
+  
 <ul role=main-navigation>
   <li><a href="/">Blog</a></li>
   <li><a href="/blog/archives">Archives</a></li>
 	<li><a href="/about">About</a></li>
 	<li><a href="/contact">Contact</a></li>
-	<li><a href="/privacy">Privacy</a></li>
 </ul>
 
 </nav>
   <div id="main">
     <div id="content">
       <div>
-<article class="hentry">
+<article class="hentry" role="article">
   
   <header>
     
@@ -68,6 +87,10 @@
     
     
       <p class="meta">
+        
+
+
+
 
 
 
@@ -76,116 +99,115 @@
   
 
 
-
-<time datetime="2011-08-29T18:32:00+02:00" pubdate  data-updated="true" >Aug 29<span>th</span>, 2011</time></p>
+<time datetime="2011-08-29T18:32:00+02:00" pubdate data-updated="true">Aug 29<sup>th</sup>, 2011</time>
+        
+      </p>
     
   </header>
 
 
-<div class="entry-content"><p>Recently, while starting to learn Ruby, I&#8217;ve stumbled upon the following code snippet
-which demonstrates how you can assert that a piece of code throws as exception in Ruby&#8217;s Test::Unit:</p>
+<div class="entry-content"><p>Recently, while starting to learn Ruby, I&rsquo;ve stumbled upon the following code snippet
+which demonstrates how you can assert that a piece of code throws as exception in Ruby&rsquo;s Test::Unit:</p>
 
-<figure role=code><figcaption><span>Expecting exceptions in Test::Unit  </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-</pre></td><td class='code' width='100%'><pre><code class='ruby'><div class='line'><span class="k">def</span> <span class="nf">test_some_important_method</span><span class="p">()</span>
-</div><div class='line'>    <span class="n">some_obj</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">SomeObj</span>
-</div><div class='line'>    <span class="c1"># Potentially large amount of code</span>
-</div><div class='line'>
-</div><div class='line'>    <span class="n">assert_raise</span> <span class="no">InvalidArgumentException</span> <span class="k">do</span>
-</div><div class='line'>        <span class="n">some_obj</span><span class="o">.</span><span class="n">someMethod</span>
-</div><div class='line'>    <span class="k">end</span>
-</div><div class='line'><span class="k">end</span>
-</div></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>Expecting exceptions in Test::Unit </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">def</span> <span class="nf">test_some_important_method</span><span class="p">()</span>
+</span><span class='line'>  <span class="n">some_obj</span> <span class="o">=</span> <span class="kp">new</span> <span class="no">SomeObj</span>
+</span><span class='line'>  <span class="c1"># Potentially large amount of code</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">assert_raise</span> <span class="no">InvalidArgumentException</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">some_obj</span><span class="o">.</span><span class="n">someMethod</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Check out lines 5-7 - isn&#8217;t this a really elegant and readable way of expecting an exception?
-Now let&#8217;s contrast this with how it&#8217;s done in PHPUnit:</p>
+<p>Check out lines 5-7 &ndash; isn&rsquo;t this a really elegant and readable way of expecting an exception?
+Now let&rsquo;s contrast this with how it&rsquo;s done in PHPUnit:</p>
 
 <!--more-->
 
 
+<figure class='code'><figcaption><span>Current way of expecting exceptions in PHPUnit </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="sd">/**</span>
+</span><span class='line'><span class="sd"> * @expectedException InvalidArgumentException</span>
+</span><span class='line'><span class="sd"> */</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomeImportantMethod</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nv">$some_obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeObj</span><span class="p">();</span>
+</span><span class='line'>  <span class="c1">// Potentially large amount of code</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">$some_obj</span><span class="o">-&gt;</span><span class="na">someMethod</span><span class="p">();</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<figure role=code><figcaption><span>Current way of expecting exceptions in PHPUnit  </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-<span class='line'>9</span>
-<span class='line'>10</span>
-</pre></td><td class='code' width='100%'><pre><code class='php'><div class='line'><span class="cp">&lt;?php</span>
-</div><div class='line'><span class="sd">/**</span>
-</div><div class='line'><span class="sd"> * @expectedException InvalidArgumentException</span>
-</div><div class='line'><span class="sd"> */</span>
-</div><div class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomeImportantMethod</span><span class="p">()</span> <span class="p">{</span>
-</div><div class='line'>    <span class="nv">$some_obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeObj</span><span class="p">();</span>
-</div><div class='line'>    <span class="c1">// Potentially large amount of code</span>
-</div><div class='line'>
-</div><div class='line'>    <span class="nv">$some_obj</span><span class="o">-&gt;</span><span class="na">someMethod</span><span class="p">();</span>
-</div><div class='line'><span class="p">}</span>
-</div></code></pre></td></tr></table></div></figure>
-
-
-<p>Well, that isn&#8217;t too horrible but I&#8217;ve never been really happy with this.<br/>
+<p>Well, that isn&rsquo;t too horrible but I&rsquo;ve never been really happy with this.<br/>
 My main issues with this way of expecting exceptions are:</p>
 
-<p>The expectation is pretty far away from the location you&#8217;d normally expect to find an assertion.
+<p>The expectation is pretty far away from the location you&rsquo;d normally expect to find an assertion.
 Usually, an assertion can be found at the bottom of each test function, whereas with the current method PHPUnit uses,
-it&#8217;s at the <em>top</em> of the test-function.</p>
+it&rsquo;s at the <em>top</em> of the test-function.</p>
 
-<p>Additionally, it&#8217;s an annotation &#8220;buried&#8221; in a comment which is easy to miss.</p>
+<p>Additionally, it&rsquo;s an annotation &ldquo;buried&rdquo; in a comment which is easy to miss.</p>
 
 <p>Finally, PHPUnit will watch for an exception thrown by <em>any</em> of the code inside the test-function. Normally,
-it&#8217;s the last line of the test-function, so it isn&#8217;t hard to find - but what if the expected exception is thrown in
+it&rsquo;s the last line of the test-function, so it isn&rsquo;t hard to find &ndash; but what if the expected exception is thrown in
 a line <em>before</em> the last line, maybe due to a bug?</p>
 
 <p>So, is there a way to mimic the method of Test::Unit in PHPUnit?<br/>
 As you may have guessed, there is one, using anonymous functions and closures, which are available since PHP 5.3!</p>
 
-<p>Here&#8217;s the code for a simple function we can use to check if a given piece of code throws an exception:</p>
+<p>Here&rsquo;s the code for a simple function we can use to check if a given piece of code throws an exception:</p>
 
-<figure role=code> <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-<span class='line'>9</span>
-<span class='line'>10</span>
-<span class='line'>11</span>
-<span class='line'>12</span>
-<span class='line'>13</span>
-<span class='line'>14</span>
-<span class='line'>15</span>
-</pre></td><td class='code' width='100%'><pre><code class='php'><div class='line'><span class="cp">&lt;?php</span>
-</div><div class='line'><span class="k">function</span> <span class="nf">assertThrowsException</span><span class="p">(</span><span class="nv">$exception_name</span><span class="p">,</span> <span class="nv">$code</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>    <span class="nv">$e</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
-</div><div class='line'>    <span class="k">try</span><span class="p">{</span>
-</div><div class='line'>        <span class="nv">$code</span><span class="p">();</span>
-</div><div class='line'>    <span class="p">}</span><span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>        <span class="c1">// No more code, we only want to catch the exception in $e</span>
-</div><div class='line'>    <span class="p">}</span>
-</div><div class='line'>
-</div><div class='line'>    <span class="k">if</span><span class="p">(</span><span class="nv">$e</span> <span class="o">&amp;&amp;</span> <span class="nv">$e</span> <span class="nx">instanceof</span> <span class="nv">$exception_name</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>        <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Correct exception thrown!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</div><div class='line'>    <span class="p">}</span><span class="k">else</span><span class="p">{</span>
-</div><div class='line'>        <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Incorrect exception thrown!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
-</div><div class='line'>    <span class="p">}</span>
-</div><div class='line'><span class="p">}</span>
-</div></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">function</span> <span class="nf">assertThrowsException</span><span class="p">(</span><span class="nv">$exception_name</span><span class="p">,</span> <span class="nv">$code</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nv">$e</span> <span class="o">=</span> <span class="k">null</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">try</span><span class="p">{</span>
+</span><span class='line'>      <span class="nv">$code</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">catch</span> <span class="p">(</span><span class="nx">Exception</span> <span class="nv">$e</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="c1">// No more code, we only want to catch the exception in $e</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="k">if</span><span class="p">(</span><span class="nv">$e</span> <span class="o">&amp;&amp;</span> <span class="nv">$e</span> <span class="nx">instanceof</span> <span class="nv">$exception_name</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Correct exception thrown!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+</span><span class='line'>      <span class="k">echo</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Incorrect exception thrown!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">;</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Confused?<br/>
@@ -193,75 +215,75 @@ Well, the most important line of that function is line 5.  <br/>
 There, the anonymous function that was passed into the function as the second argument gets executed, which allows
 us to catch any exception thrown by it.</p>
 
-<p>Still confused? Let&#8217;s check out an example:</p>
+<p>Still confused? Let&rsquo;s check out an example:</p>
 
-<figure role=code><figcaption><span>Let&#8217;s throw an exception, yay!  </span></figcaption>
- <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-<span class='line'>9</span>
-<span class='line'>10</span>
-<span class='line'>11</span>
-<span class='line'>12</span>
-<span class='line'>13</span>
-</pre></td><td class='code' width='100%'><pre><code class='php'><div class='line'><span class="cp">&lt;?php</span>
-</div><div class='line'><span class="k">class</span> <span class="nc">ExceptionThrower</span> <span class="p">{</span>
-</div><div class='line'>    <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">()</span> <span class="p">{</span>
-</div><div class='line'>        <span class="k">throw</span> <span class="k">new</span> <span class="nx">\InvalidArgumentException</span><span class="p">(</span><span class="s2">&quot;I&#39;m an exception&quot;</span><span class="p">);</span>
-</div><div class='line'>    <span class="p">}</span>
-</div><div class='line'><span class="p">}</span>
-</div><div class='line'>
-</div><div class='line'><span class="nv">$subject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExceptionThrower</span><span class="p">();</span>
-</div><div class='line'>
-</div><div class='line'><span class="nx">assertThrowsException</span><span class="p">(</span><span class="s1">&#39;InvalidArgumentException&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$subject</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>        <span class="nv">$subject</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
-</div><div class='line'>    <span class="p">}</span>
-</div><div class='line'><span class="p">);</span>
-</div></code></pre></td></tr></table></div></figure>
+<figure class='code'><figcaption><span>Let&#8217;s throw an exception, yay! </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">class</span> <span class="nc">ExceptionThrower</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">public</span> <span class="k">function</span> <span class="nf">execute</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>      <span class="k">throw</span> <span class="k">new</span> <span class="nx">\InvalidArgumentException</span><span class="p">(</span><span class="s2">&quot;I&#39;m an exception&quot;</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nv">$subject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ExceptionThrower</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'><span class="nx">assertThrowsException</span><span class="p">(</span><span class="s1">&#39;InvalidArgumentException&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span> <span class="p">(</span><span class="nv">$subject</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>      <span class="nv">$subject</span><span class="o">-&gt;</span><span class="na">execute</span><span class="p">();</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The magic happens in lines 10-13:<br/>
-The <em>execute</em>-method of ExceptionThrower doesn&#8217;t get executed immediately because it&#8217;s wrapped in an anonymous function, i.e.
+The <em>execute</em>-method of ExceptionThrower doesn&rsquo;t get executed immediately because it&rsquo;s wrapped in an anonymous function, i.e.
 <em>execute</em> will only be invoked when we call the anonymous function contained in <em>$code</em> in line 5 of <em>assertThrowsException()</em>.</p>
 
-<p>Now one question remains - can this be done in PHPUnit with a &#8220;proper&#8221; assertion?<br/>
+<p>Now one question remains &ndash; can this be done in PHPUnit with a &ldquo;proper&rdquo; assertion?<br/>
 Yes, it can!</p>
 
-<p>I won&#8217;t post the full code into this blog, it would be a bit too much but you can find the code adding a new assertion
+<p>I won&rsquo;t post the full code into this blog, it would be a bit too much but you can find the code adding a new assertion
 <em>assertThrowsException()</em> in the following commit to my fork of PHPUnit 3.5:<br/>
 <a href="https://github.com/kiltec/phpunit/commit/dd5c7bd71d6eb8d4b58ce79b5ae069fbb0734354">Link to Github commit</a><br/>
-Note that this code is not production-ready, it&#8217;s a proof-of-concept with just enough code to get PHPUnit to run the
+Note that this code is not production-ready, it&rsquo;s a proof-of-concept with just enough code to get PHPUnit to run the
 new assertion without throwing a fit, just so I could find out whether such a new assertion would be possible at all.</p>
 
 <p>Anyway, with the new assertion the PHPUnit test-method from the beginning of this blog would look like this:</p>
 
-<figure role=code> <div class="highlight"><table cellpadding="0" cellspacing="0"><tr><td class="gutter"><pre class="line-numbers"><span class='line'>1</span>
-<span class='line'>2</span>
-<span class='line'>3</span>
-<span class='line'>4</span>
-<span class='line'>5</span>
-<span class='line'>6</span>
-<span class='line'>7</span>
-<span class='line'>8</span>
-<span class='line'>9</span>
-</pre></td><td class='code' width='100%'><pre><code class='php'><div class='line'><span class="cp">&lt;?php</span>
-</div><div class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomeImportantMethod</span><span class="p">()</span> <span class="p">{</span>
-</div><div class='line'>    <span class="nv">$someClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeClass</span><span class="p">();</span>
-</div><div class='line'>
-</div><div class='line'>    <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThrowsException</span><span class="p">(</span><span class="s1">&#39;InvalidArgumentException&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span><span class="p">(</span><span class="nv">$someClass</span><span class="p">)</span> <span class="p">{</span>
-</div><div class='line'>            <span class="nv">$someClass</span><span class="o">-&gt;</span><span class="na">someMethod</span><span class="p">();</span>
-</div><div class='line'>        <span class="p">}</span>
-</div><div class='line'>    <span class="p">);</span>
-</div><div class='line'><span class="p">}</span>
-</div></code></pre></td></tr></table></div></figure>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='php'><span class='line'><span class="o">&lt;?</span><span class="nx">php</span>
+</span><span class='line'><span class="k">public</span> <span class="k">function</span> <span class="nf">testSomeImportantMethod</span><span class="p">()</span> <span class="p">{</span>
+</span><span class='line'>  <span class="nv">$someClass</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">SomeClass</span><span class="p">();</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nv">$this</span><span class="o">-&gt;</span><span class="na">assertThrowsException</span><span class="p">(</span><span class="s1">&#39;InvalidArgumentException&#39;</span><span class="p">,</span> <span class="k">function</span> <span class="p">()</span> <span class="k">use</span><span class="p">(</span><span class="nv">$someClass</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>          <span class="nv">$someClass</span><span class="o">-&gt;</span><span class="na">someMethod</span><span class="p">();</span>
+</span><span class='line'>      <span class="p">}</span>
+</span><span class='line'>  <span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>Granted, you have more to type than in the current way but in my opinion, this offers more control and is more expressive and I&#8217;d prefer
+<p>Granted, you have more to type than in the current way but in my opinion, this offers more control and is more expressive and I&rsquo;d prefer
 expressiveness over terseness any day.</p>
 
 <p>What do you think, should I turn this into a real patch for PHPUnit?<br/>
@@ -282,16 +304,18 @@ Or am I just crazy? ;)</p>
 
 
 
+
+
+
   
 
 
-
-<time datetime="2011-08-29T18:32:00+02:00" pubdate  data-updated="true" >Aug 29<span>th</span>, 2011</time>
+<time datetime="2011-08-29T18:32:00+02:00" pubdate data-updated="true">Aug 29<sup>th</sup>, 2011</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/php/'>PHP</a>, <a class='category' href='/blog/categories/phpunit/'>PHPUnit</a>, <a class='category' href='/blog/categories/ruby/'>Ruby</a>, <a class='category' href='/blog/categories/unit-tests/'>Unit Tests</a>
+    <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/phpunit/'>phpunit</a>, <a class='category' href='/blog/categories/ruby/'>ruby</a>, <a class='category' href='/blog/categories/unit-tests/'>unit tests</a>
   
 </span>
 
@@ -300,61 +324,56 @@ Or am I just crazy? ;)</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/" data-via="kiltec" data-counturl="http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/" data-via="larstesmer" data-counturl="http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/" >Tweet</a>
   
   
-  <div class="g-plusone" data-size="medium"></div>
   
 </div>
 
     
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/10/01/colored-diffs-in-thunderbird/" title="Previous Post: Colored Diffs in Thunderbird">&laquo; Colored Diffs in Thunderbird</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/" title="Next Post: Review: Eloquent Ruby by Russ Olsen">Review: Eloquent Ruby by Russ Olsen &raquo;</a>
+      
+    </p>
   </footer>
 </article>
 
   <section>
     <h1>Comments</h1>
-    <div id="disqus_thread"><div id="disqus_thread"></div>
-<script type="text/javascript">
-  var disqus_shortname = 'larstesmer';
-  var disqus_identifier = 'http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/';
-  var disqus_url = 'http://lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/';
-  //var disqus_developer = 1;
-  (function() {
-    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 </div>
   </section>
 
 </div>
 
-<aside role=sidebar>
+<aside class="sidebar">
   
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/09/20/how-to-unit-test-a-class-making-calls-to-an-url-or-the-filesystem-with-phpunit/">How to Unit Test a Class Making Calls to An URL (or the Filesystem) with PHPUnit</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2011/09/13/learning-ruby-gotchas-and-pitfalls-for-php-programmers/">Learning Ruby: Gotchas and Pitfalls for PHP Programmers</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2011/09/08/what-my-co---workers-and-i-learned-when-trying-to-write-unit-tests-for-phpunit/">What My Co-Workers and I Learned When Trying to Write Unit Tests for PHPUnit</a>
       </li>
     
       <li class="post">
-        <a href="/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/">Review: The Clean Coder - A Code of Conduct for Professional Programmers</a>
+        <a href="/blog/2011/09/04/review-the-clean-coder-a-code-of-conduct-for-professional-programmers/">Review: The Clean Coder - a Code of Conduct for Professional Programmers</a>
       </li>
     
       <li class="post">
         <a href="/blog/2011/09/04/review-eloquent-ruby-by-russ-olsen/">Review: Eloquent Ruby by Russ Olsen</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/">PHPUnit: Better Syntax for Expecting Exceptions</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2010/10/01/colored-diffs-in-thunderbird/">Colored Diffs in Thunderbird</a>
       </li>
     
   </ul>
@@ -367,27 +386,21 @@ Or am I just crazy? ;)</p>
   </ul>
   <script type="text/javascript">
     $.domReady(function(){
-      getTwitterFeed("kiltec", 5, false);
+      getTwitterFeed("larstesmer", 5, false);
     });
   </script>
   <script src="/javascripts/twitter.js" type="text/javascript"> </script>
   
-    <a href="http://twitter.com/kiltec" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @kiltec</a>
+    <a href="http://twitter.com/larstesmer" class="twitter-follow-button" data-width="208px" data-show-count="false">Follow @larstesmer</a>
   
 </section>
 
 
 <section>
   <h1>On Delicious</h1>
-  <script type="text/javascript" src="http://feeds.delicious.com/v2/js/sprudelpaul?title=&count=5&sort=date&extended"></script>
+  <div id="delicious"></div>
+  <script type="text/javascript" src="http://feeds.delicious.com/v2/json/sprudelpaul?count=5&amp;sort=date&amp;callback=renderDeliciousLinks"></script>
   <p><a href="http://delicious.com/sprudelpaul">My Delicious Bookmarks &raquo;</a></p>
-</section>
-
-<section>
-	<h1>Currently Reading</h1>
-	<p>
-		<a title="Agile Software Development, Principles, Patterns, and Practices by Robert C. Martin" href="http://www.amazon.com/Software-Development-Principles-Patterns-Practices/dp/0135974445"><img src="/images/books/agile_software_dev_unclebob.jpg" alt="Agile Software Development, Principles, Patterns, and Practices" /></a>
-	</p>
 </section>
 
   
@@ -396,47 +409,48 @@ Or am I just crazy? ;)</p>
 
     </div>
   </div>
-  <footer><p>
-  Copyright &copy; 2011 - Lars Tesmer -
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2014 - Lars Tesmer -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
 </footer>
   
-<script type="text/javascript">
-	var _gaq = _gaq || [];
-	_gaq.push(['_setAccount', 'UA-16367267-1']);
-	_gaq.push (['_gat._anonymizeIp']);
-	_gaq.push(['_trackPageview']);
 
-	(function() {
-	 var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	 ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	 var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	 })();
+<script type="text/javascript">
+      var disqus_shortname = 'larstesmer';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/';
+        var disqus_url = 'http://www.lars-tesmer.com/blog/2011/08/29/phpunit-better-syntax-for-expecting-exceptions/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
 </script>
 
 
-  
-  <script type="text/javascript">
-    (function() {
-      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
-      script.src = 'https://apis.google.com/js/plusone.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
-    })();
-  </script>
 
 
-  
+
+
+
   <script type="text/javascript">
     (function(){
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
+
+
+
 
 
 </body>
